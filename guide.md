@@ -1,0 +1,3 @@
+- learn basic astro features 
+- integrate vue
+- learn decap cms
