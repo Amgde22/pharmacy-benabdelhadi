@@ -1,3 +1,5 @@
+
+
 /* CODESTITCH STYLES, RESET, HEADER/NAVIGATION AND FOOTER */
 
 /*-- -------------------------- -->
@@ -15,6 +17,8 @@
     --headerColor: #1a1a1a;
     --bodyTextColor: #4e4b66;
     --bodyTextColorWhite: #fafbfc;
+
+    --whatsapp:#25d366;
 
     /* 13px - 16px */
     --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
@@ -69,7 +73,9 @@
     // Transition Properties
     color: #000;
     background-color: var(--primary);
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     position: relative;
     z-index: 1;
     transition: color 0.3s;
@@ -233,12 +239,13 @@
     #dark-mode-toggle {
       .cs-sun {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        fill:#fff;
+        transform: translate(-50%, -50%) scale(1.5);
       }
 
       .cs-moon {
         opacity: 0;
-        transform: translate(-50%, -150%);
+        transform: translate(-50%, -150%) ;
         fill: #fff;
       }
     }
@@ -274,7 +281,7 @@
       // Transition properties
       transition: transform 0.3s, opacity 0.3s;
 
-      // fill: yellow; --> uncomment to change the color of the moon if needed
+
     }
 
     .cs-sun {

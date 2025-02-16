@@ -5,32 +5,13 @@
     "children": []
   },
   {
-    "key": "About Us",
+    "key": "About",
     "url": "/about/",
     "children": []
   },
   {
-    "key": "Projects",
-    "url": "/projects/",
-    "children": [
-      {
-        "key": "Project 1",
-        "url": "/projects/project-1/"
-      },
-      {
-        "key": "Project 2",
-        "url": "/projects/project-2/"
-      }
-    ]
-  },
-  {
-    "key": "Reviews",
-    "url": "/reviews/",
+    "key": "Products",
+    "url": "/products/",
     "children": []
-  },
-  {
-    "key": "Blog",
-    "url": "/blog/",
-    "children": []     
   }
 ]

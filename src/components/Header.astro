@@ -2,6 +2,7 @@
 import navData from "@data/navData.json";
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
+import AmButton from "./AmButton.astro";
 ---
 
 <!-- ============================================ --><!--                 Navigation                   --><!-- ============================================ -->
@@ -18,6 +19,18 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
         decoding="async"
       />
     </a>
+
+    <AmButton fontSize="1.2em">
+      <Icon name="mdi--location" />
+      visit us!
+    </AmButton>
+    <!-- navbar CTA -->
+    <!-- <a href="https://www.google.com/" target="_blank" 
+    class="cs-button-solid always-active">
+    <Icon name="mdi--location" />
+    visit us today
+    </a> -->
+
     <!--Navigation List-->
     <nav class="cs-nav" role="navigation">
       <!--Mobile Nav Toggle-->
@@ -28,6 +41,7 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
           <span class="cs-line cs-line3" aria-hidden="true"></span>
         </div>
       </button>
+      
       <!-- If you want to use another navigation stitch and enjoy the benefits of dynamic routing, replace the .cs-ul-wrapper in the navigation stitch with this one below -->
       <div class="cs-ul-wrapper">
         <ul id="cs-expanded-ul" class="cs-ul">
@@ -87,7 +101,9 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
         </ul>
       </div>
     </nav>
-    <a href="/contact" class="cs-button-solid cs-nav-button">Contact Us</a>
+    <a href="/contact" class="cs-button-solid cs-nav-button whatsapp-bg">
+      <Icon name={"mage--location-fill"} size={"35px"} />
+      Contact Us</a>
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <DarkModeToggle />
   </div>
@@ -166,7 +182,7 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
       width: 40%;
       max-width: (146/16rem);
       height: 100%;
-      margin: 0 auto 0 0;
+      margin: 0 8px 0 0;
       /* prevents padding from affecting height and width */
       box-sizing: border-box;
       padding: 0;
@@ -402,7 +418,6 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
     .cs-dropdown {
       color: var(--bodyTextColorWhite);
       color: var(--headerColor);
-
       position: relative;
 
       &.cs-active {
@@ -694,7 +709,7 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
       max-width: (350/16rem);
       height: (65/16rem);
       /* margin-right auto pushes everything away from it to the right */
-      margin: 0 auto 0 0;
+
       padding: 0;
       display: flex;
       justify-content: center;
