@@ -6,3 +6,6 @@ client:load (loads js)
 cluient:visible (untill on screen)
 
 - /public/ is base level from the server
+
+- YOU CAN NEST LAYOUTS
+- you need to slugify (run through slugify function you find online) links generated from frontmatter 

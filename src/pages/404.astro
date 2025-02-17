@@ -1,0 +1,39 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import landingImage from "@assets/images/hero.avif" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import { getOptimizedImage } from "@js/utils";
+import Landing from "@components/Landing.astro";
+
+const optimizedImage = await getOptimizedImage(landingImage)
+
+
+---
+
+<BaseLayout
+ title="404 Not Found" 
+ description="this website is still a work in progress "
+ preloadedImage={optimizedImage}
+ >
+ <Landing 
+ title="404"
+ image={optimizedImage}
+/>
+ <main>
+   <div>
+       <h1>404 - Page Not Found</h1>
+       <p>Oops! The page you're looking for doesn't exist.</p>
+       <p>Maybe try one of these links:</p>
+       <ul>
+         <li><a href="/">Homepage</a></li>
+       </ul>
+   </div>
+ </main>
+</BaseLayout>
+
+<style>
+    main{
+        display: flex;
+        place-items: center;
+        min-height: 50vh;
+    }
+</style>

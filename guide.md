@@ -1,3 +1,16 @@
 - learn basic astro features 
 - integrate vue
 - learn decap cms
+
+- put actual nav links - done
+- fill in data.json - done
+- rest - dones uhhhh
+- rename unecessary pages to be removed - done 
+- 404 page - done
+- write/rewrite text
+- links
+- hero ( header , paragraph , cta }
+- services (3-4)
+- fsq (3-4)
+- footer (logo,headers , services)
+- deploy

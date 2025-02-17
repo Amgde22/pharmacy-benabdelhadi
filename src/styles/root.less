@@ -1,20 +1,43 @@
-
+// logo font
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
 
 /* CODESTITCH STYLES, RESET, HEADER/NAVIGATION AND FOOTER */
 
 /*-- -------------------------- -->
 <---        Core Styles         -->
 <--- -------------------------- -*/
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+
+
 
 /* CodeStitch Root and Helpers */
 @media only screen and (min-width: 0em) {
+    // style reset
+  
+  
   // Website colors
   :root {
-    --primary: hsl(80, 90%, 55%);
-    --primaryLight: hsl(80, 60%, 40%);
+    // --primary: hsl(80, 90%, 55%);
+    // --primaryLight: hsl(80, 60%, 40%);
+    // --secondary: #001f3f;
+    // --secondaryLight: #001f3f;
+    // --headerColor: #1a1a1a;
+    // --bodyTextColor: #4e4b66;
+    // --bodyTextColorWhite: #fafbfc;
+
+    --primary: #8ddaf9;
+    --primaryLight: #b8eafe;
     --secondary: #001f3f;
-    --secondaryLight: #001f3f;
-    --headerColor: #1a1a1a;
+    --secondaryLight: #539DA6;
+    --headerColor: #1B618C;
     --bodyTextColor: #4e4b66;
     --bodyTextColorWhite: #fafbfc;
 
@@ -29,6 +52,7 @@
     /* 60px - 100px top and bottom */
     --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
   }
+
 
   // Text styles - can be replaced using CodeStitch's "Content Flair" Stitches
   .cs-topper {
