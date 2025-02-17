@@ -22,7 +22,7 @@ const { fontSize ,collapse,classes} = Astro.props;
 <style lang="less" >
   .custom-button {
     --text-color: black;
-    --background-color: var(--primary); /* Use the CSS variable */
+    --background-color: var(--primaryLight); /* Use the CSS variable */
     --icon-color: white;
 
     background-color: var(--background-color);
@@ -83,15 +83,24 @@ const { fontSize ,collapse,classes} = Astro.props;
   }
 
 
-
+// mobile styles
 @media only screen and (max-width: 1023px) {
-
   .custom-button.collapse{
     box-sizing: border-box;
     padding:8px ;
     border-radius: 100%;
 
   }
-
 }
+
+// dark mode
+@media only screen and (min-width: 0rem) {
+    body.dark-mode {
+      .custom-button{
+        --background-color: var(--medium); /* Use the CSS variable */
+        --text-color: white;
+
+      }
+    }
+  }
 </style>
