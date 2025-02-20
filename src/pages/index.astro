@@ -9,6 +9,7 @@ import landingImage from "@assets/images/landing.jpg" // <-- THE PATH TO THE ASS
 import { Icon } from "astro-icon/components";
 import LearningArea from "@components/LearningArea.astro";
 import Hero from "@components/Hero.astro";
+import Products from "@components/Products.vue";
 const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
@@ -22,8 +23,8 @@ const optimizedImage = await getOptimizedImage(landingImage)
 <Hero />
 
 
-
-
+<!-- products -->
+<Products />
  
   <!-- ============================================ -->
   <!--                    FAQ                       -->
