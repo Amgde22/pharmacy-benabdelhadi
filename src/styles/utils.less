@@ -24,6 +24,35 @@
     text-align: center;
 }
 
+
+@keyframes popup {
+    0% {
+      transform: scale(0.7);
+      opacity: 0; /* Optional: Fade in as well */
+    }
+    80% {
+      transform: scale(1.05); /* Overshoot */
+      opacity: 1; /* Optional */
+    }
+    100% {
+      transform: scale(1); /* Settle */
+      opacity: 1; /* Optional */
+    }
+  }
+
+  @keyframes popout {
+    0% {
+    transform: scale(1) ; /* Settle */
+    opacity: 1; /* Optional */
+
+    }
+
+    100% {
+      transform: scale(0.8) ; /* Settle */
+      opacity: 0; /* Optional */
+
+    }
+  }
   
 //   .truncate-text::after {
 //     content: '...';

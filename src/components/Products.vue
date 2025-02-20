@@ -27,7 +27,12 @@
     import placeHolderImage from "@assets/images/nature.jpeg"
 
 
-    const {isSection} = defineProps()
+    const props = defineProps({
+        isSection:{
+            type:Boolean,
+            default:true
+        }
+    })
 
 
 </script>
@@ -41,6 +46,7 @@
     min-height:90vh ;
     &.isSection{
         height: 500px;
+        overflow-y: hidden;
     }
 
     // grid

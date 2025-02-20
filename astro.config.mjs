@@ -2,8 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import vue from "@astrojs/vue";
-import PrimeVue from 'primevue/config';
-import Aura from '@primevue/themes/aura';
+
 
 
 
@@ -17,7 +16,4 @@ export default defineConfig({
     priority: 0.7,
   }), vue()],
 
-  vite: {
-    plugins: [],
-  },
 });

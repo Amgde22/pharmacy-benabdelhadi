@@ -6,9 +6,13 @@
 - some photo - donenene
 - product card edit - done
 - get data in vue then loop over it to render cards - done
-- add info instead of button
-- set up card modals
-
+- add info instead of button - done
+- set up card modals - done
+  - cool exit button - done
+  - content layout - done
+  - dialog pop up animation - done
+  - cool carousel - done
+- deploy 
 - add product tag nav (?)
 - add sliding thing (?)
 ### polishing
