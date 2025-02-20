@@ -7,6 +7,8 @@ import "@styles/root.less";
 import "@styles/utils.less";
 import "@styles/dark.less";
 
+// shoelace style
+import "@shoelace-style/shoelace/dist/themes/light.css";
 
 
 
@@ -119,3 +121,12 @@ const { description, title, preloadedImage } = Astro.props;
   
     document.addEventListener("astro:after-swap", setTheme); // For View Transitions purposes - astro:after-swap ensures that the theme is kept after navigating to a new page.
   </script>
+
+<script>
+  // setBasePath to tell Shoelace where to load icons from.
+  import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+  setBasePath('/shoelace-assets/');
+
+  // Load all components.
+  import '@shoelace-style/shoelace/dist/components/button/button.js';
+</script>
