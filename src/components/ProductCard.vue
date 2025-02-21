@@ -91,8 +91,8 @@
 
 <script setup>
 import {ref, computed, defineProps } from 'vue';
-// import '@shoelace-style/shoelace/dist/components/carousel/carousel';
-// import '@shoelace-style/shoelace/dist/components/carousel-item/carousel-item';
+import '@shoelace-style/shoelace/dist/components/carousel/carousel.js';
+import '@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js';
 import placeHolderImage from "@assets/images/nature.jpeg"
 import placeHolderImage2 from "@assets/images/landing.jpg"
 import placeHolderImage3 from "@assets/images/hero.avif"

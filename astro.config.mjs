@@ -14,6 +14,12 @@ export default defineConfig({
     filter: (page) => !page.includes("/admin"),
     changefreq: "weekly",
     priority: 0.7,
-  }), vue()],
+  }), vue({
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.includes('-'),
+      },
+    },
+  })],
 
 });
