@@ -1,0 +1,14 @@
+{
+  "name": "Aweasome pc",
+  "description": "rizen 5 bla bla",
+  "price": 10000,
+  "images": [
+    {
+      "image": "src/assets/images/placeholder.jpg"
+    }
+  ],
+  "image": "src/assets/images/untitled.jpg",
+  "tags": [
+    "laptop"
+  ]
+}

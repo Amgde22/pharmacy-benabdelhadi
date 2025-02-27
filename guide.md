@@ -2,18 +2,35 @@
 - integrate vue
 - learn decap cms
 
+
+
+### decap cms
+- include list of images - done
+- see if list apears on /admin
+- read through docs to get an idea
+  - note stuff = done
+- make it save as json with images - done
+<!-- probably a lot of shit and headaches -->
+- retrieve your data - done
+
+#### displaying the data
+- setef data - done
+  - add predefined tags (8 - 10) [desktop, laptop , gaming , audio,mouse ,keyboard ,cables , accessories , monitors]
+  - dynamically generated tags are [all , promotion]
+
+- retrieve data in products 
+- (otional) add a way to add custom tags
+  - file collection
+  - requires decap cms as an npm package
+
+
 ### cards
-- some photo - donenene
-- product card edit - done
-- get data in vue then loop over it to render cards - done
-- add info instead of button - done
-- set up card modals - done
-  - cool exit button - done
-  - content layout - done
-  - dialog pop up animation - done
-  - cool carousel - done
-- deploy 
-- add product tag nav (?)
+
+- get yer data
+- display it as cards
+- add product tag nav
+- make modal fullscreen on mobila
+- (optional) make another modal open when you click a photoq
 - add sliding thing (?)
 ### polishing
 - shadow to services

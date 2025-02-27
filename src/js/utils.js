@@ -21,5 +21,20 @@ export async function getOptimizedImage(image) {
   return optimizedImage
 }
 
+export async function getOptimizedCardImage(image) {
+  // returns an object with a src property
+  if (typeof image == "string") {
+    return {src:image}
+  }
+  
+  const optimizedImage = await getImage({
+    src: image,
+    width:350,
+    format: "webp",
+  });
+
+  return optimizedImage
+}
+
 // Learn more agout the getImage() function here
 // https://docs.astro.build/en/guides/images/#generating-images-with-getimage

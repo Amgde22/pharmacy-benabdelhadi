@@ -3,10 +3,11 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 local_backend: true
-media_folder: src/assets/images/blog # Location where files will be stored in the repo - we store them in src so that Astro can optimize them.
-public_folder: src/assets/images/blog  # Ensure that this path is the same as the media_folder path above.
-site_url: https://intermediate-astro-kit-decap-cms.netlify.app/ # Displays a link to home page in the top-right corner of the CMS dashboard
-logo_url: https://codestitch.app/frontend/images/logo.png # change url to a link to the image you want to use, no file paths, must be a URL
+media_folder: src/assets/images # Location where files will be stored in the repo - adjusted to store all images, including products and blogs.
+public_folder: src/assets/images  # Ensure that this path matches the media_folder path above.
+site_url: https://infopcsba.com/ # Displays a link to home page in the top-right corner of the CMS dashboard
+logo_url: https://codestitch.app/frontend/images/logo.png # Change URL to a link to the image you want to use, no file paths, must be a URL
+
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog. Is also the key when fetching data from the CMS.
     label: "Blog" # Used in the admin dashboard UI
@@ -21,3 +22,27 @@ collections:
       - { label: "Image Caption", name: "imageAlt", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "products" # New collection for products
+    label: "Product" # Used in the admin dashboard UI
+    editor:
+      preview: false
+    folder: "src/content/products" # The path to the folder where the product entries are stored
+    create: true # Allow users to create new product entries
+    identifier_field: "name"
+    slug: "{{name}}-{{price}}"
+    format: "json" # Save entries in JSON format
+    fields: # The fields for each product
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price  (DZD)", name: "price", widget: "number",  min: 0 }
+      - { label: "Offer (new price after promotion)", name: "offer", widget: "number", min: 0, required: false }
+      - { label: "Image", name: "image", widget: "image" }
+      - label: "Additional photos"
+        name: "images"
+        widget: "list"
+        allow_add: true
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+      - { label: "Tags", name: "tags", widget: "select", multiple: true, options: ["desktop", "laptop", "gaming", "audio", "mouse", "keyboard", "cables", "accessories", "monitors"], required: false, hint: "Select tags to categorize products" } # Tags with auto-complete

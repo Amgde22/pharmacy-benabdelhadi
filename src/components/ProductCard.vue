@@ -1,6 +1,6 @@
 <template>
   <div class="product-card" @click="openDialog">
-    <img :src="imageUrl" :alt="name" class="product-image" />
+    <img :src="mainImage.src" :alt="name" class="product-image" />
     <h3 class="product-name">{{ name }}</h3>
     <p class="product-description">{{ description }}</p>
     <div class="product-price-and-button bottom-section">
@@ -94,10 +94,9 @@ import {ref, computed, defineProps } from 'vue';
 import '@shoelace-style/shoelace/dist/components/carousel/carousel.js';
 import '@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js';
 import placeHolderImage from "@assets/images/nature.jpeg"
-import placeHolderImage2 from "@assets/images/landing.jpg"
-import placeHolderImage3 from "@assets/images/hero.avif"
+
 const modalVisible = ref(false)
-const images = [placeHolderImage.src,placeHolderImage2.src,placeHolderImage3.src]
+
 
 
 
@@ -105,34 +104,31 @@ const images = [placeHolderImage.src,placeHolderImage2.src,placeHolderImage3.src
 
 // Define the props for the component
 const props = defineProps({
-  id: {
-    type: String,
-    required: true
+  product:{
+    type:Object
   },
-  name: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  imageUrl: { // Add an imageUrl property
-    type: String,
-    required: true
-  },
-  offer: {
-    type: Object,
-    default: () => ({}) // Optional object, so provide a default
+  productImages:{
+    type:Object
   }
 });
+const id = props.product.id
+const {name , description , price , offer:offerPrice  , images:aditionalImages} = props.product.data
+console.log(id, "images :");
+console.log(props.productImages);
+// havent resolved yet
+const { image:mainImage } = props.productImages
 
-// Compute the formatted price
-const formattedPrice = computed(() => `$${props.price.toFixed(2)}`);
+// format Data
+const formattedPrice = computed(() => {
+  const formattedNumber = price.toLocaleString('en-US'); // Convert to string and format with commas
+  return `${formattedNumber} DZD`
+});
+const formattedPromotionPrice = computed(() => {
+  const formattedNumber = offerPrice.toLocaleString('en-US'); // Convert to string and format with commas
+  return `${formattedNumber} DZD`
+});
+
+
 // Reference to the dialog element
 const dialog = ref(null);
 
@@ -184,7 +180,7 @@ const closeDialog = () => {
     max-height: 200px;
     border-radius: @border-radius;
     margin-bottom: 0.75rem;
-    object-fit: cover; // Ensure image fills container without distortion
+    object-fit: contain; // Ensure image fills container without distortion
     aspect-ratio: 16/9; //Maintain the aspect ratio, even if width and height are not set
   }
 

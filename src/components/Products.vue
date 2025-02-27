@@ -10,19 +10,14 @@
 
         <ProductCard v-for="product in products"
             :key="product.id"
-            :id="product.id"
-            :name="product.name"
-            :description="product.description"
-            :price="product.price"
-            :imageUrl="placeHolderImage.src"
-            :offer="product.offer"
+            :product="product"
+            :product-images="productImages[product.id]"
         />
         
     </section>
 </template>
 
 <script setup>
-    import {products} from "@data/products.json"
     import ProductCard from "@components/ProductCard.vue"
     import placeHolderImage from "@assets/images/nature.jpeg"
 
@@ -31,8 +26,16 @@
         isSection:{
             type:Boolean,
             default:true
+        },
+        products:{
+            type:Array,
+            required:true
+        },
+        productImages:{
+            type:Object
         }
     })
+
 
 
 </script>

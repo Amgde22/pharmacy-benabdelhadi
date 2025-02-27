@@ -2,15 +2,36 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
 import FAQ from "@components/FAQ.astro";
+import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "@js/utils"
+import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
 import landingImage from "@assets/images/landing.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
 import { Icon } from "astro-icon/components";
 import LearningArea from "@components/LearningArea.astro";
 import Hero from "@components/Hero.astro";
 import Products from "@components/Products.vue";
 const optimizedImage = await getOptimizedImage(landingImage)
+
+const products = await getCollection("products");
+const productsProcessedImages = await processProdctImages(products)
+
+async function processProdctImages(products) {
+  const processed_images =  {}
+
+  products.forEach(async (entry) =>{
+    const {id,data} = entry
+      const optimized_main_image = await getOptimizedCardImage(data.image)
+
+      processed_images[id] = {}
+      processed_images[id].image = optimized_main_image
+  })
+
+  return processed_images
+}
+
+
+
 ---
 
 <BaseLayout
@@ -24,7 +45,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
 
 
 <!-- products -->
-<Products client:idle isSection={true} />
+<Products client:idle products={products} productImages={productsProcessedImages}  isSection={true} />
  
   <!-- ============================================ -->
   <!--                    FAQ                       -->
