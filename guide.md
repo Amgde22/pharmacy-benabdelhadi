@@ -4,53 +4,36 @@
 
 
 
-### decap cms
-- include list of images - done
-- see if list apears on /admin
-- read through docs to get an idea
-  - note stuff = done
-- make it save as json with images - done
-<!-- probably a lot of shit and headaches -->
-- retrieve your data - done
 
-#### displaying the data
-- setef data - done
-  - add predefined tags (8 - 10) [desktop, laptop , gaming , audio,mouse ,keyboard ,cables , accessories , monitors]
-  - dynamically generated tags are [all , promotion]
+### deacap cms
+- make at least one tag required
+  - in yaml
+  - in zod template
+- remove test products with thier weird images
+- remove /blog and store everything in /products
+- test a new product with urls and local images
+- remove test products with thier weird images
 
-- retrieve data in products 
-- (otional) add a way to add custom tags
-  - file collection
-  - requires decap cms as an npm package
+
 
 
 ### cards
-
-- get yer data
-- display it as cards
-- add product tag nav
-- make modal fullscreen on mobila
+- make modal fullscreen on mobila - done
+- make body fixed on modal open - done
+- make price font size scale - done
 - (optional) make another modal open when you click a photoq
-- add sliding thing (?)
+
+
+
+### pages
+- remove blog pages 
+- remove about page
+- remove anything else unnecessary 
+
 ### polishing
 - shadow to services
-- bottom of footer
-  - lern what goes there in the first place
-- use cspicture.astro to optimize  hero picture
+- bottom of footer rights
+- use cspicture.astro to optimize hero picture
+- change favicons
+- change "pixel perfect blah blah"
 
-
-- put actual nav links - done
-- fill in data.json - done
-- rest - dones uhhhh
-- rename unecessary pages to be removed - done 
-- 404 page - done
-- write/rewrite text - done
-- links dome
-- hero ( header , paragraph , cta } done
-- services (3-4) done
-- fsq (3-4)done
-- footer (logo,headers , services)done
-- deploy done
-
--fix colors 50%
--deplooy

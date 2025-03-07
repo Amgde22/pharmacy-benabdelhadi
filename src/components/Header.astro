@@ -2,7 +2,7 @@
 import navData from "@data/navData.json";
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
-import AmButton from "./AmButton.astro";
+import AmButton from "./AmButton.vue";
 
 import locationIcon from "@icons/mage--location-fill.svg"
 
@@ -147,10 +147,11 @@ import locationIcon from "@icons/mage--location-fill.svg"
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
     padding: (12/16rem) (16/16rem);
+
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     position: fixed;
-    z-index: 10000;
+    z-index: 5;
 
     &:before {
       /* black blurred overlay */
@@ -219,7 +220,7 @@ import locationIcon from "@icons/mage--location-fill.svg"
       }
 
       .logo-text{
-        font-size: 1.3rem;
+        font-size: 19px;
       }
     }
 

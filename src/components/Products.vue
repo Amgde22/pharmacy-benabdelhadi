@@ -19,7 +19,7 @@
 
 <script setup>
     import ProductCard from "@components/ProductCard.vue"
-    import placeHolderImage from "@assets/images/nature.jpeg"
+
 
 
     const props = defineProps({
@@ -35,6 +35,7 @@
             type:Object
         }
     })
+
 
 
 

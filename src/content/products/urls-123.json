@@ -1,0 +1,16 @@
+{
+  "name": "urls",
+  "description": "desc",
+  "price": 123,
+  "offer": 123,
+  "image": "https://m.media-amazon.com/images/I/61Mk3YqYHpL.jpg",
+  "images": [
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvfpdnzJYBFTZ0o5HMNqODNMZOhAWubdYUTm8wvNhssVHwp1e2bZu3oqGmFOarJue9eyg&usqp=CAU"
+    }
+  ],
+  "tags": [
+    "gaming",
+    "souris"
+  ]
+}

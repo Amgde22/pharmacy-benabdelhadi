@@ -1,0 +1,16 @@
+{
+  "name": "local images",
+  "image": "src/assets/images/products/untitled.jpg",
+  "images": [
+    {
+      "image": "src/assets/images/hero.avif"
+    },
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP967M5wzJg57-p-bTivVHfPeiVahbETSI7A&s"
+    }
+  ],
+  "description": "im pc",
+  "price": 123,
+  "offer": 123,
+  "tags": null
+}
