@@ -3,37 +3,22 @@
 - learn decap cms
 
 
+# products
+- title
+- location buton pretty on dark mode - done
+- product navigator by tag
 
 
-### deacap cms
-- make at least one tag required
-  - in yaml
-  - in zod template
-- remove test products with thier weird images
-- remove /blog and store everything in /products
-- test a new product with urls and local images
-- remove test products with thier weird images
-
-
-
-
-### cards
-- make modal fullscreen on mobila - done
-- make body fixed on modal open - done
-- make price font size scale - done
-- (optional) make another modal open when you click a photoq
-
-
-
-### pages
-- remove blog pages 
-- remove about page
-- remove anything else unnecessary 
 
 ### polishing
+- titles and descriptions pased to base layout
+- add actual products
 - shadow to services
+- add links - done
 - bottom of footer rights
 - use cspicture.astro to optimize hero picture
 - change favicons
 - change "pixel perfect blah blah"
+- add favicon.svg
+
 

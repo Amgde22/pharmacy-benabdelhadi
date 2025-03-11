@@ -1,5 +1,6 @@
 <template>
-  <button
+  <a
+  :href="href" :target="href?'_blank':''"
     class="custom-button"
     :class="[classes, { collapse: collapse }]"
     :style="{ fontSize: fontSize }"
@@ -7,7 +8,7 @@
     <slot name="icon-start"></slot>
     <slot></slot>
     <slot name="icon-end"></slot>
-  </button>
+</a>
 </template>
 
 <script setup>
@@ -25,6 +26,10 @@ const props = defineProps({
   collapse: {
     type: Boolean,
     default: false
+  },
+  href:{
+    type:String,
+    Default:""
   }
 });
 

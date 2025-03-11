@@ -1,10 +1,14 @@
 ---
 import navData from "@data/navData.json";
+import data from "@data/client.json";
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import AmButton from "./AmButton.vue";
 
 import locationIcon from "@icons/mage--location-fill.svg"
+
+const {whatsappLink} = data
+const googleMapsLink = data.address.mapLink
 
 
 ---
@@ -15,19 +19,13 @@ import locationIcon from "@icons/mage--location-fill.svg"
     <!--Nav Logo-->
     <a href="/" class="cs-logo" aria-label="back to home">
       <h1 class="logo-text font-logo text-center">INFO Pc SBA</h1>
-      <!-- <img
-        src="/assets/svgs/logo-black.svg"
-        alt=""
-        width="210"
-        height="29"
-        aria-hidden="true"
-        decoding="async"
-      /> -->
     </a>
 
 
 
-    <AmButton classes="me-auto"  fontSize="1.2em" collapse>
+    <AmButton
+    href={googleMapsLink}
+    classes="me-auto"  fontSize="1.2em" collapse>
       <Icon class={"flex-0"} name="mdi--location" size={25}  />
       <span class="header-cta-button">
         Visitez-nous!
@@ -111,7 +109,7 @@ import locationIcon from "@icons/mage--location-fill.svg"
         </ul>
       </div>
     </nav>
-    <a href="https://wa.me/213770662425" target="_blank" class="cs-button-solid cs-nav-button whatsapp-bg">
+    <a href={whatsappLink} target="_blank" class="cs-button-solid cs-nav-button whatsapp-bg">
       <!-- <Icon name={"mage--location-fill"} size={"35px"} /> -->
       <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
         <path fill="currentColor" d="M21.99 6.547a11 11 0 0 0-.103-1.282a4.3 4.3 0 0 0-.363-1.09A3.85 3.85 0 0 0 19.83 2.48a4.3 4.3 0 0 0-1.083-.362a11 11 0 0 0-1.292-.105c-.183-.007-.42-.01-.53-.01L7.077 2c-.11 0-.347.003-.53.01a11 11 0 0 0-1.282.103a4.3 4.3 0 0 0-1.09.363A3.85 3.85 0 0 0 2.48 4.17a4.3 4.3 0 0 0-.362 1.083a11 11 0 0 0-.106 1.292c-.006.183-.01.42-.01.53L2 16.923c0 .11.003.347.01.53a11 11 0 0 0 .103 1.282a4.3 4.3 0 0 0 .363 1.09A3.85 3.85 0 0 0 4.17 21.52a4.3 4.3 0 0 0 1.083.362a11 11 0 0 0 1.292.105c.183.007.42.01.53.01l9.848.002c.11 0 .347-.003.53-.01a11 11 0 0 0 1.282-.103a4.3 4.3 0 0 0 1.09-.363a3.85 3.85 0 0 0 1.696-1.694a4.3 4.3 0 0 0 .362-1.083a11 11 0 0 0 .106-1.292c.006-.183.01-.42.01-.53L22 7.077c0-.11-.003-.347-.01-.53m-9.773 12.41h-.003a7.1 7.1 0 0 1-3.407-.868l-3.78.991l1.012-3.693a7.13 7.13 0 1 1 6.178 3.57" />
