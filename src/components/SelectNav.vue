@@ -60,7 +60,7 @@ function selectItem(item) {
     /* Track styling */
     &::-webkit-scrollbar-track {
         background: rgba(0, 0, 0, 0.05);
-        border-radius: 10px;
+        border-radius: 20px;
     }
     
     /* Handle styling - pill shape */
@@ -114,6 +114,28 @@ function selectItem(item) {
 
    @media only screen and (min-width: 0rem) {
         body.dark-mode {
+
+        .container{
+                /* Track styling */
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.15);
+
+    }
+    
+    /* Handle styling - pill shape */
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.4);
+
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+        /* Firefox scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.15);
+        }
         .item{
             --color : var(--medium) ;
             --border-color:rgb(114, 114, 114);
@@ -121,7 +143,5 @@ function selectItem(item) {
         }
     }
 }
-@media only screen and (min-width: 1023px) {
 
-}
 </style>
