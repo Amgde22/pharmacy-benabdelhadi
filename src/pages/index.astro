@@ -30,7 +30,8 @@ async function processProdctImages(products) {
   return processed_images
 }
 
-
+// Flag to track if data is ready
+const dataIsReady = products && productsProcessedImages;
 
 ---
 
@@ -45,7 +46,16 @@ async function processProdctImages(products) {
 
 
 <!-- products -->
-<Products client:idle products={products} productImages={productsProcessedImages}  isSection={true} />
+{dataIsReady ? (
+  <Products 
+    client:only="vue" 
+    products={products} 
+    productImages={productsProcessedImages} 
+    isSection={true} 
+  />
+) : (
+  <div class="loading-state">Loading products...</div>
+)}
  
   <!-- ============================================ -->
   <!--                    FAQ                       -->

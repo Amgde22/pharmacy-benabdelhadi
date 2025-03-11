@@ -479,6 +479,7 @@ onMounted(() => {
   margin-top: 4px;
   margin-bottom: 8px;
   gap: 4px;
+  flex-wrap: wrap;
 
   & .tag{
     flex: 0 0 auto;
