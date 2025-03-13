@@ -1,16 +1,12 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import CTA from "@components/CTA.astro";
-import FAQ from "@components/FAQ.astro";
+
 import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
 import landingImage from "@assets/images/hero.avif" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-import { Icon } from "astro-icon/components";
-import LearningArea from "@components/LearningArea.astro";
-import Hero from "@components/Hero.astro";
-import Products from "@components/Products.vue";
+import ProductComponent from "@components/Products.vue";
 const optimizedImage = await getOptimizedImage(landingImage)
 
 const products = await getCollection("products");
@@ -81,31 +77,28 @@ const dataIsReady = products && productsProcessedImages;
 
 
 <BaseLayout
-  title="Page d'accueil"
-  description="Sidi Bel Abbès Solutions Informatiques : Réparation PC, optimisation système & consulting IT. +17 ans d'expérience ! Service rapide et fiable. Vente matériel, conseils d'experts et plus ! Appelez le (0770662425) ou visitez-nous !"
+  title="Produits"
+  description="Large choix de matériel informatique à Sidi Bel Abbès : ordinateurs, composants, périphériques et plus ! Trouvez la solution idéale pour vos besoins. Conseils personnalisés et prix compétitifs !"
   preloadedImage = {optimizedImage}
 >
 
 
-<Hero />
 
+<div class="padding">...</div>
 <!-- products -->
 {dataIsReady ? (
-  <Products 
+  <ProductComponent 
     client:only="vue" 
     products={products} 
     productImages={productsProcessedImages} 
-    isSection={true} 
+    isSection={false} 
   />
 ) : (
   <div class="loading-state">Loading products...</div>
+
 )}
  
-  <!-- ============================================ -->
-  <!--                    FAQ                       -->
-  <!-- ============================================ -->
-  <FAQ />
-
+  
 
 
 </BaseLayout>
@@ -113,8 +106,15 @@ const dataIsReady = products && productsProcessedImages;
 <style lang="less">
   
 
-
-
+.padding{
+    padding-top: 5vw;
+    padding-top: max(10px,5vw);
+}
+@media only screen and (min-width: 1023px) {
+    .padding{
+            padding-top: 86px;
+        }
+}
 
 
 

@@ -1,5 +1,5 @@
 ---
-
+import {address} from "@data/client.json"
 import heroImage from "@assets/images/hero.avif"
 
 const title = "Votre Informatique, Simplifiée"
@@ -15,6 +15,7 @@ const service2_description = "Conseils experts pour vos projets informatiques."
 const service3_description = " Ordinateurs, composants, et accessoires performants."
 const service4_description = "Diagnostics rapides et réparations efficaces."
 
+const {mapLink} = address
 ---
 <!-- ============================================ -->
 <!--                    Hero                      -->
@@ -49,7 +50,7 @@ const service4_description = "Diagnostics rapides et réparations efficaces."
             <h1 class="cs-title">
                 {Description}
             </h1>
-            <a href="" class="cs-button-solid">
+            <a href={mapLink} target="_blank" class="cs-button-solid">
                 {cta}
             </a>
         </div>

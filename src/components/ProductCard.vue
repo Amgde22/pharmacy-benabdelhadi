@@ -12,6 +12,7 @@
 
     <img 
     v-else
+    loading="lazy"
       :src="mainImageSrc" 
       :alt="name + ' image'" 
       class="product-image"
@@ -24,7 +25,7 @@
        class="tag">{{tag}}</p>
 
     </div>
-    <p class="product-description">{{ description }}
+    <p class="product-description ">{{ description }}
 
     </p>
     <div class="product-price-and-button bottom-section">
@@ -94,6 +95,7 @@
             class="carousel-product-image"
              >
             <img
+            loading="lazy"
               :alt="`${name} - Image ${index + 1}`"
               :src="image.src"
               @error="(e) => handleCarouselImageError(e, index)"
@@ -113,8 +115,9 @@
       <!-- other stuff -->
       <div class="dialog-product-informarion-container">
         <h3 class="dialog-product-name product-name">{{ name }}</h3>
-        <p class="dialog-product-description"> 
+        <p class="dialog-product-description "> 
           {{ description }}
+
         </p>
 
         <div class="bottom-section">
@@ -494,12 +497,14 @@ onMounted(() => {
 
 }
 .product-description {
-  font-size: 1em;
+  // keep in em
+  font-size: 1.1em;
   color: @text-color;
   line-height: 1.4;
   margin-bottom: 0.75rem;
   overflow: hidden;
   max-height: 3.8em;
+  font-weight: 400;
 }
 
 .product-price-and-button {

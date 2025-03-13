@@ -8,22 +8,23 @@
         <SelectNav :items="tags" select-all-label="tout"
         @select="e => {selectedTag = e}" />
 
-
-
     <section :class="[
         'product-section',
         {
             isSection:isSection == true
         }
         ]">
+        
 
+        
 
         <ProductCard v-for="product in displayedProduct"
             :key="product.id"
             :product="product"
             :product-images="productImages[product.id]"
         />
-        
+
+
     </section>
 </template>
 
@@ -121,9 +122,9 @@ const products = props.products
 
     display: grid;
     gap: 16px;
-    justify-items: center;
+    justify-content: center;
     align-items: start;
-    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat( auto-fit, minmax(250px, 350px));
 }
 
 

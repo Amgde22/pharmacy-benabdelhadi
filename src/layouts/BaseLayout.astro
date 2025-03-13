@@ -47,7 +47,7 @@ const { description, title, preloadedImage } = Astro.props;
             <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
             <link rel="manifest" href="/assets/favicons/site.webmanifest">
             <meta name="msapplication-TileColor" content="#da532c">
-            <meta name="theme-color" content="#ffffff">
+            <meta name="theme-color" content="#8ddaf9">
          
             <!--For home page, use service keywords for the title, including location for SEO.
             Other pages should just include the page name.
@@ -81,17 +81,20 @@ const { description, title, preloadedImage } = Astro.props;
                 <slot/>
             </main>
             <Footer />
-    
         </body>
+
 </html>
 
-<script is:inline>
+<script >
     // setBasePath to tell Shoelace where to load icons from.
     import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
-  setBasePath('/shoelace-assets/');
+    setBasePath('/shoelace-assets/')
+    // Load components.
+    // import '@shoelace-style/shoelace';
+    import '@shoelace-style/shoelace/dist/components/button/button.js';
+    
 
-  // Load all components.
-  import '@shoelace-style/shoelace/dist/components/button/button.js';
+
 
   // dark mode
     // helper functions to toggle dark mode
