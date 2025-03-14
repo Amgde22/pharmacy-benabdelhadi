@@ -118,15 +118,15 @@ const products = props.products
 }
 .product-section{
     padding: 16px 20px;
-    min-height:90vh ;
+    min-height:500px;
 
     display: grid;
     gap: 16px;
     justify-content: center;
     align-items: start;
     grid-template-columns: repeat( auto-fit, minmax(250px, 350px));
+
+    
+    
 }
-
-
-
 </style>

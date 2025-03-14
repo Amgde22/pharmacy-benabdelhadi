@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container custom-scrollbar">
         <button
          class="item"
          :class="{selected:selectedItem == '' }"
@@ -52,36 +52,12 @@ function selectItem(item) {
     padding-left: 16px;
     padding-left: min(5vw,32px);
 
-        /* Hide default scrollbar for WebKit browsers */
-        &::-webkit-scrollbar {
-        height: 16px; /* Short height for the scrollbar */
-    }
-    
-    /* Track styling */
-    &::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 20px;
-    }
-    
-    /* Handle styling - pill shape */
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        transition: background 0.3s ease;
-    }
-    
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Firefox scrollbar styling */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
-
     & .item{
         flex:0 0 auto;
     }
+    
+
+
 }
 
 .item{
@@ -116,32 +92,13 @@ function selectItem(item) {
         body.dark-mode {
 
         .container{
-                /* Track styling */
-    &::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.15);
+         /* Track styling */
 
-    }
-    
-    /* Handle styling - pill shape */
-    &::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.4);
-
-    }
-    
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.4);
-    }
-        /* Firefox scrollbar styling */
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.15);
-        }
         .item{
             --color : var(--medium) ;
             --border-color:rgb(114, 114, 114);
-
         }
     }
-}
+}}
 
 </style>
