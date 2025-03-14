@@ -1,0 +1,22 @@
+{
+  "name": "(example)  ASUS ROG Strix Scope RX - Clavier Gaming",
+  "description": "-   Clavier Mécanique Gaming \n-   Switchs Optiques Rouges ROG RX (Réactifs et Linéaires)\n-   Éclairage RGB Aura Sync\n-   Conception QWERTY (Standard)\n-   Connectivité Filaire USB\n-   Résistant à l'eau\n-   Construction Durable\n-   Nouveau, dans son emballage d'origine.",
+  "price": 8000,
+  "offer": 7600,
+  "image": "src/assets/images/products/sfa23.webp",
+  "images": [
+    {
+      "image": "src/assets/images/products/dqw.webp"
+    },
+    {
+      "image": "src/assets/images/products/3333.webp"
+    },
+    {
+      "image": "src/assets/images/products/123.webp"
+    }
+  ],
+  "tags": [
+    "clavier",
+    "gaming"
+  ]
+}
