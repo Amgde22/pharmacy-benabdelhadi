@@ -20,6 +20,8 @@
     /> 
 
     <p class="product-name">{{ name }}</p>
+
+
     <div class="product-tags">
       <p v-for="tag in tags"
        class="tag">{{tag}}</p>
@@ -236,17 +238,37 @@ const tags = computed(()=>{
 
   return Array.from(optionalProductTags)
 })
+
+// Enhanced price formatter for Vue
+const formatCurrency = (value, currency = 'DZD', locale = 'en-US') => {
+  if (value === null || value === undefined) return null;
+  
+  // Handle both number and string inputs
+  const numericValue = typeof value === 'string' ? parseFloat(value) : value;
+  
+  // Check for valid number
+  if (isNaN(numericValue)) return null;
+  
+  // Round to avoid floating point precision issues
+  const roundedValue = Math.round(numericValue);
+  
+  // Format the number according to locale
+  const formattedNumber = roundedValue.toLocaleString(locale);
+  
+  return `${formattedNumber} ${currency}`;
+};
+
+// Computed properties using the enhanced formatter
 const formattedPrice = computed(() => {
-  if (!price) return "Price unavailable";
-  const formattedNumber = price.toLocaleString('en-US');
-  return `${formattedNumber} DZD`;
+  return formatCurrency(price) || "Price unavailable";
 });
 
 const formattedPromotionPrice = computed(() => {
-  if (!offerPrice) return "";
-  const formattedNumber = offerPrice.toLocaleString('en-US');
-  return `${formattedNumber} DZD`;
+  return formatCurrency(offerPrice) || "";
 });
+
+
+
 
 
 /* ==========================================================================

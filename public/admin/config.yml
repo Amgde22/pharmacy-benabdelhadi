@@ -1,3 +1,4 @@
+
 # See full Decap documentation for further configuration: https://decapcms.org/docs/intro/
 backend:
   name: git-gateway
@@ -19,16 +20,24 @@ collections:
     slug: "{{name}}-{{price}}"
     format: "json" # Save entries in JSON format
     fields: # The fields for each product
-      - { label: "Nom de produit", name: "name", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Prix (DZD)", name: "price", widget: "number", min: 0 , hint: "EXAMPLE : \"1500\"" }
-      - { label: "Promotion (DZD) [Moins cher que le prix initial]", name: "offer", widget: "number", min: 0, required: false , hint: "EXAMPLE : \"1300\" "}
-      - { label: "Image", name: "image", widget: "image" }
-      - label: "Photos additionnelles"
+      - label: "Instructions"
+        name: "instructions"
+        widget: "markdown"
+        minimal: true
+        buttons: []
+        editor_components: []
+        required: false
+        default: "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments"
+      - { label: "✅ Nom de produit", name: "name", widget: "string" }
+      - { label: "✅ Description", name: "description", widget: "text" }
+      - { label: "✅ Prix final (DZD)", name: "price", widget: "number", min: 0, hint: "Prix final après réduction. EXEMPLE : \"2000\"" }
+      - { label: "❓Prix sans promotion (DZD)", name: "offer", widget: "number", min: 0, required: false, hint: "Prix avant réduction (plus élevé que le prix final). EXEMPLE : \"3000\" pour un produit dont le prix final est \"2000\"" }
+      - { label: "✅ Image", name: "image", widget: "image" }
+      - label: "🔹❓Photos additionnelles"
         name: "images"
         widget: "list"
         allow_add: true
         required: false
         fields:
           - { label: "Image", name: "image", widget: "image" }
-      - { label: "Tags", name: "tags", widget: "select", multiple: true, options: ["ordinateur de bureau", "ordinateur portable", "gaming", "audio", "souris", "clavier", "câbles", "accessoires", "écrans"], required: false, hint: "Sélectionner les tags pour catégoriser les produits" } # Tags with auto-complete
+      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["ordinateur de bureau", "ordinateur portable", "gaming", "audio", "souris", "clavier", "câbles", "accessoires", "écrans"], required: false, hint: "Sélectionner les tags pour catégoriser les produits" } # Tags with auto-complete
