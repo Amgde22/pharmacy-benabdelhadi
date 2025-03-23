@@ -2,6 +2,7 @@
 import client from "@data/client.json";
 import navData from "@data/navData.json";
 import { getCurrentYear } from "@js/utils"
+import logo from "@assets/images/logo.png"
 
 const currentYear = getCurrentYear()
 const {mapLink} = client.address
@@ -11,11 +12,14 @@ const {mapLink} = client.address
 <footer id="footer">
   <div class="container">
     <div class="left-section">
-      <a class="logo" href="/"
-        >      <h1 class="font-logo text-center">INFO Pc SBA</h1>
-
-        </a
-      >
+      <a href="/" class="logo" aria-label="back to top">
+        <!-- logo as text -->
+        <!-- <h1 class="logo-text font-logo text-center">INFO Pc SBA</h1> -->
+  
+        <!-- logo as image -->
+        <img  src={logo.src} alt="logo">
+      </a>
+  
     </div>
     <div class="right-section">
       <div class="lists">
@@ -99,15 +103,16 @@ const {mapLink} = client.address
       margin-bottom: (50/16rem);
       .logo {
         text-align: center;
-        width: auto;
-        height: (32/16em);
+        width: 100%;
+        max-width: 325px;
         margin: auto;
         margin-bottom: (30/16em);
         display: inline-block;
 
         img {
           width: auto;
-          height: 100%;
+          max-width: 100%;
+
           display: block;
         }
       }
@@ -257,7 +262,6 @@ const {mapLink} = client.address
 
       .logo {
         text-align: left;
-        height: (40/16rem);
         margin-left: 0;
       }
 

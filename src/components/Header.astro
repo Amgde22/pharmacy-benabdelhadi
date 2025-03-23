@@ -4,7 +4,7 @@ import data from "@data/client.json";
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import AmButton from "./AmButton.vue";
-
+import logo from "@assets/images/logo.png"
 import locationIcon from "@icons/mage--location-fill.svg"
 
 const {whatsappLink} = data
@@ -18,7 +18,11 @@ const googleMapsLink = data.address.mapLink
   <div class="cs-container">
     <!--Nav Logo-->
     <a href="/" class="cs-logo" aria-label="back to home">
-      <h1 class="logo-text font-logo text-center">INFO Pc SBA</h1>
+      <!-- logo as text -->
+      <!-- <h1 class="logo-text font-logo text-center">INFO Pc SBA</h1> -->
+
+      <!-- logo as image -->
+      <img class="logo-image" src={logo.src} alt="logo">
     </a>
 
 
