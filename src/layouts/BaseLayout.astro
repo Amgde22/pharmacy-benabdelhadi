@@ -4,7 +4,7 @@ import client from "@data/client.json";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 
-import logo from "/assets/logo.png"
+import logo from "public/assets/images/logo.png"
 import "@styles/root.less";
 import "@styles/utils.less";
 import "@styles/dark.less";
@@ -42,8 +42,8 @@ const { description, title, preloadedImage } = Astro.props;
             <meta property="og:description" content={description} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={`https://${client.domain}${Astro.url.pathname}`} />
-            <meta property="og:image" content="/assets/images/logo.png" />
-            <meta property="og:image:secure_url" content="/assets/images/logo.png" />
+            <meta property="og:image" content={logo.src} />
+            <meta property="og:image:secure_url" content={logo.src} />
     
             <!--Favicons-->
             <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
@@ -85,6 +85,7 @@ const { description, title, preloadedImage } = Astro.props;
                 <slot/>
             </main>
             <Footer />
+
         </body>
 
 </html>
