@@ -10,14 +10,26 @@
              --track-width: 5px;"></sl-spinner>
         </div>
 
-    <img 
-    v-else
-    loading="lazy"
-      :src="mainImageSrc" 
-      :alt="name + ' image'" 
-      class="product-image"
-      @error="handleImageError" 
-    /> 
+        <div
+          v-else
+          class="product-image-container">
+          <img 
+            loading="lazy"
+              :src="mainImageSrc" 
+              :alt="name + ' image'" 
+              class="product-image"
+              @error="handleImageError" 
+            /> 
+            <img 
+              loading="lazy"
+                :src="mainImageSrc" 
+                :alt="name + ' image'" 
+                class="product-image-background"
+                @error="handleImageError" 
+              /> 
+
+        </div>
+
 
     <p class="product-name">{{ name }}</p>
 
@@ -72,14 +84,7 @@
       </button>
 
       <!-- product carousel -->
-      <sl-carousel 
-         mouse-dragging 
-         style="--aspect-ratio: 16/9;" 
-         ref="carousel"
-         class="carousel"
-         @sl-slide-change="handleSlideChange"
-         @click="openZoomModal"
-         >
+      <div class="carousel-container">
         <sl-carousel-item v-if="!hasCarouselImages">
           <div 
             v-if="isLoading"
@@ -90,9 +95,18 @@
               --track-width: 5px;"></sl-spinner>
           </div>
         </sl-carousel-item>
+        <sl-carousel 
+        v-else
+         mouse-dragging 
+         style="--aspect-ratio: 16/9;" 
+         ref="carousel"
+         class="carousel"
+         @sl-slide-change="handleSlideChange"
+         @click="openZoomModal"
+         >
+
 
           <sl-carousel-item
-            v-else
             v-for="(image, index) in carouselImages" :key="index"
             class="carousel-product-image"
              >
@@ -113,13 +127,16 @@
             @click="goToSlide(index)"
           ></button>
         </div>
+      </div>
 
-      <!-- other stuff -->
+
+      <!-- product information-->
       <div class="dialog-product-informarion-container">
         <h3 class="dialog-product-name product-name">{{ name }}</h3>
         <p class="dialog-product-description custom-scrollbar "> 
-          {{ description }}
-
+          <slot name="description">
+            {{ description }}
+          </slot>
         </p>
 
         <div class="bottom-section">
@@ -213,7 +230,7 @@ const isFallbackImage = ref(false);
 
 
 
-const { name, description, price, offer: offerPrice , tags:optionalProductTags, images: additionalImages } = props.product?.data || {};
+const { name, description, price, offer: offerPrice , tags:optionalProductTags, images: additionalImages ,os:operating_system } = props.product?.data || {};
 
 /* ==========================================================================
    Computed Properties
@@ -479,30 +496,54 @@ onMounted(() => {
   max-height: 450px;
   cursor: pointer;
 }
-
-.product-image {
-  width: 100%;
-  height: auto;
+.product-image-container{
+  position: relative;
   max-height: 200px;
   border-radius: @border-radius;
+  aspect-ratio: 16/9; //Maintain the aspect ratio
+  isolation: isolate;
+  overflow: hidden;
+  margin-bottom: 16px;
+
+.product-image-background {
+  position: absolute;
+  top: 0;left: 0;
+  display: block;
+  // border: 1px solid red;
+  z-index: -1;
+  width: 100%;height: 100%;
+  object-fit: cover; // Cover the container area
+  filter: blur(10px); // Apply blur (adjust px as needed)
+  transform: scale(1.1); // Slightly scale up to avoid blurred edges showing artifacts
+  z-index: -1; // Ensure it's behind the main image
+
+  // display: none;
+
+}
+
+
+}
+.product-image {
+  height: 100%;
+  display: block;
+  margin: auto;
   margin-bottom: 0.75rem;
   object-fit: contain; // Ensure image fills container without distortion
-  aspect-ratio: 16/9; //Maintain the aspect ratio
-
-  display: grid;
-  place-items: center;
+  z-index: 1;
 }
+
 
 .product-name {
   color: var(--headerColor);
   text-transform: capitalize;
   font-weight:bold;
   font-size: 1.25em;
+  margin-bottom: 4px;
+
 }
 .product-tags{
   display: flex;
-  margin-top: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   gap: 4px;
   flex-wrap: wrap;
 
@@ -617,7 +658,6 @@ onMounted(() => {
   position: relative;
   overflow-y: auto;
   margin: auto;
-  padding-top: 12px;
   display: flex;
   flex-direction: column;
 
@@ -762,25 +802,22 @@ onMounted(() => {
    Carousel Styles (.carousel)
    ========================================================================== */
 
+   .carousel-container{
+    padding-top: 16px;
+    padding-bottom: 12px;
+    background-color: rgba(0, 0, 0, 0.148);
+    display: grid;
+    place-items: center;
+   }
 .carousel {
   position: relative;
   z-index: 1;
-
   & img {
     height: 100%;
     width: 100%;
     object-fit: contain;
   }
 
-  // &::part(pagination-item),.pagination-item {
-  //   --size: 14px;
-  //   width: var(--size);
-  //   height: var(--size);
-  // }
-
-  // &::part(pagination-item--active),.pagination-item {
-  //   background-color: var(--medium);
-  // }
 }
 .pagination-container{
   display: flex;
@@ -934,7 +971,5 @@ onMounted(() => {
 }
 
 </style>
-
-
 
 

@@ -1,0 +1,94 @@
+---
+// No server-side logic needed for this component example
+---
+
+<section id="hero" class="hero-container">
+    <!-- The container now handles the image as a background -->
+    <div class="hero-image-container">
+        <!-- Image tag removed, it's now a background -->
+    </div>
+    <h1>Welcome to our store</h1>
+</section>
+
+<style lang="less">
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    .hero-container {
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+
+        padding-top: clamp(6.5rem, 12.95vw, 8.75rem);
+
+        position: relative; // Good for positioning child elements if needed
+        z-index: 1;
+        isolation: isolate;
+        text-align: center; // Center the h1
+        color: white; // Example text color for visibility against image
+        height: 300px; // Adjusted initial height
+
+    }
+
+    .hero-image-container {
+        position: absolute; // Position behind the text
+        top: 0;bottom: 0;
+        margin: auto;
+        width: 100%;
+        z-index: 0; // Place it behind the h1 content
+        // border: 4px solid red; // Removed border, or keep for debugging
+
+        /* Apply the image as a background */
+        background-image: url('https://static.vecteezy.com/system/resources/previews/028/252/048/non_2x/men-s-t-shirt-realistic-mockup-in-different-colors-ai-generated-photo.jpg');
+        background-size: cover; // Cover the container area
+        background-position: center top; // Position the image (adjust as needed)
+        background-repeat: no-repeat;
+        /* No parallax effect on mobile by default */
+        background-attachment: scroll; // Default behavior
+
+         /* Optional: Add an overlay for text readability */
+        &::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background-color: rgba(0, 0, 0, 0.3); // Dark semi-transparent overlay
+             z-index: 0;
+         }
+    }
+
+    .hero-container h1 {
+        position: relative; // Ensure h1 is above the pseudo-element overlay
+        color: white;
+        z-index: 1;
+        font-size: 2rem; // Example size
+        margin-bottom: 2em;
+
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    .hero-container {
+         padding-bottom: 4rem; // More space on tablet
+         height: 400px; // Increase height for tablet
+
+    }
+    .hero-image-container {
+        width: 100%; // Often full width looks better with parallax
+
+        /* --- PARALLAX EFFECT --- */
+        /* Make the background fixed relative to the viewport */
+        background-attachment: fixed;
+
+        /* Adjust position if needed - 'fixed' positioning often requires careful consideration
+           of where the image is anchored visually */
+        background-position: center center; // Center might work better with fixed attachment
+    }
+
+     .hero-container h1 {
+         font-size: 3.5rem; // Larger text on tablet
+     }
+}

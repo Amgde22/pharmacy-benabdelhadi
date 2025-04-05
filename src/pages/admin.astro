@@ -1,4 +1,4 @@
-<!-- This page is the entry point to the the Decap CMS admin dashboard.--><!-- It should not be modified. --><!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,12 +6,276 @@
     <meta name="robots" content="noindex" />
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
     <title>Decap CMS Dashboard</title>
+
     <!-- Netlify Identity widget -->
-    <!-- connects with netlify identity -->
+    <!-- Load this first or wherever appropriate; its load order doesn't directly affect the Decap widget issue -->
     <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <!-- Decap CMS script -->
-    <script is:inline src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <!-- Add the onload attribute here -->
+    <script
+      is:inline
+      src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"
+      onload="initDecapCustomWidgets()"
+    ></script>
+
+    <!-- Your custom widget script -->
+    <script is:inline>
+      // Wrap your custom widget registration code in a function
+      function initDecapCustomWidgets() {
+  console.log("Decap CMS loaded, registering custom widgets...");
+
+  if (window.CMS) {
+    var createClass = window.createClass || CMS.createClass;
+    var h = window.h || CMS.h; // Preact's hyperscript function or React.createElement
+
+    if (!createClass || !h) {
+      console.error("Decap CMS helper functions (createClass, h) not found. Widget registration might fail.");
+      // Consider implementing with modern functional components + hooks if createClass is unavailable
+      return; // Stop execution if helpers aren't found
+    }
+
+    // --- Custom Select Widget ---
+
+    var CustomSelectControl = createClass({
+      // Get initial state based on the current value from the CMS
+      getInitialState: function() {
+        var fieldOptions = this.props.field.get('options', []);
+        var initialValue = this.props.value || '';
+        var options = this.getOptions(fieldOptions); // Ensure options are in {label, value} format
+
+        var isCustom = !options.some(opt => opt.value === initialValue) && initialValue !== '';
+        var defaultSelectValue = options.length > 0 ? options[0].value : ''; // Default to first option or empty
+
+        return {
+          selectedValue: isCustom ? defaultSelectValue : initialValue || defaultSelectValue, // Default select if initial value is custom
+          customValue: isCustom ? initialValue : '', // Populate custom if initial value isn't in options
+        };
+      },
+
+      // Helper to handle options potentially being just strings or {label, value} pairs
+      getOptions: function(fieldOptions) {
+        return fieldOptions.map(opt =>
+          typeof opt === 'object' && opt !== null && opt.hasOwnProperty('value')
+            ? opt
+            : { label: String(opt), value: String(opt) }
+        );
+      },
+
+      // Handle changes in the select dropdown
+      handleSelectChange: function(e) {
+        var newValue = e.target.value;
+        // When selecting from dropdown, clear custom value and update state
+        this.setState({
+          selectedValue: newValue,
+          customValue: '' // Clear custom input when select is used
+        });
+        // Propagate the selected value up to the CMS
+        this.props.onChange(newValue);
+      },
+
+      // Handle changes in the custom text input
+      handleCustomInputChange: function(e) {
+        var newValue = e.target.value;
+        // Update custom value state
+        this.setState({
+          customValue: newValue
+        });
+        // Propagate the custom value up to the CMS (or the selected value if custom is cleared)
+        if (newValue) {
+            this.props.onChange(newValue);
+        } else {
+            // If custom input is cleared, revert to sending the selectedValue
+            this.props.onChange(this.state.selectedValue);
+        }
+      },
+
+      render: function() {
+        var fieldOptions = this.props.field.get('options', []);
+        var hint = this.props.field.get('hint', ''); // Get hint from config if provided
+        var options = this.getOptions(fieldOptions);
+        var { selectedValue, customValue } = this.state;
+        var forID = this.props.forID; // ID for label linking
+
+        var isCustomInputActive = customValue !== '';
+        var selectHintText = "Select from list";
+        var customHintText = "Or enter custom value";
+
+        // --- Styles ---
+        var widgetStyle = {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '15px', // Space between the two input groups
+        };
+        var inputGroupStyle = {
+          display: 'flex',
+          flexDirection: 'column',
+        };
+        var hintStyle = {
+          fontSize: '12px',
+          color: '#666', // Dark gray
+          marginBottom: '4px',
+          fontWeight: '500',
+        };
+        var commonInputStyle = {
+          padding: '8px 10px',
+          border: '1px solid #ccc', // Lighter gray border
+          borderRadius: '4px',
+          fontSize: '14px',
+          backgroundColor: '#fff', // White background
+          color: '#333', // Nearly black text
+          width: '100%', // Make inputs take full width
+          boxSizing: 'border-box', // Include padding/border in width
+        };
+        var selectStyle = {
+          ...commonInputStyle,
+          // Add specific select styles if needed, e.g., appearance
+        };
+        var disabledSelectStyle = {
+          ...selectStyle,
+          backgroundColor: '#f0f0f0', // Light gray background when disabled
+          cursor: 'not-allowed',
+          color: '#999', // Gray text when disabled
+        };
+        var textInputStyle = {
+          ...commonInputStyle,
+        };
+
+
+        return h('div', { style: widgetStyle, className: 'custom-select-widget' },
+          // --- Select Input Group ---
+          h('div', { style: inputGroupStyle },
+            h('label', { htmlFor: forID + '-select', style: hintStyle }, selectHintText),
+            h('select', {
+              id: forID + '-select',
+              value: selectedValue,
+              onChange: this.handleSelectChange,
+              disabled: isCustomInputActive, // Disable if custom input has text
+              style: isCustomInputActive ? disabledSelectStyle : selectStyle
+            },
+              // Add a default placeholder option if needed (optional)
+              // h('option', { value: "", disabled: true }, "Choose..."),
+              options.map(function(option) {
+                return h('option', { key: option.value, value: option.value }, option.label);
+              })
+            )
+          ),
+
+          // --- Custom Text Input Group ---
+          h('div', { style: inputGroupStyle },
+             h('label', { htmlFor: forID + '-custom', style: hintStyle }, customHintText),
+             h('input', {
+               id: forID + '-custom',
+               type: 'text',
+               value: customValue,
+               onChange: this.handleCustomInputChange,
+               placeholder: 'Enter custom specification',
+               style: textInputStyle
+             })
+          ),
+
+          // Optional: Display the effective value for debugging/clarity
+          // h('p', { style: { fontSize: '11px', color: '#888', marginTop: '5px' } }, 'Effective value: ' + (customValue || selectedValue))
+        );
+      }
+    });
+
+    // --- Preview Component (Simple display of the final value) ---
+    var CustomSelectPreview = createClass({
+      render: function() {
+        // Simply render the stored value (which is the custom string or the selected option)
+        return h('span', { style: { color: '#333' } }, this.props.value);
+      }
+    });
+
+    // --- Widget Schema (Optional, can define widget-specific config) ---
+    // This widget primarily relies on standard field properties like 'options', 'required', 'hint'.
+    // If you needed widget-specific config (e.g., a setting to *hide* the select), it would go here.
+    var customSelectSchema = {
+        properties: {
+            // Example: If you wanted a config option specific TO this widget
+            // 'allow_custom_input': { type: 'boolean', default: true }
+            // But for now, standard field properties are sufficient.
+        }
+    };
+
+    // Register the customSelect widget
+    // Note: Passing the schema is optional if not needed.
+    CMS.registerWidget('customSelect', CustomSelectControl, CustomSelectPreview /*, customSelectSchema */);
+    console.log("Custom 'customSelect' widget registered.");
+
+    // --- Keep the Color Widget Registration (if still needed) ---
+     var ColorControl = createClass({
+            handleChange: function(e) {
+              this.props.onChange(e.target.value);
+            },
+            render: function() {
+              var value = this.props.value || '';
+              return h('div', { className: 'color-picker-widget' },
+                h('input', {
+                  id: this.props.forID,
+                  className: this.props.classNameWrapper,
+                  type: 'color',
+                  value: value,
+                  onChange: this.handleChange,
+                  style: { width: '100%', padding: '6px' }
+                }),
+                h('div', { style: { marginTop: '8px', display: 'flex', alignItems: 'center' } },
+                  h('div', { style: { width: '20px', height: '20px', backgroundColor: value || '#FFFFFF', border: '1px solid #ddd', marginRight: '8px' } }),
+                  h('code', {}, value)
+                )
+              );
+            },
+          });
+          var ColorPreview = createClass({
+            render: function() {
+              return h('div', {
+                style: {
+                  display: 'inline-block',
+                  width: '20px',
+                  height: '20px',
+                  backgroundColor: this.props.value || '#FFFFFF',
+                  border: '1px solid #ddd',
+                  borderRadius: '2px'
+                }
+              });
+            }
+          });
+          var colorSchema = {
+            properties: {
+              default: { type: 'string' }
+            }
+          };
+          CMS.registerWidget('color', ColorControl, ColorPreview, colorSchema);
+          console.log("Custom color widget registered.");
+
+
+  } else {
+    console.error("Decap CMS object (CMS) not found after script load.");
+  }
+}
+
+// --- How to Load the Script ---
+// Make sure this script runs *after* Decap CMS has loaded.
+// Common methods:
+// 1. Place it in a <script> tag just before the closing </body> tag in your admin HTML file.
+// 2. Use Decap's `registerEventListener` if available/preferred (check Decap docs for current best practices).
+// 3. If using a module bundler (like Webpack, Vite), import CMS and register widgets after initialization.
+
+// Example of invoking the function after DOM content is loaded (simple approach):
+// if (typeof window !== 'undefined') { // Ensure running in browser
+//    window.addEventListener('DOMContentLoaded', initDecapCustomWidgets);
+// }
+
+// Or potentially hook into Decap's initialization if it provides an event/callback:
+// Check Decap CMS documentation for the recommended way to hook into its lifecycle for registrations.
+// Assuming a simple load for now:
+initDecapCustomWidgets(); // Call it directly if script is loaded after CMS is likely initialized
+
+      // Important: Define the function *before* the onload event might potentially fire.
+      // Placing the function definition here in the second script block is safe because
+      // the browser parses this block *before* the onload event from the previous script fires.
+    </script>
   </body>
 </html>

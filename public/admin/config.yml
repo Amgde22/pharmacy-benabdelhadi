@@ -1,23 +1,30 @@
-
 # See full Decap documentation for further configuration: https://decapcms.org/docs/intro/
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 local_backend: true
-media_folder: src/assets/images/products # Location where files will be stored in the repo - adjusted to store all images, including products and blogs.
-public_folder: src/assets/images/products  # Ensure that this path matches the media_folder path above.
-site_url: https://infopc.netlify.app/ # Displays a link to home page in the top-right corner of the CMS dashboard
-logo_url: https://i.postimg.cc/rwDzbVBm/Screen-Shot-2025-03-13-at-18-25-27-removebg-preview.png # Change URL to a link to the image you want to use, no file paths, must be a URL
+media_folder: src/assets/images/uploads # Location where files will be stored in the repo
+public_folder: src/assets/images/uploads  # Ensure that this path matches the media_folder path above.
+site_url: https://google.com # Displays a link to home page in the top-right corner of the CMS dashboard
+logo_url: https://i.postimg.cc/rwDzbVBm/Screen-Shot-2025-03-13-at-18-25-27-removebg-preview.png # Change URL to a link to the image you want to use
+
+# Register the custom widgets script - Ensure this points to your script file
+# Example assumes it's in an /admin/ folder relative to your admin index.html
+# Adjust the path as needed.
+# This line might need to go in your admin HTML file's <head> instead, depending on setup.
+# For config.yml, it's more common to load scripts via the admin HTML.
+# If your setup allows script loading here, uncomment and adjust:
+# js: [/admin/js/decap-custom-widgets.js]
 
 collections:
-  - name: "products" # New collection for products
+  - name: "products" # Collection for general products
     label: "Product" # Used in the admin dashboard UI
     editor:
       preview: false
     folder: "src/content/products" # The path to the folder where the product entries are stored
     create: true # Allow users to create new product entries
     identifier_field: "name"
-    slug: "{{name}}-{{price}}"
+    slug: "{{slug(name)}}-{{price}}" # Creates slugs like 'my-product-name-1999'
     format: "json" # Save entries in JSON format
     fields: # The fields for each product
       - label: "Instructions"
@@ -27,17 +34,144 @@ collections:
         buttons: []
         editor_components: []
         required: false
-        default: "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments"
-      - { label: "✅ Nom de produit", name: "name", widget: "string" }
-      - { label: "✅ Description", name: "description", widget: "text" }
-      - { label: "✅ Prix final (DZD)", name: "price", widget: "number", min: 0, hint: "Prix final après réduction. EXEMPLE : \"2000\"" }
-      - { label: "❓Prix sans promotion (DZD)", name: "offer", widget: "number", min: 0, required: false, hint: "Prix avant réduction (plus élevé que le prix final). EXEMPLE : \"3000\" pour un produit dont le prix final est \"2000\"" }
-      - { label: "✅ Image", name: "image", widget: "image" }
-      - label: "🔹❓Photos additionnelles"
+        default: "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items" # English version
+      - { label: "✅ Product Name", name: "name", widget: "string" } # English Label
+      - { label: "✅ Description", name: "description", widget: "text" } # English Label
+      - { label: "✅ Final Price (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "Final price after discount. EXAMPLE: \"200000\" for 200,000 DZD" } # English Label & Hint
+      - { label: "❓Price Before Discount (DZD)", name: "offer", widget: "number", value_type: "float", min: 0, required: false, hint: "Original price before discount (higher than final price). EXAMPLE: \"250000\" for a product with final price \"200000\"" } # English Label & Hint
+      - { label: "✅ Main Image", name: "image", widget: "image" } # English Label
+      - label: "🔹❓Additional Photos" # English Label
         name: "images"
         widget: "list"
         allow_add: true
         required: false
         fields:
-          - { label: "Image", name: "image", widget: "image" }
-      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["ordinateur de bureau", "ordinateur portable", "gaming", "audio", "souris", "clavier", "câbles", "accessoires", "écrans"], required: false, hint: "Sélectionner les tags pour catégoriser les produits" } # Tags with auto-complete
+          - { label: "Image", name: "image", widget: "image" } # English Label
+      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["desktop pc", "laptop", "gaming", "audio", "mouse", "keyboard", "cables", "accessories", "monitors", "workstation", "office"], required: false, hint: "Select tags to categorize the product." } # English Label, Hint & Tags
+
+  - name: "clothing" # New collection for clothing items
+    label: "Clothing Item" # Used in the admin dashboard UI
+    editor:
+      preview: false
+    folder: "src/content/clothing" # The path to the folder where clothing entries are stored
+    create: true # Allow users to create new clothing entries
+    identifier_field: "name"
+    slug: "{{slug(name)}}-{{price}}" # Creates slugs like 'cool-t-shirt-2500'
+    format: "json" # Save entries in JSON format
+    fields: # The fields for each clothing item
+      - label: "Instructions"
+        name: "instructions"
+        widget: "markdown"
+        minimal: true
+        buttons: []
+        editor_components: []
+        required: false
+        default: "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items" # English version
+      - { label: "✅ Clothing Name", name: "name", widget: "string" } # English Label
+      - { label: "❓ Description", name: "description", widget: "text" ,required: false } # English Label
+      - { label: "✅ Clothing Type", name: "clothing_type", widget: "select", options: ["T-Shirt", "Hoodie", "Sweatshirt", "Jeans", "Pants", "Shorts", "Jacket", "Dress", "Skirt", "Accessory"], hint: "Choose the main type of clothing." } # English Label & Hint
+      - { label: "✅ Final Price (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "Final price after discount. EXAMPLE: \"3500\"" } # English Label & Hint
+      - { label: "❓Price Before Discount (DZD)", name: "offer_price", widget: "number", value_type: "float", min: 0, required: false, hint: "Original price before discount (higher than final price). EXAMPLE: \"4500\"" } # English Label & Hint
+      - label: "🔹✅ Available Colors" # English Label
+        name: "available_colors"
+        widget: "list"
+        min: 1 # Require at least one color
+        hint: "Add at least one color. The 'CSS Value' can be used for styling (e.g., #ff0000, or 'red')." # English Hint
+        fields:
+          - { label: "Color Name", name: "name", widget: "string", hint: "User-visible name (e.g., Bright Red, Navy Blue)" } # English Label & Hint
+          - { label: "CSS Value", name: "value", widget: "color", hint: "Hex code (#FF0000), CSS color name (red), or CSS variable (--brand-red)" } # English Label & Hint (Using the custom 'color' widget you provided)
+      - { label: "🔹✅ Available Sizes", name: "available_sizes", widget: "select", multiple: true, min: 1, options: ["XS", "S", "M", "L", "XL", "XXL", "One Size"], hint: "Select all available sizes for this item. At least one size required." } # English Label & Hint
+      - { label: "✅ Main Image", name: "image", widget: "image" } # English Label
+      - label: "🔹❓Additional Photos" # English Label
+        name: "additional_images" # Changed from 'images' to avoid conflict
+        widget: "list"
+        allow_add: true
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" } # English Label
+      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["Men", "Women", "Unisex", "Kids", "New Arrival", "Sale", "Basic", "Summer", "Winter", "Spring", "Fall"], required: false, hint: "Select tags to categorize the clothing item." } # English Label, Hint & Tags
+
+
+# --- PC Collection (Labels/Hints in French) ---
+  - name: "pcs" # Collection name (Keep English for consistency)
+    label: "PC" # Top-level label in Admin UI (Can be French)
+    label_singular: "PC" # Singular label in Admin UI (Can be French)
+    editor:
+      preview: false
+    folder: "src/content/pcs" # The path to the folder where PC entries are stored
+    create: true # Allow users to create new PC entries
+    identifier_field: "name" # Use PC name to identify entries
+    slug: "{{slug(name)}}-{{year}}-{{month}}-{{day}}" # Creates slugs like 'gaming-rig-x-2025-04-04'
+    format: "json" # Save entries in JSON format
+    fields: # The fields for each PC
+      - label: "Instructions" # Field label itself (Can be French)
+        name: "instructions" # Data key (Keep English)
+        widget: "markdown"
+        minimal: true
+        buttons: []
+        editor_components: []
+        required: false
+        # Default text content displayed to the user in French
+        default: "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments\n\n**Spécifications:** Pour les spécifications comme CPU, GPU, RAM, etc., vous pouvez sélectionner une option courante dans la liste ou saisir un modèle spécifique dans la case 'valeur personnalisée' sous la liste."
+      - { label: "✅ Modèle du PC", name: "name", widget: "string", hint: "Entrez le nom principal ou le modèle de la configuration PC (ex: Aurora Gaming Desktop, Office Pro Mini)"} # French Label & Hint
+      - { label: "✅ Prix final (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "Prix de vente final. EXEMPLE : \"150000\" pour 150 000 DZD" } # French Label & Hint
+      - { label: "❓Prix avant réduction (DZD)", name: "offer_price", widget: "number", value_type: "float", min: 0, required: false, hint: "Optionnel : Prix original si le PC est en promotion (doit être supérieur au prix final)." } # French Label & Hint
+      - { label: "✅ Image principale", name: "image", widget: "image", hint: "Téléchargez la photo principale du PC (ex: vue de face dans le boîtier)." } # French Label & Hint
+      - label: "🔹❓Photos additionnelles" # French Label
+        name: "images" # Data key (Keep English)
+        widget: "list"
+        allow_add: true
+        required: false
+        hint: "Optionnel : Téléchargez plus de photos (ex: intérieur, vue latérale, ports arrière)." # French Hint
+        fields:
+          - { label: "Image", name: "image", widget: "image" } # French Label
+
+      # --- Spécifications PC (Labels/Hints in French) ---
+      - label: "✅ Système d'exploitation" # French Label
+        name: "operating_system" # Data key (Keep English)
+        widget: "customSelect" # Using the custom widget
+        # Options are often technical terms, keeping them mostly English might be okay,
+        # but translated "Not Included" for clarity. Adjust as needed.
+        options: ["Windows 11 Home", "Windows 11 Pro", "Windows 10 Home", "Windows 10 Pro", "Linux (Ubuntu)", "Non Inclus / Sans OS"]
+        required: true
+        default: "Windows 11 Home" # Default value
+        hint: "Sélectionnez l'OS installé ou spécifiez-en un différent." # French Hint
+      - label: "✅ Processeur (CPU)" # French Label
+        name: "processor" # Data key (Keep English)
+        widget: "customSelect"
+        # Technical options kept in English
+        options: ["Intel Core i3", "Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 3", "AMD Ryzen 5", "AMD Ryzen 7", "AMD Ryzen 9"]
+        required: true
+        hint: "Sélectionnez la série du CPU ou entrez le modèle exact (ex: 'Intel Core i5-13600K')." # French Hint
+      - label: "✅ Carte Graphique (GPU)" # French Label
+        name: "graphics_card" # Data key (Keep English)
+        widget: "customSelect"
+        # Technical options kept mostly English, translated "Integrated"
+        options: ["Graphiques Intégrés", "NVIDIA GeForce RTX 4060", "NVIDIA GeForce RTX 4070", "NVIDIA GeForce RTX 4080", "NVIDIA GeForce RTX 4090", "AMD Radeon RX 7600", "AMD Radeon RX 7700 XT", "AMD Radeon RX 7800 XT", "AMD Radeon RX 7900 XT/XTX"]
+        required: true
+        hint: "Sélectionnez le modèle de GPU ou spécifiez-en un différent. Choisissez 'Graphiques Intégrés' si pas de carte dédiée." # French Hint
+      - label: "✅ Stockage" # French Label
+        name: "storage" # Data key (Keep English)
+        widget: "customSelect"
+        # Technical options + "Combination" translated
+        options: ["SSD NVMe 256Go", "SSD NVMe 512Go", "SSD NVMe 1To", "SSD NVMe 2To", "SSD SATA 1To", "HDD 1To", "Combinaison (Spécifier)"]
+        required: true
+        hint: "Sélectionnez le type/taille de stockage principal ou décrivez la configuration (ex: 'SSD NVMe 1To + HDD 2To')." # French Hint
+      - label: "✅ RAM (Mémoire Vive)" # French Label
+        name: "ram" # Data key (Keep English)
+        widget: "customSelect"
+        # Technical options kept in English/common format
+        options: ["8Go DDR4", "16Go DDR4", "16Go DDR5", "32Go DDR4", "32Go DDR5", "64Go DDR5"]
+        required: true
+        hint: "Sélectionnez la capacité et le type de RAM, ou spécifiez la configuration exacte (ex: '32Go DDR5 6000MHz CL36')." # French Hint
+      - label: "✅ Carte Mère (Caractéristiques)" # French Label
+        name: "motherboard" # Data key (Keep English)
+        widget: "customSelect"
+        # Options describe features, translated where appropriate
+        options: ["ATX Standard (Sans Wi-Fi)", "ATX Standard + Wi-Fi/BT", "Micro-ATX (Sans Wi-Fi)", "Micro-ATX + Wi-Fi/BT", "Mini-ITX + Wi-Fi/BT"]
+        required: true
+        hint: "Sélectionnez le type/caractéristiques générales de la carte mère ou spécifiez le chipset/modèle (ex: 'B650 ATX Wi-Fi'). Inclure le facteur de forme (ATX, mATX, ITX) et la connectivité clé (Wi-Fi/Bluetooth)." # French Hint
+      # --- Autres Champs (Labels/Hints in French) ---
+      - { label: "❓ Informations Complémentaires", name: "description", widget: "text", hint: "Fournissez un résumé du PC, son public cible (gaming, bureau, créatif), et les points clés de vente." } # French Label & Hint
+      - { label: "❓🔹Tags", name: "tags", widget: "select", multiple: true, options: ["PC Gamer", "PC Bureau", "Station de Travail", "Mini PC", "PC Budget", "PC Haut de Gamme", "Pré-monté", "Montage Personnalisé", "Éclairage RGB", "Refroidissement Liquide"], required: false, hint: "Sélectionnez des tags pour aider les utilisateurs à filtrer et trouver ce PC." } # French Label, Hint & Tags
+      - { label: "❓Informations Garantie", name: "warranty", widget: "string", required: false, hint: "Optionnel : Décrivez brièvement la garantie (ex: '1 An Pièces & Main d'œuvre', '3 Ans Garantie Limitée')." } # French Label & Hint
