@@ -146,10 +146,15 @@
 
     sl-carousel#hero-carousel {
         width: 100%;
-        aspect-ratio: 16 / 9;
         max-height: 400px;
     }
 
+    sl-carousel#hero-carousel sl-carousel-item {
+        border: 1px solid violet;
+
+        overflow: hidden;
+
+    }
     sl-carousel#hero-carousel sl-carousel-item img {
         display: block;
         width: 100%;
@@ -205,7 +210,13 @@
 /* Tablet - 768px */
 @media only screen and (min-width: 48rem) {
     sl-carousel#hero-carousel {
-        max-height: 500px;
+        height: 500px !important;
+
+        &::part(base){
+        height: 100% !important;
+
+        }
+
     }
 
     .carousel-swiper-container {
