@@ -131,7 +131,7 @@
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
     .hero-container {
-        background-color: #f0f0f0;
+
         display: grid;
         place-items: center;
         position: relative;
@@ -147,10 +147,17 @@
     sl-carousel#hero-carousel {
         width: 100%;
         max-height: 400px;
+
+        &::part(pagination-item){
+            background-color: rgb(180, 180, 180);
+        }
+        &::part(pagination-item--active){
+            background-color: var(--medium);
+        }
     }
 
     sl-carousel#hero-carousel sl-carousel-item {
-        border: 1px solid violet;
+
 
         overflow: hidden;
 
@@ -213,8 +220,7 @@
         height: 500px !important;
 
         &::part(base){
-        height: 100% !important;
-
+            height: 100% !important;
         }
 
     }
@@ -226,6 +232,22 @@
 
     .carousel-swiper-container .carousel-swiper {
         --size: 45px;
+    }
+}
+
+// dark mode
+body.dark-mode{
+    sl-carousel#hero-carousel {
+
+        &::part(pagination-item){
+            background-color: rgb(48, 48, 48);
+
+
+        }
+        &::part(pagination-item--active){
+            background-color: var(--medium);
+
+        }
     }
 }
 </style>

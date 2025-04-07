@@ -110,13 +110,6 @@ function closeZoomModal() {
    Carousel Styles (.carousel)
    ========================================================================== */
 
-   .carousel-container{
-    padding-top: 16px;
-    padding-bottom: 12px;
-    background-color: rgba(0, 0, 0, 0.148);
-    display: grid;
-    place-items: center;
-   }
 .carousel {
   position: relative;
   z-index: 1;

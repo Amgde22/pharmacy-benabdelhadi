@@ -93,9 +93,16 @@
               font-size: 3rem;
               --track-width: 5px;"></sl-spinner>
           </div>
-          <Slider v-else
+          
+          <Slider 
+          v-else-if="slider"
           :name="name"
           :carousel-images="carouselImages" />
+          <Carousel
+          v-else
+          :name="name"
+          :carousel-images="carouselImages" />
+
 
 
       </div>
@@ -171,6 +178,10 @@ const props = defineProps({
   productImages: {
     type: Object,
     default: () => ({})
+  },
+  slider:{
+    type:Boolean,
+    required:false
   }
 });
 
