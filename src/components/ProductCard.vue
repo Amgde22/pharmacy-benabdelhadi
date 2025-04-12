@@ -140,6 +140,13 @@
               </svg>
             </a>
           </div>
+
+          <button @click="()=>{
+            addItemToCart('c')
+          }">add C</button>
+          <p v-for="item in MyCart.products">
+          {{ item  }} ,
+        </p>
         </div>
       </div>
     </div>
@@ -163,7 +170,11 @@ import placeHolderImage from "@assets/images/placeholder.jpg";
 import data from "@data/client.json"
 import Carousel from "@components/productCardMiniComponents/Carousel.vue"
 import Slider from "@components/productCardMiniComponents/Slider.vue"
+import { useStore } from '@nanostores/vue'
+import { Cart,addItemToCart } from '@/js/stores';
 
+
+const MyCart = useStore(Cart)
 const googleMapsLink = data.address.mapLink
 /* ==========================================================================
    Prop Definitions

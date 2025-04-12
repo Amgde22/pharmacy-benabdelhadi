@@ -314,9 +314,7 @@ function handleKeydown(event) {
    Dark Mode Styles (Adapted)
    ========================================================================== */
  body.dark-mode {
-    .scroll-container {
-        // May not need specific background if items cover it
-    }
+
     .gallery-item {
         background-color: #333;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);

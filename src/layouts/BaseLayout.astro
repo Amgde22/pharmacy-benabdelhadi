@@ -21,7 +21,7 @@ const { description, title, preloadedImage } = Astro.props;
 
 ---
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
-<html lang="en">
+<html  lang="en">
         <head>
             <!-- View Transitions support -->
             <ClientRouter />
@@ -93,10 +93,13 @@ const { description, title, preloadedImage } = Astro.props;
 <script >
     // setBasePath to tell Shoelace where to load icons from.
     import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+    // import '@shoelace-style/';
     setBasePath('/shoelace-assets/')
     // Load components.
     // import '@shoelace-style/shoelace';
     import '@shoelace-style/shoelace/dist/components/button/button.js';
+    import '@shoelace-style/shoelace/dist/themes/dark.css';
+
     
 
 

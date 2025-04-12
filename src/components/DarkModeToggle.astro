@@ -1,55 +1,172 @@
-<button id="dark-mode-toggle" aria-label="dark mode toggle"  aria-pressed="false">
+---
+
+---
+<button id="dark-mode-toggle" aria-label="dark mode toggle" aria-pressed="false">
     <svg
       class="cs-moon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 480 480"
       style="enable-background:new 0 0 480 480"
       xml:space="preserve"
+      aria-hidden="true"
+      focusable="false"
       ><path
+        fill="currentColor" 
         d="M459.782 347.328c-4.288-5.28-11.488-7.232-17.824-4.96-17.76 6.368-37.024 9.632-57.312 9.632-97.056 0-176-78.976-176-176 0-58.4 28.832-112.768 77.12-145.472 5.472-3.712 8.096-10.4 6.624-16.832S285.638 2.4 279.078 1.44C271.59.352 264.134 0 256.646 0c-132.352 0-240 107.648-240 240s107.648 240 240 240c84 0 160.416-42.688 204.352-114.176 3.552-5.792 3.04-13.184-1.216-18.496z"
       ></path>
     </svg>
 
-    <svg class="cs-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <g >
-        <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-        <path  d="M12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1m6.364-2.05l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414m-12.728 0a1 1 0 0 1 1.497 1.32l-.083.094l-.707.707a1 1 0 0 1-1.497-1.32l.083-.094zM12 6a6 6 0 1 1 0 12a6 6 0 0 1 0-12m-8 5a1 1 0 0 1 .117 1.993L4 13H3a1 1 0 0 1-.117-1.993L3 11zm17 0a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2zM4.929 4.929a1 1 0 0 1 1.32-.083l.094.083l.707.707a1 1 0 0 1-1.32 1.497l-.094-.083l-.707-.707a1 1 0 0 1 0-1.414m14.142 0a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0M12 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1" />
-      </g>
+    <svg
+      class="cs-sun"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      >
+      <path
+        fill="currentColor" 
+        d="M12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1m6.364-2.05l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414m-12.728 0a1 1 0 0 1 1.497 1.32l-.083.094l-.707.707a1 1 0 0 1-1.497-1.32l.083-.094zM12 6a6 6 0 1 1 0 12a6 6 0 0 1 0-12m-8 5a1 1 0 0 1 .117 1.993L4 13H3a1 1 0 0 1-.117-1.993L3 11zm17 0a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2zM4.929 4.929a1 1 0 0 1 1.32-.083l.094.083l.707.707a1 1 0 0 1-1.32 1.497l-.094-.083l-.707-.707a1 1 0 0 1 0-1.414m14.142 0a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0M12 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1"
+       />
     </svg>
   </button>
 
-  <style>
-   @media only screen and (max-width: 1023px) {
-    #dark-mode-toggle{
-        width: 44px;
-        height: 100%;
-        margin-top: auto;margin-bottom: auto;
-        transform: translateY(-10px);
-      }
+<style lang="less">
+  #dark-mode-toggle {
+    /* Base Styles (Mobile First) */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative; /* MUST HAVE for absolute children */
+    overflow: hidden;   /* MUST HAVE to clip moving icons */
+    vertical-align: middle;
+    color: #333; /* <<< FIX: Explicit default color (adjust as needed) */
+
+    /* Base SVG styles */
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      pointer-events: none;
+      /* Combine transitions */
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      display: block; /* <<< FIX: Ensure display is block */
     }
 
-  </style>
-  <script>
-    // helper function to toggle aria-pressed
-    function ariaPressed(element) {
+    /* Initial State (Light Mode) */
+    .cs-moon {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg);
+      visibility: visible; /* <<< FIX: Explicitly visible */
+      z-index: 2;
+    }
+    .cs-sun {
+      opacity: 0;
+      transform:  translate(-50%, 100%) rotate(-90deg);
+      visibility: hidden; /* <<< FIX: Explicitly hidden */
+      z-index: 1;
+    }
+
+    /* Optional: Add hover/focus state */
+    &:hover, &:focus-visible {
+
+      outline: none;
+    }
+     &:focus-visible {
+         box-shadow: 0 0 0 2px dodgerblue;
+     }
+  }
+
+  /* Dark Mode Active Styles */
+  body.dark-mode {
+    #dark-mode-toggle {
+      color: #eee; /* <<< FIX: Explicit color for dark mode (adjust as needed) */
+
+      .cs-sun {
+        opacity: 1;
+        transform-origin: center;
+        transform:scale(1.2) translate(-50%, -50%) rotate(0deg);
+        visibility: visible; /* <<< FIX: Explicitly visible */
+      }
+      .cs-moon {
+        opacity: 0;
+        transform: translate(-50%, -150%) rotate(90deg);
+        visibility: hidden; /* <<< FIX: Explicitly hidden */
+      }
+    }
+  }
+
+  /* Desktop Styles (Optional Overrides) */
+  @media only screen and (min-width: 64rem) {
+    #dark-mode-toggle {
+      /* No changes needed unless desired */
+    }
+  }
+</style>
+
+<script>
+  // --- Keep the existing script block ---
+  // helper function to toggle aria-pressed
+  function ariaPressed(element) {
+    if (!element) return;
     const isPressed = element.getAttribute('aria-pressed');
     element.setAttribute('aria-pressed', isPressed === 'false' ? 'true' : 'false');
-}
-    // Creates the dark mode toggle event listener
-    const setToggleListener = () => {
-      const darkModeToggleButton = document.getElementById('dark-mode-toggle')
-      const handleToggleClick = () => {
-        
-        document.body.classList.toggle("dark-mode");
-        ariaPressed(darkModeToggleButton)
-        const isDark = document.body.classList.contains("dark-mode");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-      };
-  
-      darkModeToggleButton?.addEventListener("click", handleToggleClick);
+  }
+
+  const setToggleListener = () => {
+    const darkModeToggleButton = document.getElementById('dark-mode-toggle');
+    if (!darkModeToggleButton) {
+        return;
+    }
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const savedTheme = localStorage.getItem("theme");
+
+    let isInitiallyDark = false;
+    if (savedTheme === "dark") {
+        isInitiallyDark = true;
+    } else if (savedTheme === "light") {
+        isInitiallyDark = false;
+    } else {
+        isInitiallyDark = prefersDark;
+    }
+
+    // Apply initial class and aria-pressed state *before* adding listener
+    if (isInitiallyDark) {
+        // Check if class needs adding (important for astro:after-swap)
+        if (!document.body.classList.contains("dark-mode")) {
+           document.body.classList.add("dark-mode");
+        }
+        darkModeToggleButton.setAttribute('aria-pressed', 'true');
+    } else {
+         // Check if class needs removing
+        if (document.body.classList.contains("dark-mode")) {
+           document.body.classList.remove("dark-mode");
+        }
+        darkModeToggleButton.setAttribute('aria-pressed', 'false');
+    }
+
+    const handleToggleClick = () => {
+      document.body.classList.toggle("dark-mode");
+      ariaPressed(darkModeToggleButton);
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     };
-  
-    setToggleListener();
-  
-    document.addEventListener("astro:after-swap", setToggleListener); // For View Transitions purposes - astro:after-swap ensures that the listener is re-attached after navigating to a new page.
-  </script>
+
+    if (darkModeToggleButton.dataset.listenerAttached !== 'true') {
+        darkModeToggleButton.addEventListener("click", handleToggleClick);
+        darkModeToggleButton.dataset.listenerAttached = 'true';
+    }
+  };
+
+  setToggleListener();
+  document.addEventListener("astro:after-swap", setToggleListener);
+</script>

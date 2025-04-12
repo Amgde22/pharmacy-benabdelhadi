@@ -23,18 +23,7 @@
             :product="product"
             :product-images="productImages[product.id]"
         >
-        <template #description>
 
-            <ComputerSepcs
-            operating_system="windows 10"
-            processor="intel I9 3200hz"
-            graphics_card="nvidia 2040gtx"
-            storage="1T DDR4"
-            ram="16GB 1500hz"
-            motherboard="your mom"
-            :description="'-bla bla \n =bla bla'"
-            />
-        </template>
     </ProductCard>
 
     </section>
