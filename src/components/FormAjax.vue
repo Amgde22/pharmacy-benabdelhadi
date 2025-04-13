@@ -22,15 +22,7 @@
             <option value="goldfish">Goldfish</option>
           </select>
 
-          <select name="favorite ice cream" id="pet-select">
-            <option value="">--Please choose an option--</option>
-            <option value="strawberry" selected>strawberry</option>
-            <option value="vanilla">vanilla</option>
-            <option value="choco">choco</option>
-            <option value="coco">coco</option>
-            <option value="peanut buder">peanut buder</option>
-            <option value="goldfish">Goldfish</option>
-          </select>
+
           <button type="submit">Send</button>
     </form>
     </template>
