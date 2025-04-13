@@ -8,8 +8,10 @@
         method="post"   >
     <!-- hidden input -->
     <input type="hidden" name="form-name" value="html form - with ajax" />
-        <input type="text" name="username" id="username" value="html form - with ajax">
+        <input type="text" name="username" id="username" value="vue form - with ajax - no skeleton">
         <br>
+        <input type="text" name="username" id="username" value="if you see this then no form needs to be scaned">
+    <br>
         <input type="number" name="quantity" id="quantity" value="4">
         <br>
         <select name="pets" id="pet-select">
@@ -22,6 +24,16 @@
             <option value="goldfish">Goldfish</option>
           </select>
 
+          <select name="favorite ice cream" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="strawberry" selected>strawberry</option>
+        <option value="vanilla">vanilla</option>
+        <option value="choco">choco</option>
+        <option value="coco">coco</option>
+        <option value="peanut buder">peanut buder</option>
+        <option value="goldfish">Goldfish</option>
+      </select>
+
 
           <button type="submit">Send</button>
     </form>
@@ -33,6 +45,10 @@ import {ref} from "vue"
     const handleSubmit = async () => {
       const formData = new FormData(form.value);
 
+    console.log({
+        formData,
+    urlCoded:new URLSearchParams(formData).toString()
+});
     
       try {
         await fetch("/", {
@@ -40,7 +56,7 @@ import {ref} from "vue"
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(formData).toString()
         })
-        alert('Form submitted successfully!');
+        alert('vue Form submitted successfully!');
       } catch (error) {
         alert('Form submission failed: ' + error.message);
       }
