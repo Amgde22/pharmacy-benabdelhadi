@@ -10,7 +10,7 @@
     <input type="hidden" name="form-name" value="html form - with ajax" />
         <input type="text" name="username" id="username" value="vue form - with ajax - no skeleton">
         <br>
-        <input type="text" name="username" id="username" value="if you see this then no form needs to be scaned">
+        <input type="text" name="valid" id="valid" value="if you see this then no form needs to be scaned">
     <br>
         <input type="number" name="quantity" id="quantity" value="4">
         <br>
