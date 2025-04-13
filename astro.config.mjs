@@ -10,16 +10,21 @@ export default defineConfig({
   // update me!
   site: "https://www.yourwebsite.com",
 
-  integrations: [icon(), sitemap({
-    filter: (page) => !page.includes("/admin"),
-    changefreq: "weekly",
-    priority: 0.7,
-  }), vue({
-    template: {
-      compilerOptions: {
-        isCustomElement: (tag) => tag.includes('-'),
+  integrations: [
+    icon(),
+     sitemap({
+      filter: (page) => !page.includes("/admin"),
+      changefreq: "weekly",
+      priority: 0.7,
+    }), 
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.includes('-'),
+        },
       },
-    },
-  })],
+    })
+  
+  ],
 
 });

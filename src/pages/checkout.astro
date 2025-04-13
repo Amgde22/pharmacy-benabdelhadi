@@ -2,8 +2,8 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
 import FAQ from "@components/FAQ.astro";
-import Form from "@components/Form.vue";
-import FormAjax from "@components/FormAjax.vue";
+
+import CheckoutForm from "@components/CheckoutForm.vue";
 import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
@@ -40,83 +40,10 @@ const optimizedImage = await getOptimizedImage(landingImage)
 <h1>hiii</h1>
 <h1>enabling form detection...</h1>
 
-<!-- <h1>Basic form</h1>
-<form  
-    data-netlify="true"
-    name="html form - no ajax"
-    method="post">
-
-    <input type="text" name="username" id="username" value="html form - no ajax">
-    <br>
-    <input type="number" name="quantity" id="quantity" value="1">
-    <br>
-
-    <select name="pets" id="pet-select">
-        <option value="">--Please choose an option--</option>
-        <option value="dog" selected>Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
-      </select>
-      <button type="submit">Send</button>
-</form>
-
-
-<h1>ajax form</h1>
-<form  
-    data-netlify="true"
-    name="html form - with ajax"
-    method="post"
-    >
-
-    <input type="text" name="username" id="username" value="html form - with ajax">
-    <br>
-    <input type="number" name="quantity" id="quantity" value="2">
-    <br>
-
-    <select name="pets" id="pet-select">
-        <option value="">--Please choose an option--</option>
-        <option value="dog" selected>Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
-      </select>
-      <button type="submit">Send</button>
-</form>
-
-
-<h1>basic vue form</h1>
-<Form client:only />
-<form  
-    hidden
-    data-netlify="true"
-    name="html form - no ajax"
-    method="post">
-    <input type="text" name="username" id="username" value="html form - no ajax">
-    <br>
-    <input type="number" name="quantity" id="quantity" value="1">
-    <br>
-
-    <select name="pets" id="pet-select">
-        <option value="">--Please choose an option--</option>
-        <option value="dog" selected>Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
-      </select>
-
-      <button type="submit">Send</button>
-</form> -->
 
 <h1>pre rendering with static vue component</h1>
-<FormAjax />
-<FormAjax client:only />
+<CheckoutForm hidden/>
+<CheckoutForm client:only />
 
 </BaseLayout>
 
