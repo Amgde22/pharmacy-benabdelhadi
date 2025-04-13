@@ -1,0 +1,51 @@
+<template>
+
+    <form  
+        ref="form"
+        data-netlify="true"
+        name="html form - with ajax"
+        @submit.prevent="handleSubmit"
+        method="post"   >
+    <!-- hidden input -->
+    <input type="hidden" name="form-name" value="html form - with ajax" />
+        <input type="text" name="username" id="username" value="html form - with ajax">
+        <br>
+        <input type="number" name="quantity" id="quantity" value="4">
+        <br>
+        <select name="pets" id="pet-select">
+            <option value="">--Please choose an option--</option>
+            <option value="dog" selected>Dog</option>
+            <option value="cat">Cat</option>
+            <option value="hamster">Hamster</option>
+            <option value="parrot">Parrot</option>
+            <option value="spider">Spider</option>
+            <option value="goldfish">Goldfish</option>
+          </select>
+          <button type="submit">Send</button>
+    </form>
+    </template>
+    
+    <script setup>
+import {ref} from "vue"
+    const form = ref(null)
+    const handleSubmit = async () => {
+      const formData = new FormData(form.value);
+
+    
+      try {
+        await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+        alert('Form submitted successfully!');
+      } catch (error) {
+        alert('Form submission failed: ' + error.message);
+      }
+    };
+    </script>
+    
+    
+    <style lang="scss" scoped>
+    
+    </style>

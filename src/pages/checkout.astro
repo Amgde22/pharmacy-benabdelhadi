@@ -2,6 +2,8 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
 import FAQ from "@components/FAQ.astro";
+import Form from "@components/Form.vue";
+import FormAjax from "@components/FormAjax.vue";
 import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
@@ -33,12 +35,121 @@ const optimizedImage = await getOptimizedImage(landingImage)
   preloadedImage = {optimizedImage}
 >
 
+<h1>hiii</h1>
+<h1>hiii</h1>
+<h1>hiii</h1>
+<h1>hiii</h1>
+
+<h1>Basic form</h1>
+<form  
+    data-netlify="true"
+    name="html form - no ajax"
+    method="post">
+
+    <input type="text" name="username" id="username" value="html form - no ajax">
+    <br>
+    <input type="number" name="quantity" id="quantity" value="1">
+    <br>
+
+    <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog" selected>Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+      </select>
+      <button type="submit">Send</button>
+</form>
 
 
+<h1>ajax form</h1>
+<form  
+    data-netlify="true"
+    name="html form - with ajax"
+    method="post"
+    >
+
+    <input type="text" name="username" id="username" value="html form - with ajax">
+    <br>
+    <input type="number" name="quantity" id="quantity" value="2">
+    <br>
+
+    <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog" selected>Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+      </select>
+      <button type="submit">Send</button>
+</form>
+
+
+<h1>basic vue form</h1>
+<Form client:only />
+<form  
+    hidden
+    data-netlify="true"
+    name="html form - no ajax"
+    method="post">
+<!-- hidden input -->
+    <input type="text" name="username" id="username" value="html form - no ajax">
+    <br>
+    <input type="number" name="quantity" id="quantity" value="1">
+    <br>
+
+    <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog" selected>Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+      </select>
+      <button type="submit">Send</button>
+</form>
+
+<h1>ajax vue form - no skeletron</h1>
+<FormAjax client:only />
 
 </BaseLayout>
 
-<script  is:inline>
+<script >
+
+
+
+const form  = document.querySelector("form[name='html form - with ajax']")
+form?.addEventListener("submit",handleSubmit)
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+
+  const form = event.target;
+  const formData = new FormData(form);
+  
+  console.log("handling with ajax");
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString(),
+  })
+    .then(() => {
+        alert("ajax html form submited");
+    })
+    .catch((error) => {
+        alert("error in ajax form");
+
+    });
+};
+
+
 
 </script>
 
