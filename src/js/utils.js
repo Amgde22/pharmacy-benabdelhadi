@@ -64,6 +64,8 @@ export function playSwipeSound () {
   });
 };
 
+
+
 export function getImageSrc(image) {
   // Check if image is an object and has a src property
   if (image && typeof image === 'object' && image.src) {
@@ -74,5 +76,43 @@ export function getImageSrc(image) {
   return image;
 }
 
-// Learn more agout the getImage() function here
-// https://docs.astro.build/en/guides/images/#generating-images-with-getimage
+// --- Cart Actions Handlers (These now receive itemId from the event) ---
+function handleIncreaseQuantity (itemId,items,updaterFunction) {
+  const item = items.value.find(i => i.id === itemId);
+  if (item) {
+    updaterFunction(itemId, item.quantity + 1);
+  }
+};
+
+function handleDecreaseQuantity (itemId,items,updaterFunction) {
+  const item = items.find(i => i.id === itemId);
+  if (item && item.quantity > 1) {
+    updaterFunction(itemId, item.quantity - 1);
+  }
+};
+
+function handleRemoveItem (itemId,removerFunction) {
+  console.log(`Handling remove item event for: ${itemId}`);
+  removerFunction(itemId);
+};
+
+export function getShippingCost(){
+  return "free"
+}
+
+  // --- Formatting (Copied from parent, could be moved to a shared utility) ---
+  export function formatCurrency (value, currencyCode = "DZD", fracture = 0)  {
+    const locale = currencyCode === 'DZD' ? 'fr-DZ' : 'en-US'; // Or a more robust locale mapping
+    try {
+        return new Intl.NumberFormat(locale, {
+          style: 'currency',
+          currency: currencyCode,
+          minimumFractionDigits: fracture,
+          maximumFractionDigits: fracture
+        }).format(value)
+    } catch (error) {
+        console.error(`Error formatting currency ${currencyCode}:`, error);
+        // Fallback display
+        return `${value.toFixed(2)} ${currencyCode}`; // Ensure some formatting for fallback
+    }
+  };

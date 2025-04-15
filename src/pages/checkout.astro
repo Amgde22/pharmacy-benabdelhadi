@@ -3,7 +3,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
 import FAQ from "@components/FAQ.astro";
 
-import CheckoutForm from "@components/CheckoutForm.vue";
+import CheckoutForm from "@components/CartComponents/CheckoutForm.vue";
 import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
@@ -12,7 +12,7 @@ import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET
 import Hero from "@components/Hero-ecom-carousel.astro";
 // import Hero from "@components/Hero.astro";
 import Products from "@components/Products.vue";
-import Cart from "@components/Cart.vue";
+
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 const optimizedImage = await getOptimizedImage(landingImage)
@@ -35,15 +35,10 @@ const optimizedImage = await getOptimizedImage(landingImage)
   preloadedImage = {optimizedImage}
 >
 
-<h1>hiii</h1>
-<h1>hiii</h1>
-<h1>hiii</h1>
-<h1>enabling form detection...</h1>
-
-
-<h1>pre rendering with static vue component</h1>
-<CheckoutForm hidden/>
-<CheckoutForm client:only />
+<main class="form-container">
+  <CheckoutForm hidden/>
+  <CheckoutForm client:only />
+</main>
 
 </BaseLayout>
 
@@ -83,6 +78,18 @@ function handleSubmit(event) {
 
 <style lang="less">
   
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+  .form-container{
+    padding-top: clamp(8.5rem, 31.95vw, 9.75rem);
+  }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+  
+}
 
 
   body.dark-mode{

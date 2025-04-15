@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import AmButton from "./AmButton.vue";
 import logo from "@assets/images/logo.png"
-import CartToggle from "@components/CartToggle.vue";
+import CartToggle from "@components/CartComponents/CartToggle.vue";
 
 import locationIcon from "@icons/mage--location-fill.svg"
 
@@ -314,7 +314,6 @@ const googleMapsLink = data.address.mapLink
     .cs-ul-wrapper {
       height: 100vh;
       background-color: #fff;
-      box-shadow: inset rgba(0, 0, 0, 0.2) 0px 8px 24px;
       opacity: 0;
       visibility: hidden;
       position: absolute;
@@ -823,8 +822,10 @@ const googleMapsLink = data.address.mapLink
 /* Dark Mode */
 @media only screen and (min-width: 64rem) {
   body.dark-mode {
+
     #cs-navigation {
       background-color: var(--dark);
+      box-shadow: none;
 
       .cs-logo {
         /* makes it turn white */

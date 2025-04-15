@@ -4,6 +4,7 @@
 	"whatsappLink":"https://wa.me/213556640229",
 	"phoneForTel": "0556640229",
 	"phoneFormatted": "0556640229",
+	"currency":"DZD",
 	"address": {
 		"lineOne": "address St.something Lc50",
 		"lineTwo": "Exact address example",

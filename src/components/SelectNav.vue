@@ -92,11 +92,20 @@ function selectItem(item) {
         body.dark-mode {
 
         .container{
-         /* Track styling */
+
 
         .item{
-            --color : var(--medium) ;
-            --border-color:rgb(114, 114, 114);
+
+            --border-color:rgba(114, 114, 114, 0.378);
+
+            background-color: var(--color-primary-700);
+            color: #eee;
+
+            &.selected{
+                background-color: var(--color-primary-500) !important;
+
+            }
+
         }
     }
 }}

@@ -10,7 +10,8 @@ import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET
 import Hero from "@components/Hero-ecom-carousel.astro";
 // import Hero from "@components/Hero.astro";
 import Products from "@components/Products.vue";
-import Cart from "@components/Cart.vue";
+
+
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 const optimizedImage = await getOptimizedImage(landingImage)
@@ -89,7 +90,6 @@ const dataIsReady = products && productsProcessedImages;
 >
 
 <Hero />
-<Cart client:only />
 
 <!-- products -->
 {dataIsReady ? (

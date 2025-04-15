@@ -476,13 +476,13 @@ onMounted(() => {
   text-transform: capitalize;
   font-weight:bold;
   font-size: 1.25em;
-  margin-bottom: 4px;
+  margin-bottom: auto;
 
 }
 .product-tags{
   display: flex;
   margin-bottom: 12px;
-  gap: 4px;
+  gap: 8px;
   flex-wrap: wrap;
 
   & .tag{
@@ -755,22 +755,21 @@ onMounted(() => {
   body.dark-mode {
     .product-card,
     .dialog-content {
-      background-color: var(--medium);
-      border: 3px solid var(--dark);
+      background-color: var(--color-primary-700);
+      box-shadow: none;
+
     } 
 
     .product-tags .tag{
-      background-color: white;
-      color:var(--medium) ;
+      background-color: var(--color-primary-500);
+      color:#eee ;
       
     }
-    .product-price {
-      color: white;
+    .product-price,.icon {
+      color:#eee ;
+
     }
 
-    .icon {
-      color: white;
-    }
 
     .dialog-product-description {
       border-top: 4px solid rgba(255, 255, 255, 0.489);
