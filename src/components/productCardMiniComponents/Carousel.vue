@@ -1,4 +1,5 @@
 <template>
+
         <sl-carousel 
          mouse-dragging 
          style="--aspect-ratio: 16/9;" 
@@ -110,6 +111,9 @@ function closeZoomModal() {
    Carousel Styles (.carousel)
    ========================================================================== */
 
+   .carousel ,.carousel::part(base){
+    max-height: 90%;
+   }
 .carousel {
   position: relative;
   z-index: 1;
@@ -121,6 +125,7 @@ function closeZoomModal() {
 
 }
 .pagination-container{
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

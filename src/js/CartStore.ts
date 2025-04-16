@@ -174,19 +174,3 @@ export function getImageUrl(image: string | ImageObject | undefined | null): str
 }
 
 
-addItemToCart({
-  name:"xian li pong",
-  price:1000,
-  previousPrice:1500,
-  image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS7GfQ8EduprUTT-34xvrp8gBSNzeJg5Z1Wg&s",
-  sizes:["x","xl"],
-  color:{name:"red",value:"red"}
-},2)
-addItemToCart({
-  name:"1,2 buckle my shoe",
-  price:3000,
-  previousPrice:3500,
-  image:"https://images.squarespace-cdn.com/content/v1/5ed6e10fb011a123217ba702/1727139534806-K219WNSVFLFTG6QOO2I3/unsplash-image-164_6wVEHfI.jpg",
-  sizes:["32"],
-  color:{name:"red",value:"red"}
-})

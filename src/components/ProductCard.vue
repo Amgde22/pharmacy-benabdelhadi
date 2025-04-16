@@ -98,6 +98,7 @@
           v-else-if="slider"
           :name="name"
           :carousel-images="carouselImages" />
+
           <Carousel
           v-else
           :name="name"
@@ -141,12 +142,6 @@
             </a>
           </div>
 
-          <button @click="()=>{
-            addItemToCart('c')
-          }">add C</button>
-          <p v-for="item in MyCart.products">
-          {{ item  }} ,
-        </p>
         </div>
       </div>
     </div>
@@ -554,8 +549,8 @@ onMounted(() => {
     padding-top: 16px;
     padding-bottom: 12px;
     background-color: rgba(0, 0, 0, 0.148);
-    display: grid;
-    place-items: center;
+
+    max-height: 300px;
    }
 
 /* ==========================================================================

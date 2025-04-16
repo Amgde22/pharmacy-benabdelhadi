@@ -103,6 +103,8 @@ const props = defineProps({
     box-sizing: border-box;
     padding: 8px;
     border-radius: 100%;
+    margin-inline-start: 20px;
+
   }
 }
 
