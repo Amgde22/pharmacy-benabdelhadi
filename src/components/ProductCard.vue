@@ -66,6 +66,7 @@
 
   <!-- dialog -->
   <dialog 
+    @close="unlock"
     ref="dialog" 
     :class="[
       'product-dialog',
