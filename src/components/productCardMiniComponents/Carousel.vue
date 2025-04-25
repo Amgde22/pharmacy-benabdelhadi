@@ -14,6 +14,12 @@
             v-for="(image, index) in carouselImages" :key="index"
             class="carousel-product-image"
              >
+             <img
+            class="background-image"
+            loading="lazy"
+            aria-hidden
+              :src="image.src"
+            />
             <img
             loading="lazy"
               :alt="`${name} - Image ${index + 1}`"
@@ -122,7 +128,24 @@ function closeZoomModal() {
     width: 100%;
     object-fit: contain;
   }
+}
+// ."background-image
+.carousel-product-image{
+  position: relative;
+  isolation: isolate;
 
+
+  & .background-image{
+    position: absolute;
+    inset: 0;
+    opacity: 0.8;
+    object-fit: cover;
+    z-index: -1;
+    filter: blur(5px); // Apply blur (adjust px as needed)
+    z-index: -1; // Ensure it's behind the main image
+    scale: 1;
+
+  }
 }
 .pagination-container{
 
@@ -172,6 +195,12 @@ margin: auto;
 display: block;
 max-width: 80%;
 max-height: 80%;
+
+& image{
+  width: auto;
+max-height: 80%;
+
+}
 }
 
 

@@ -22,6 +22,7 @@
             :key="product.id"
             :product="product"
             :product-images="productImages[product.id]"
+            cart
         >
 
     </ProductCard>
@@ -35,7 +36,10 @@
     import {computed,ref,toValue} from "vue"
     import SelectNav from "./SelectNav.vue";
 
-
+    function handleDescEmit(e){
+        console.log("productCard : i have recieved ur message");
+        console.log(e);
+    }
     const props = defineProps({
         isSection:{
             type:Boolean,

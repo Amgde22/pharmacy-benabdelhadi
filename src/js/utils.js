@@ -1,3 +1,4 @@
+import { getImage } from "astro:assets";
 import swipeSfx from "/assets/sfx/swipe-sfx.mp3"
 
 
@@ -14,7 +15,6 @@ export function getCurrentYear() {
   return new Date().getFullYear();
 }
 
-import { getImage } from "astro:assets";
 export async function getOptimizedImage(image) {
   const optimizedImage = await getImage({
     src: image,
@@ -99,9 +99,12 @@ function handleRemoveItem (itemId,removerFunction) {
 export function getShippingCost(){
   return "free"
 }
+export function getProductBasePrices(product){
 
-  // --- Formatting (Copied from parent, could be moved to a shared utility) ---
-  export function formatCurrency (value, currencyCode = "DZD", fracture = 0)  {
+}
+
+
+export function formatCurrency (value, currencyCode = "DZD", fracture = 0)  {
     const locale = currencyCode === 'DZD' ? 'fr-DZ' : 'en-US'; // Or a more robust locale mapping
     try {
         return new Intl.NumberFormat(locale, {
@@ -115,4 +118,8 @@ export function getShippingCost(){
         // Fallback display
         return `${value.toFixed(2)} ${currencyCode}`; // Ensure some formatting for fallback
     }
-  };
+};
+
+  export function CheckIfClothingProduct(product) {
+    return product && Array.isArray(product.variants) && Array.isArray(product.variants[0].available_sizes)
+  }

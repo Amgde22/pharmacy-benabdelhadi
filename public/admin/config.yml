@@ -8,14 +8,6 @@ public_folder: src/assets/images/uploads  # Ensure that this path matches the me
 site_url: https://google.com # Displays a link to home page in the top-right corner of the CMS dashboard
 logo_url: https://i.postimg.cc/rwDzbVBm/Screen-Shot-2025-03-13-at-18-25-27-removebg-preview.png # Change URL to a link to the image you want to use
 
-# Register the custom widgets script - Ensure this points to your script file
-# Example assumes it's in an /admin/ folder relative to your admin index.html
-# Adjust the path as needed.
-# This line might need to go in your admin HTML file's <head> instead, depending on setup.
-# For config.yml, it's more common to load scripts via the admin HTML.
-# If your setup allows script loading here, uncomment and adjust:
-# js: [/admin/js/decap-custom-widgets.js]
-
 collections:
   - name: "products" # Collection for general products
     label: "Product" # Used in the admin dashboard UI
@@ -49,16 +41,18 @@ collections:
           - { label: "Image", name: "image", widget: "image" } # English Label
       - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["desktop pc", "laptop", "gaming", "audio", "mouse", "keyboard", "cables", "accessories", "monitors", "workstation", "office"], required: false, hint: "Select tags to categorize the product." } # English Label, Hint & Tags
 
-  - name: "clothing" # New collection for clothing items
-    label: "Clothing Item" # Used in the admin dashboard UI
+# --- REFACTORED CLOTHING COLLECTION ---
+  - name: "clothing"
+    label: "Clothing Item"
     editor:
       preview: false
-    folder: "src/content/clothing" # The path to the folder where clothing entries are stored
-    create: true # Allow users to create new clothing entries
+    folder: "src/content/clothing"
+    create: true
     identifier_field: "name"
-    slug: "{{slug(name)}}-{{price}}" # Creates slugs like 'cool-t-shirt-2500'
-    format: "json" # Save entries in JSON format
-    fields: # The fields for each clothing item
+    slug: "{{slug(name)}}-{{price}}" # Uses the base price for the slug
+    format: "json"
+    fields:
+      # --- General Product Information ---
       - label: "Instructions"
         name: "instructions"
         widget: "markdown"
@@ -66,31 +60,49 @@ collections:
         buttons: []
         editor_components: []
         required: false
-        default: "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items" # English version
-      - { label: "✅ Clothing Name", name: "name", widget: "string" } # English Label
-      - { label: "❓ Description", name: "description", widget: "text" ,required: false } # English Label
-      - { label: "✅ Clothing Type", name: "clothing_type", widget: "select", options: ["T-Shirt", "Hoodie", "Sweatshirt", "Jeans", "Pants", "Shorts", "Jacket", "Dress", "Skirt", "Accessory"], hint: "Choose the main type of clothing." } # English Label & Hint
-      - { label: "✅ Final Price (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "Final price after discount. EXAMPLE: \"3500\"" } # English Label & Hint
-      - { label: "❓Price Before Discount (DZD)", name: "offer_price", widget: "number", value_type: "float", min: 0, required: false, hint: "Original price before discount (higher than final price). EXAMPLE: \"4500\"" } # English Label & Hint
-      - label: "🔹✅ Available Colors" # English Label
-        name: "available_colors"
-        widget: "list"
-        min: 1 # Require at least one color
-        hint: "Add at least one color. The 'CSS Value' can be used for styling (e.g., #ff0000, or 'red')." # English Hint
-        fields:
-          - { label: "Color Name", name: "name", widget: "string", hint: "User-visible name (e.g., Bright Red, Navy Blue)" } # English Label & Hint
-          - { label: "CSS Value", name: "value", widget: "color", hint: "Hex code (#FF0000), CSS color name (red), or CSS variable (--brand-red)" } # English Label & Hint (Using the custom 'color' widget you provided)
-      - { label: "🔹✅ Available Sizes", name: "available_sizes", widget: "select", multiple: true, min: 1, options: ["XS", "S", "M", "L", "XL", "XXL", "One Size"], hint: "Select all available sizes for this item. At least one size required." } # English Label & Hint
-      - { label: "✅ Main Image", name: "image", widget: "image" } # English Label
-      - label: "🔹❓Additional Photos" # English Label
-        name: "additional_images" # Changed from 'images' to avoid conflict
-        widget: "list"
-        allow_add: true
-        required: false
-        fields:
-          - { label: "Image", name: "image", widget: "image" } # English Label
-      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["Men", "Women", "Unisex", "Kids", "New Arrival", "Sale", "Basic", "Summer", "Winter", "Spring", "Fall"], required: false, hint: "Select tags to categorize the clothing item." } # English Label, Hint & Tags
+        default: "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items\n\n**Structure:** Define general product details first, then add each available color variant with its specific photos and sizes." # Updated Instructions
+      - { label: "✅ Clothing Name", name: "name", widget: "string", hint: "The main name of the clothing item (e.g., 'Essential Cotton Hoodie')." }
+      - { label: "❓ Description", name: "description", widget: "text", required: false, hint: "General description of the clothing item." }
+      - { label: "✅ Main Image (for listing)", name: "image", widget: "image", hint: "The primary image shown in product listings before a color is selected." }
+      - { label: "✅ Clothing Type", name: "type", widget: "select", options: ["T-Shirt", "Hoodie", "Sweatshirt", "Jeans", "Pants", "Shorts", "Jacket", "Dress", "Skirt", "Accessory"], hint: "Choose the main type of clothing." }
+      - { label: "✅ Base Price (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "The main price displayed for the product. EXAMPLE: \"3500\"" } # Renamed for clarity
+      - { label: "❓Base Price Before Discount (DZD)", name: "offer", widget: "number", value_type: "float", min: 0, required: false, hint: "Optional: Original price if the item is on sale. EXAMPLE: \"4500\"" } # Renamed for clarity
+      - { label: "🔹❓Tags", name: "tags", widget: "select", multiple: true, options: ["Men", "Women", "Unisex", "Kids", "New Arrival", "Sale", "Basic", "Summer", "Winter", "Spring", "Fall"], required: false, hint: "Select tags to categorize the clothing item." }
 
+      # --- Color Variants Grouping ---
+      - label: "🔹✅ Variants"
+        name: "variants"
+        widget: "list"
+        min: 1 # Require at least one color variant
+        summary: "{{fields.color.name}}" # Makes the list items easier to identify in the UI
+        hint: "Add each available color for this item. Each color needs its own photos and available sizes."
+        fields:
+          # --- Color Definition ---
+          - label: "✅ Color"
+            name: "color"
+            widget: "object"
+            hint: "Define the color name and its visual representation."
+            fields:
+              - { label: "Color Name", name: "name", widget: "string" }
+              - { label: "CSS Value", name: "value", widget: "color" }
+
+          # --- Images for this Color ---
+          - label: "🔹✅ Product Photos (for this color)"
+            name: "images"
+            widget: "list"
+            min: 1 # Require at least one image per color variant
+            summary: "{{fields.image}}" # Show image thumbnail in list summary
+            hint: "Upload photos showing the product *in this specific color*."
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+
+          # --- Sizes for this Color ---
+          - label: "🔹✅ Available Sizes (for this color)"
+            name: "available_sizes"
+            widget: "select"
+            multiple: true
+            min: 1 # Require at least one size for this color variant
+            options: ["XS", "S", "M", "L", "XL", "XXL"]
 
 # --- PC Collection (Labels/Hints in French) ---
   - name: "pcs" # Collection name (Keep English for consistency)
@@ -115,7 +127,7 @@ collections:
         default: "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments\n\n**Spécifications:** Pour les spécifications comme CPU, GPU, RAM, etc., vous pouvez sélectionner une option courante dans la liste ou saisir un modèle spécifique dans la case 'valeur personnalisée' sous la liste."
       - { label: "✅ Modèle du PC", name: "name", widget: "string", hint: "Entrez le nom principal ou le modèle de la configuration PC (ex: Aurora Gaming Desktop, Office Pro Mini)"} # French Label & Hint
       - { label: "✅ Prix final (DZD)", name: "price", widget: "number", value_type: "float", min: 0, hint: "Prix de vente final. EXEMPLE : \"150000\" pour 150 000 DZD" } # French Label & Hint
-      - { label: "❓Prix avant réduction (DZD)", name: "offer_price", widget: "number", value_type: "float", min: 0, required: false, hint: "Optionnel : Prix original si le PC est en promotion (doit être supérieur au prix final)." } # French Label & Hint
+      - { label: "❓Prix avant réduction (DZD)", name: "offer", widget: "number", value_type: "float", min: 0, required: false, hint: "Optionnel : Prix original si le PC est en promotion (doit être supérieur au prix final)." } # French Label & Hint
       - { label: "✅ Image principale", name: "image", widget: "image", hint: "Téléchargez la photo principale du PC (ex: vue de face dans le boîtier)." } # French Label & Hint
       - label: "🔹❓Photos additionnelles" # French Label
         name: "images" # Data key (Keep English)

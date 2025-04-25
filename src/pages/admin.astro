@@ -24,7 +24,7 @@
     <script is:inline>
       // Wrap your custom widget registration code in a function
       function initDecapCustomWidgets() {
-  console.log("Decap CMS loaded, registering custom widgets...");
+      console.log("Decap CMS loaded, registering custom widgets...");
 
   if (window.CMS) {
     var createClass = window.createClass || CMS.createClass;
@@ -219,10 +219,10 @@
                   type: 'color',
                   value: value,
                   onChange: this.handleChange,
-                  style: { width: '100%', padding: '6px' }
+                  style: { width: '100px',height: '50px', padding: '6px' }
                 }),
                 h('div', { style: { marginTop: '8px', display: 'flex', alignItems: 'center' } },
-                  h('div', { style: { width: '20px', height: '20px', backgroundColor: value || '#FFFFFF', border: '1px solid #ddd', marginRight: '8px' } }),
+                  h('div', { style: { width: '20px', height: '20px', backgroundColor: value || '#FFFFFF', border: '1px solid #ddd',borderRadius:"100%", margin: '8px' } }),
                   h('code', {}, value)
                 )
               );
@@ -254,7 +254,7 @@
   } else {
     console.error("Decap CMS object (CMS) not found after script load.");
   }
-}
+      }
 
 // --- How to Load the Script ---
 // Make sure this script runs *after* Decap CMS has loaded.

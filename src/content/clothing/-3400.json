@@ -1,0 +1,57 @@
+{
+  "instructions": "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items\n\n**Structure:** Define general product details first, then add each available color variant with its specific photos and sizes.",
+  "variants": [
+    {
+      "color": {
+        "value": "#206283",
+        "name": "Navy blue"
+      },
+      "available_sizes": [
+        "XS",
+        "L",
+        "XXL",
+        "S",
+        "M"
+      ],
+      "images": [
+        {
+          "image": "src/assets/images/uploads/b1.jpg"
+        },
+        {
+          "image": "src/assets/images/uploads/b2.jpg"
+        },
+        {
+          "image": "src/assets/images/uploads/b3.jpg"
+        }
+      ]
+    },
+    {
+      "color": {
+        "name": "Apricot",
+        "value": "#ebe1d1"
+      },
+      "images": [
+        {
+          "image": "src/assets/images/uploads/a1.jpg"
+        },
+        {
+          "image": "src/assets/images/uploads/a1.jpg"
+        },
+        {
+          "image": "src/assets/images/uploads/a3.jpg"
+        }
+      ],
+      "available_sizes": [
+        "XS",
+        "M",
+        "S"
+      ]
+    }
+  ],
+  "name": "Star Hoodie",
+  "description": "100% cotton \n",
+  "type": "Hoodie",
+  "price": 3400,
+  "image": "src/assets/images/uploads/b1.jpg",
+  "offer": 5000
+}

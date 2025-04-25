@@ -25,7 +25,7 @@ export interface CartItem {
   image: string | ImageObject;
   quantity: number;
   previousPrice?: number;
-  sizes?: sizes;
+  size?: string;
   color?: color;
 }
 
@@ -38,9 +38,9 @@ export const $cart = map<CartData>({});
 
 // --- Actions ---
 
-const generateCartItemId = (productName: string, sizes?: sizes, color?: color): string => {
+const generateCartItemId = (productName: string, size?: string, color?: color): string => {
   let id = productName;
-  if (sizes) id += `-${sizes.join("-")}`;
+  if (size) id += `-${size}`;
   if (color) id += `-${color.name.toLowerCase().replace(/\s+/g, '-')}`;
   return id;
 };
@@ -60,13 +60,13 @@ export function addItemToCart(
     // Update the product's image type definition here as well
     previousPrice?:number;
     image: string | ImageObject;
-    sizes?: sizes ;
+    size?: string ;
     color?: color;
   },
   quantity: number = 1,
 
 ) {
-  const cartItemId = generateCartItemId(product.name, product.sizes, product.color)
+  const cartItemId = generateCartItemId(product.name, product.size, product.color)
   const existingEntry = $cart.get()[cartItemId];
 
   if (existingEntry) {
@@ -84,7 +84,7 @@ export function addItemToCart(
       image: product.image, // Assign the image data directly
       quantity: quantity,
       previousPrice:product.previousPrice,
-      sizes: product.sizes,
+      size: product.size,
       color: product.color
     };
     $cart.setKey(cartItemId, newItem);

@@ -38,20 +38,20 @@
         </div>
   
         <!-- Variants -->
-        <div class="detail-row variant-row">
-          <span class="label">SIZES :</span>
-          <span v-if="item.sizes && item.sizes.length > 0" class="value size-value">
-            {{ item.sizes.join(' - ') }}
+
+        <div v-if="item.size" class="detail-row variant-row">
+          <span class="label">SIZE :</span>
+          <span class="value size-value">
+            {{ item.size}}
           </span>
-          <span v-else class="value">-</span>
+
         </div>
-        <div class="detail-row variant-row">
+        <div v-if="item.color" class="detail-row variant-row">
           <span class="label">COLOR :</span>
-          <span v-if="item.color" class="value color-value">
+          <span  class="value color-value">
             <span class="color-swatch" :style="{ backgroundColor: item.color.value }"></span>
-            <!-- Optional: {{ item.color.name }} -->
+            {{ item.color.name }}
           </span>
-          <span v-else class="value">-</span>
         </div>
   
         <!-- Pricing -->
@@ -91,7 +91,7 @@
   </template>
   
   <script setup lang="ts">
-  import { defineProps, defineEmits, type PropType } from 'vue';
+  import { defineProps, defineEmits,onMounted, type PropType } from 'vue';
 import {formatCurrency} from "@js/utils"
   // Assuming CartStore provides these types and functions
   import { type CartItem, getImageUrl } from '@/js/CartStore'; // Adjust path if needed
@@ -109,6 +109,11 @@ import {formatCurrency} from "@js/utils"
     // `index` is required
   });
   
+  onMounted(()=>{
+    console.log("i recieved this item nigaa" , props.item);
+    
+    
+  })
   // Define the events this component can emit
   const emit = defineEmits<{
     (e: 'increase-quantity', itemId: string): void;
@@ -246,7 +251,7 @@ import {formatCurrency} from "@js/utils"
   }
   .detail-row {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 0.5rem;
       flex-wrap: wrap;
   }
@@ -294,7 +299,7 @@ import {formatCurrency} from "@js/utils"
   .size-value {
       text-transform: uppercase;
       color: var(--sl-color-neutral-800);
-      font-weight: 500;
+      font-weight: 800;
   }
   .color-swatch {
       width: 16px;

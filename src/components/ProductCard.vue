@@ -1,17 +1,9 @@
 <template>
   <div class="product-card" @click="openDialog">
-    <!-- Show loading state or placeholder while image loads -->
-    <div 
-    v-if="isLoading"
-    class="product-image" >
-          <sl-spinner
-             style="
-             font-size: 3rem;
-             --track-width: 5px;"></sl-spinner>
-        </div>
+
+
 
         <div
-          v-else
           class="product-image-container">
           <img 
             loading="lazy"
@@ -37,7 +29,6 @@
     <div class="product-tags">
       <p v-for="tag in tags"
        class="tag">{{tag}}</p>
-
     </div>
     <p class="product-description ">{{ description }}
 
@@ -86,42 +77,45 @@
 
       <!-- product carousel -->
       <div class="carousel-container">
-          <div 
-            v-if="!hasCarouselImages && isLoading"
-            class="product-image" >
-            <sl-spinner
-              style="
-              font-size: 3rem;
-              --track-width: 5px;"></sl-spinner>
-          </div>
-          
           <Slider 
-          v-else-if="slider"
+          v-if="slider"
           :name="name"
           :carousel-images="carouselImages" />
-
           <Carousel
           v-else
           :name="name"
           :carousel-images="carouselImages" />
-
-
-
       </div>
 
 
-      <!-- product information-->
+      <!-- dialog/modal product name-->
       <div class="dialog-product-informarion-container">
-        <h3 class="dialog-product-name product-name">{{ name }}</h3>
+        <h3 class="dialog-product-name product-name">
+          {{ name }} : {{ formattedPrice }} <span class="dialog-offer-price">{{ formattedPromotionPrice }} </span> 
+        </h3>
+      <!-- dialog/modal product description-->
+
         <p class="dialog-product-description custom-scrollbar "> 
-          <slot name="description">
+          <ClothingVariantSelect v-if="isClothingProduct"
+            :product="product.data"
+
+            @update:selected-variant="selectVariant"
+          />
+          <slot 
+            name="description">
             {{ description }}
           </slot>
         </p>
 
-
-        <div class="footer bottom-section">
-          <span class="product-price">
+      <!-- dialog/modal product footer-->
+        <div class="dialog-footer bottom-section">
+          <CartFooter
+          :product="product.data"
+          :color="selectedVariant?.color"
+          :chosenSize="selectedVariant?.chosenSize"
+          :chosenVariant="selectedVariant"
+          v-if="cart" />
+          <span v-else class="product-price">
             {{ formattedPrice }}
             <span class="product-offer-price">{{formattedPromotionPrice}}</span>
           </span>
@@ -160,18 +154,20 @@
    ========================================================================== */
 
 import { ref, computed, watch, onMounted, toValue } from 'vue';
+import ClothingVariantSelect from "@components/productCardMiniComponents/ClothingVariantSelect.vue"
+import CartFooter from "@components/productCardMiniComponents/CartFooter.vue"
 import { lock, unlock } from 'tua-body-scroll-lock'
 import placeHolderImage from "@assets/images/placeholder.jpg";
 // assets
 import data from "@data/client.json"
 import Carousel from "@components/productCardMiniComponents/Carousel.vue"
 import Slider from "@components/productCardMiniComponents/Slider.vue"
-import { useStore } from '@nanostores/vue'
-import { Cart,addItemToCart } from '@/js/stores';
+import { CheckIfClothingProduct } from '@/js/utils';
 
 
-const MyCart = useStore(Cart)
+
 const googleMapsLink = data.address.mapLink
+
 /* ==========================================================================
    Prop Definitions
    ========================================================================== */
@@ -189,52 +185,105 @@ const props = defineProps({
   slider:{
     type:Boolean,
     required:false
+  },
+  cart:{
+    type:Boolean,
+    default:false,
+    required:false
   }
 });
+
+
 
 
 /* ==========================================================================
    Reactive State
    ========================================================================== */
 
+
 const modalVisible = ref(false);
-const isLoading = ref(!props.productImages?.image?.src);
 const hasImageError = ref(false);
 const fallbackImageSrc = placeHolderImage.src;
-const mainImageSrc = ref(placeHolderImage.src);
+const mainImageSrc = ref(props.productImages.image.src);
+
 const isFallbackImage = ref(false);
-const carouselImages = ref([]);
+const { 
+   name,
+   description,
+   price,
+   offer: offerPrice ,
+   tags:optionalProductTags,
+   images: additionalImages,
+   variants 
+  } = props.product?.data || {};
+
+  const productHasVariants = Array.isArray(variants)
+  const isClothingProduct = CheckIfClothingProduct(props.product?.data)
 
 
+/* ==========================================================================
+   life-cycle events
+   ========================================================================== */
 
-const { name, description, price, offer: offerPrice , tags:optionalProductTags, images: additionalImages ,os:operating_system } = props.product?.data || {};
 
 /* ==========================================================================
    Computed Properties
    ========================================================================== */
 
+  const selectedVariant = ref(productHasVariants ? variants[0] : null)
 
-   const hasCarouselImages = computed(() => carouselImages.value.length > 0);
+const carouselImages = computed(() => {
+
+  const images = [];
+    // main image
+
+    if (!productHasVariants) {
+      images.push(props.productImages.image)
+      
+    }
+
+
+    const restOfImages = productHasVariants == true ? 
+      selectedVariant.value.images
+      : additionalImages
+
+  // Add additional images if available
+  if (restOfImages && Array.isArray(restOfImages)) {
+    restOfImages.forEach(entry => {
+
+      const img = entry.image
+      if (img && img.src) {
+        images.push(img);
+      }
+      // image src is a url
+      else if(typeof img == "string"){
+        images.push({src:img});
+      }
+
+    });
+  }
+  
+  return images
+
+
+
+});
 
 const whatsappLink = computed(() => {
-  const message = `لدي استفسار حول \n ${toValue(name)} \n`;
-  const encodedMessage = encodeURIComponent(message); // URL-encode the message
-  const hasParams = data.whatsappLink.includes('?');
-  const separator = hasParams ? '&' : '?';
-  const link = `${data.whatsappLink}${separator}text=${encodedMessage}`;
+    const message = `لدي استفسار حول \n ${toValue(name)} \n`;
+    const encodedMessage = encodeURIComponent(message); // URL-encode the message
+    const hasParams = data.whatsappLink.includes('?');
+    const separator = hasParams ? '&' : '?';
+    const link = `${data.whatsappLink}${separator}text=${encodedMessage}`;
 
-  return link
-
+    return link
 });
 
 const tags = computed(()=>{
   if(!Array.isArray(optionalProductTags)) return []
-
   return Array.from(optionalProductTags)
 })
-
-// Enhanced price formatter for Vue
-const formatCurrency = (value, currency = 'DZD', locale = 'en-US') => {
+function formatCurrency (value, currency = 'DZD', locale = 'en-US') {
   if (value === null || value === undefined) return null;
   
   // Handle both number and string inputs
@@ -251,12 +300,9 @@ const formatCurrency = (value, currency = 'DZD', locale = 'en-US') => {
   
   return `${formattedNumber} ${currency}`;
 };
-
-// Computed properties using the enhanced formatter
 const formattedPrice = computed(() => {
   return formatCurrency(price) || "Price unavailable";
 });
-
 const formattedPromotionPrice = computed(() => {
   return formatCurrency(offerPrice) || "";
 });
@@ -278,76 +324,14 @@ const dialog = ref(null);
    ========================================================================== */
 
 
-// Handle image updates
-function handleImageUpdate(optimizedImages) {
-  const optimized_mainImage = optimizedImages.image
 
-  if (optimizedImages && optimizedImages.image && optimizedImages.image.src) {
-    mainImageSrc.value = optimized_mainImage.src;
-    isLoading.value = false;
-    isFallbackImage.value = false;
-  } else {
-    isLoading.value = true;
-    isFallbackImage.value = true;
-    // Set a timeout to use fallback if image doesn't load within a reasonable time
-    setTimeout(() => {
-      if (isLoading.value) {
-        mainImageSrc.value = fallbackImageSrc;
-        isLoading.value = false;
-      }
-    }, 3000);
-  }
-  
-  // Update carousel images
-  updateCarouselImages(optimizedImages);
-}
-// Update carousel images
-function updateCarouselImages(optimizedImages) { 
-
-  // Start with main image
-  const images = [];
-  const optimized_mainImage = optimizedImages.image
-
-  if (optimizedImages && optimizedImages.image && optimizedImages.image.src) {
-    images.push(optimized_mainImage)
-  }
-
-
-  
-  // Add additional images if available
-  if (additionalImages && Array.isArray(additionalImages)) {
-    additionalImages.forEach(entry => {
-
-      const img = entry.image
-      if (img && img.src) {
-        images.push(img);
-      }
-      // image src is a url
-      else if(typeof img == "string"){
-        images.push({src:img});
-      }
-
-    });
-  }
-// if(name == "Aweasome pc"){
-//   console.log(images.map((image)=>image.src));
-// }
-
-
-  carouselImages.value = images;
-}
 
 // Handle image loading errors
 function handleImageError() {
 
   hasImageError.value = true;
   mainImageSrc.value = fallbackImageSrc;
-  isLoading.value = false;
   isFallbackImage.value = true;
-}
-
-function handleCarouselImageError(event, index) {
-  carouselImages.value[index] = { src: fallbackImageSrc };
 }
 
 // Method to open the dialog
@@ -369,31 +353,9 @@ const closeDialog = () => {
 };
 
 
-
-/* ==========================================================================
-   Watchers
-   ========================================================================== */
-
-// Watch for changes in productImages prop
-watch(() => props.productImages, (optimizedImages) => {
-  if (!optimizedImages.image) {
-    console.log("false images , exiting");
-    return
-  }
-  // when optimized images come in , load them
-  handleImageUpdate(optimizedImages);
-}, { immediate: true, deep: true });
-
-
-/* ==========================================================================
-   Lifecycle Hooks
-   ========================================================================== */
-
-// Initialize component
-onMounted(() => {
-  // Initial setup of images
-  handleImageUpdate(props.productImages);
-});
+function selectVariant(variant) {
+  selectedVariant.value = {...variant}
+}
 
 </script>
 
@@ -451,7 +413,6 @@ onMounted(() => {
   transform: scale(1.1); // Slightly scale up to avoid blurred edges showing artifacts
   z-index: -1; // Ensure it's behind the main image
 
-  // display: none;
 
 }
 
@@ -549,7 +510,7 @@ onMounted(() => {
    .carousel-container{
     padding-top: 16px;
     padding-bottom: 12px;
-    background-color: rgba(0, 0, 0, 0.148);
+    background-color: rgba(0, 0, 0, 0.059);
 
     max-height: 300px;
    }
@@ -647,8 +608,16 @@ onMounted(() => {
 
 .dialog-product-name,
 .dialog-product-price {
+  color: var(--sl-color-neutral-700) !important;
   margin: 10px 0;
   flex-grow: 0;
+
+  .dialog-offer-price{
+    font-size: 0.85em;
+    opacity: 0.6;
+    text-decoration:line-through;
+  }
+
 }
 
 
@@ -702,13 +671,14 @@ onMounted(() => {
       height: var(--size);
     }
   }
-
 }
 .dialog-product-description {
   white-space: pre-line;
   border-top: 2px solid var(--medium);
   padding: 8px 4px;
   overflow-y: auto;
+  text-transform: capitalize; 
+  font-weight: bolder;
 }
 
 .dialog-product-informarion-container .bottom-section {
@@ -723,10 +693,12 @@ onMounted(() => {
   padding: 0 16px;
 
   padding: 0 clamp(8px, 3.33px + 1.67vw, 16px);
+  padding-top: 4px;
   box-shadow: 0 -8px 6px -1px rgba(255, 255, 255,0.8);
   background-color: white;
 
 }
+
 
 /* ==========================================================================
    Mobile Dialog
@@ -767,9 +739,18 @@ onMounted(() => {
     }
 
 
+    .dialog-product-name,
+    .dialog-product-price {
+      color: var(--sl-color-neutral-200) !important;
+    }
     .dialog-product-description {
       border-top: 4px solid rgba(255, 255, 255, 0.489);
+      font-family: sans-serif; 
+      font-size: 18px;
+
+
     }
+
 
 
 

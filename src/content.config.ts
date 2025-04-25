@@ -23,32 +23,47 @@ const productsCollection = defineCollection({
     }),
 });
 
+// Define enums for cleaner schema and type safety based on YAML options
+const clothingTypes = z.enum(["T-Shirt", "Hoodie", "Sweatshirt", "Jeans", "Pants", "Shorts", "Jacket", "Dress", "Skirt", "Accessory"]);
+const clothingTags = z.enum(["Men", "Women", "Unisex", "Kids", "New Arrival", "Sale", "Basic", "Summer", "Winter", "Spring", "Fall"]);
+const clothingSizes = z.enum(["XS", "S", "M", "L", "XL", "XXL", "One Size"]);
 // Define the 'clothing' collection
-const clothingCollection = defineCollection({
+export const clothingCollection = defineCollection({
   type: 'data',
   schema: ({ image }) =>
     z.object({
-      name: z.string(),
-      description: z.string().optional(),
-      clothing_type: z.string(),
-      price: z.number().min(0),
-      offer_price: z.number().min(0).optional(),
-      available_colors: z.array(
-        z.object({
-          name: z.string(),
-          value: z.string()
-        })
-      ),
-      available_sizes: z.array(z.string()),
+      // --- General Product Information ---
+      instructions: z.string().optional(), 
+      name: z.string(), // ✅ Clothing Name
+      description: z.string().optional(), // ❓ Description
       image: image(),
-      additional_images: z
-        .array(
-          z.object({
-            image: image(),
-          })
-        )
-        .optional(),
-      tags: z.array(z.string()).optional()
+      type: clothingTypes, // ✅ Clothing Type (using enum)
+      price: z.number().min(0), // ✅ Base Price (DZD)
+      offer: z.number().min(0).optional(), // ❓ Base Price Before Discount (DZD)
+      // Note: Removed the top-level 'image' field as it wasn't in your provided YAML snippet.
+      // If you *do* have a main product image separate from variants, add it back:
+      // image: image(), // ✅ Main Image (for listing)
+      tags: z.array(clothingTags).optional(), // 🔹❓ Tags (using enum)
+
+      // --- Color Variants Grouping ---
+      variants: z.array( // 🔹✅ Color Variants (list widget)
+        z.object({ // Fields for each item in the color_variants list
+          // --- Color Definition ---
+          color: z.object({ // ✅ Color (object widget)
+            name: z.string(), // Color Name (string)
+            value: z.string(), // CSS Value (string from color widget)
+          }),
+          // --- Images for this Color ---
+          images: z.array( // 🔹✅ Product Photos (list widget)
+            z.object({ // Fields for each item in the images list
+              image: image(), // Image (image widget)
+            })
+          ).min(1), // Require at least one image per color variant
+          // --- Sizes for this Color ---
+          available_sizes: z.array(clothingSizes) // 🔹✅ Available Sizes (select multiple)
+             .min(1), // Require at least one size per color variant
+        })
+      ).min(1), // Require at least one color variant for the product
     }),
 });
 
@@ -59,7 +74,7 @@ const pcsCollection = defineCollection({
     z.object({
       name: z.string(),
       price: z.number().min(0),
-      offer_price: z.number().min(0).optional(),
+      offer: z.number().min(0).optional(),
       image: image(),
       images: z
         .array(
