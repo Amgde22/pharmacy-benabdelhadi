@@ -186,18 +186,19 @@ onUnmounted(() => {
 .add-to-cart-footer {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    justify-content: space-evenly;
+    padding: 12px 0px;
     gap: 16px;
     position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    background-color: #fff; // Added default background for layering/shadow effect
 }
 
 .quantity-control {
+    flex: 1 999 auto; // Allow button to take available space
+
     display: flex;
     align-items: center;
     gap: 8px;
@@ -245,25 +246,29 @@ onUnmounted(() => {
 }
 
 .action {
-    flex: 1 1 auto; // Allow button to take available space
+    flex: 2 1 auto; // Allow button to take available space
 
     .add-button {
-        width: 100%; // Make button take full width of action container
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 100%; 
+        max-width: 270px;
         background-color: @accent-color;
         color: @accent-text-color;
         border: none;
+
         padding: 10px 15px; // Adjust padding slightly
         border-radius: 6px;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.2rem;
         cursor: pointer;
         transition: background-color 0.2s ease, opacity 0.2s ease;
         white-space: nowrap;
         gap: 8px; // Consistent gap
         min-height: 40px; // Ensure consistent height
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
 
         &:hover:not(:disabled) { // Only apply hover when not disabled
             background-color: darken(@accent-color, 10%);
@@ -307,7 +312,7 @@ onUnmounted(() => {
 // --- Responsiveness (Minor Adjustments) ---
 @media (max-width: 400px) {
     .add-to-cart-footer {
-        padding: 8px 10px; // Tighter padding
+        padding: 8px 0; // Tighter padding
         gap: 10px;
     }
 
@@ -316,6 +321,7 @@ onUnmounted(() => {
         font-size: 0.9rem;
         gap: 6px;
         min-height: 36px;
+        max-width: 170px;
     }
     .quantity-control .quantity-btn {
         width: 28px;
@@ -340,8 +346,8 @@ body.dark-mode {
     @dark-success-color: #34c759; // iOS-like green for dark mode
 
     .add-to-cart-footer {
-        background-color: @dark-background-color;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.5); // Stronger shadow
+        background-color: transparent;
+
     }
 
     .quantity-control {

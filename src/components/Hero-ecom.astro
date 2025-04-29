@@ -1,5 +1,6 @@
 ---
-// No server-side logic needed for this component example
+
+const picUrl = "https://images.vexels.com/media/users/3/279696/raw/cc94a1dce8ee976085813e9f7bd2d1fe-cool-anime-boy-face-t-shirt-design.jpg"
 ---
 
 <section id="hero" class="hero-container">
@@ -11,6 +12,10 @@
 </section>
 
 <style lang="less">
+        .hero-image-container {
+            background-image: url( "https://images.vexels.com/media/users/3/279696/raw/cc94a1dce8ee976085813e9f7bd2d1fe-cool-anime-boy-face-t-shirt-design.jpg");
+
+        }
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
     .hero-container {
@@ -41,7 +46,6 @@
         // border: 4px solid red; // Removed border, or keep for debugging
 
         /* Apply the image as a background */
-        background-image: url('https://static.vecteezy.com/system/resources/previews/028/252/048/non_2x/men-s-t-shirt-realistic-mockup-in-different-colors-ai-generated-photo.jpg');
         background-size: cover; // Cover the container area
         background-position: center top; // Position the image (adjust as needed)
         background-repeat: no-repeat;

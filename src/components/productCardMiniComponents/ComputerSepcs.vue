@@ -1,4 +1,5 @@
 <template>
+
   <div class="specs-grid">
     <!-- Conditionally render each spec item if its prop has a value -->
     <div v-if="operating_system" class="spec-item os" data-spec-type="os">
@@ -70,17 +71,11 @@
 <script setup>
 // Keep the original props definition
 const props = defineProps({
-  operating_system: String,
-  processor: String,
-  graphics_card: String,
-  storage: String,
-  ram: String,
-  motherboard: String,
-  description:{
-    type:String,
-    required:false
-  }
+  product:{type:Object,required:true}
 });
+
+const {operating_system,storage ,processor,graphics_card,ram,motherboard ,description} = props.product
+console.log(operating_system);
 </script>
 
 <style lang="less" scoped>
@@ -186,7 +181,7 @@ const props = defineProps({
 
 
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 900;
   /* Use the spec-specific background variable */
   background-color: var(--spec-value-bg);
 

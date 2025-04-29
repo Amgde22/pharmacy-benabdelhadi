@@ -1,0 +1,32 @@
+{
+  "gender": "Unisex",
+  "instructions": "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items\n\n**Structure:** Define general product details first, then add each available color variant with its specific photos and sizes.",
+  "price": 3400,
+  "name": "JJK - Choso Minimalist Hoodie",
+  "variants": [
+    {
+      "color": {
+        "name": "Black",
+        "value": "#000000"
+      },
+      "available_sizes": [
+        "XS",
+        "M",
+        "S",
+        "XL",
+        "L"
+      ],
+      "images": [
+        {
+          "image": "https://www.awkwardxstore.com/cdn/shop/files/choso_jjk_anime_streetwear_oversize_hoodie_awkwardxstore_pakistan_2.png?v=1731767991"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "hoodie"
+  ],
+  "type": "Hoodie",
+  "image": "https://www.awkwardxstore.com/cdn/shop/files/choso_jjk_anime_streetwear_oversize_hoodie_awkwardxstore_pakistan_2.png?v=1731767991",
+  "offer": 4000
+}

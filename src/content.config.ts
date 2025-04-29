@@ -23,10 +23,7 @@ const productsCollection = defineCollection({
     }),
 });
 
-// Define enums for cleaner schema and type safety based on YAML options
-const clothingTypes = z.enum(["T-Shirt", "Hoodie", "Sweatshirt", "Jeans", "Pants", "Shorts", "Jacket", "Dress", "Skirt", "Accessory"]);
-const clothingTags = z.enum(["Men", "Women", "Unisex", "Kids", "New Arrival", "Sale", "Basic", "Summer", "Winter", "Spring", "Fall"]);
-const clothingSizes = z.enum(["XS", "S", "M", "L", "XL", "XXL", "One Size"]);
+
 // Define the 'clothing' collection
 export const clothingCollection = defineCollection({
   type: 'data',
@@ -37,14 +34,11 @@ export const clothingCollection = defineCollection({
       name: z.string(), // ✅ Clothing Name
       description: z.string().optional(), // ❓ Description
       image: image(),
-      type: clothingTypes, // ✅ Clothing Type (using enum)
+      gender: z.string().optional(), // 🔹❓ Tags (using enum)
+      tags: z.array(z.string()).optional(),
       price: z.number().min(0), // ✅ Base Price (DZD)
       offer: z.number().min(0).optional(), // ❓ Base Price Before Discount (DZD)
-      // Note: Removed the top-level 'image' field as it wasn't in your provided YAML snippet.
-      // If you *do* have a main product image separate from variants, add it back:
-      // image: image(), // ✅ Main Image (for listing)
-      tags: z.array(clothingTags).optional(), // 🔹❓ Tags (using enum)
-
+      
       // --- Color Variants Grouping ---
       variants: z.array( // 🔹✅ Color Variants (list widget)
         z.object({ // Fields for each item in the color_variants list
@@ -60,7 +54,7 @@ export const clothingCollection = defineCollection({
             })
           ).min(1), // Require at least one image per color variant
           // --- Sizes for this Color ---
-          available_sizes: z.array(clothingSizes) // 🔹✅ Available Sizes (select multiple)
+          available_sizes: z.array(z.string()) // 🔹✅ Available Sizes (select multiple)
              .min(1), // Require at least one size per color variant
         })
       ).min(1), // Require at least one color variant for the product

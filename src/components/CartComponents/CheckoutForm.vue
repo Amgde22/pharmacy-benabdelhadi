@@ -4,13 +4,19 @@
     <div class="container">
       <div v-if="items.length > 0" class="cart-items-container">
         <div class="cart-items-header">
-          <p class="summary">order summary</p>
+          <!-- <p class="summary">order summary</p> -->
+          <p class="summary">Résumé de la commande</p>
         <div  class="subtotal order-info">
-          <span>Subtotal:</span>
+          <!-- <span>Subtotal:</span> -->
+          <span>Sous-total:</span>
+
+          
           <strong>{{ formatCurrency(subtotal, currency) }}</strong>
         </div>
         <div class="shipping order-info">
-          <span>Shipping:</span>
+          <!-- <span>Shipping:</span> -->
+          <span> Livraison:</span>
+         
           <strong>{{ getShippingCost() }}</strong>
         </div>
         </div>
@@ -27,8 +33,11 @@
             />
         </div>
       <sl-card class="checkout-card">
-        <div slot="header">
+        <!-- <div slot="header">
           Checkout Information
+        </div> -->
+        <div slot="header">
+          Informations de paiement
         </div>
         <!-- Standard HTML form -->
         <form
@@ -44,7 +53,7 @@
           <input type="hidden" name="form-name" value="checkout-form-html" />
           <!-- Full Name -->
           <div class="form-group">
-            <label for="fullname">Full Name</label>
+            <label for="fullname">Nom complet</label>
             <input
             pattern="[\s\S]*"
               type="text"
@@ -55,11 +64,11 @@
               aria-describedby="fullname-help"
               placeholder=" "
             />
-            <small id="fullname-help" class="help-text">Please enter your full name</small>
+            <small id="fullname-help" class="help-text">Veuillez entrer votre nom complet</small>
           </div>
           <!-- Phone Number -->
           <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone">Numéro de téléphone</label>
             <input
               type="tel"
               name="phone"
@@ -69,10 +78,10 @@
               placeholder="e.g., 05xxxxxxxx / 06xxxxxxxx / 07xxxxxxxx"
               required
               pattern="^(05|06|07)\d{8}$"
-              title="Must be 10 digits starting with 05, 06, or 07."
+              title="Doit contenir 10 chiffres commençant par 05, 06 ou 07."
               aria-describedby="phone-help"
             />
-            <small id="phone-help" class="help-text">Enter a valid Algerian phone number (starts with 05, 06, or 07)</small>
+            <small id="phone-help" class="help-text">Entrez un numéro de téléphone algérien valide (commençant par 05, 06 ou 07)</small>
           </div>
           <!-- Wilaya Selection -->
           <div class="form-group">
@@ -86,7 +95,7 @@
                 aria-describedby="wilaya-help"
                 placeholder="wilaya"
               >
-                <option value="" disabled selected>-- Select your Wilaya --</option> <!-- Placeholder option -->
+                <option value="" disabled selected>	-- Sélectionnez votre Wilaya --</option> <!-- Placeholder option -->
                 <option v-for="(wilaya, index) in wilayas" :key="wilaya" :value="wilaya">
                   {{ index + 1 }}. {{ wilaya }}
                 </option>
@@ -106,11 +115,11 @@
               aria-describedby="baladiya-help"
               placeholder=" "
             />
-            <small id="baladiya-help" class="help-text">Enter your specific commune or town</small>
+            <small id="baladiya-help" class="help-text">Entrez votre commune ou ville</small>
           </div>
           <!-- Address -->
           <div class="form-group">
-            <label for="address">Address</label>
+            <label for="address">Adresse</label>
             <input
               type="text"
               name="address"
@@ -120,11 +129,11 @@
               aria-describedby="address-help"
               placeholder=" "
             />
-            <small id="address-help" class="help-text">Enter your street address, building, etc.</small>
+            <small id="address-help" class="help-text">Entrez votre adresse, immeuble, etc.</small>
           </div>
           <!-- Notes -->
           <div class="form-group">
-            <label for="notes">Notes (Optional)</label>
+            <label for="notes">Notes (Optionnel)</label>
             <textarea
               name="notes"
               id="notes"
@@ -132,7 +141,7 @@
               rows="4"
               aria-describedby="notes-help"
             ></textarea>
-            <small id="notes-help" class="help-text">Any special delivery instructions or notes?</small>
+            <small id="notes-help" class="help-text">Des instructions de livraison spéciales ou des notes?</small>
           </div>
           <!-- hidden bought products text area -->
           <textarea
@@ -154,7 +163,7 @@
             <span slot="prefix" style="margin-right: 0.5em; vertical-align: middle;">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2m-8.9-5h7.45c.75 0 1.41-.41 1.75-1.03L21 4.96L19.25 4l-3.7 7H8.53L4.27 2H1v2h2l3.6 7.59l-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7zM12 2l4 4l-4 4l-1.41-1.41L12.17 7H8V5h4.17l-1.59-1.59z"/></svg>
             </span>
-            Place Order
+            Passer la commande
           </button>
         </form>
       </sl-card>
@@ -199,8 +208,11 @@ const wilayas = ref([
 ]);
 
 const shopKeeperMessage = computed(()=>{
-  const header = "Bought Products"
-  const warning = "ALWAYS RE-CHECK THE INFORMATION"
+  // const header = "Bought Products"
+  const header = "Produits achetés"
+
+  // const warning = "ALWAYS RE-CHECK THE INFORMATION"
+  const warning = "TOUJOURS VÉRIFIER LES INFORMATIONS"
   const products_message = items.value.map( (item,index)=>
   `Product  ${index + 1} : ${item.previousPrice? '(Promotion) ' + item.previousPrice + ' --> ' +item.price: '' } \n
   ${item.name} x ${item.quantity} \n

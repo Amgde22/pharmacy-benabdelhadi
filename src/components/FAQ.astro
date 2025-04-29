@@ -1,9 +1,49 @@
+---
+// title fr
+// const topper = "Tout Savoir"
+// const title = "Questions fréquemment posées par nos clients"
+
+// title ar
+const topper = " لديك أسئلة؟"
+const title = "الأسئلة الشائعة من عملائنا"
+
+
+
+
+// info (fr)
+// const question1 = "Puis-je faire améliorer les performances de mon ordinateur chez vous?"
+// const answer1 = "Absolument. Nous proposons des optimisations de système, des mises à niveau de mémoire (RAM), l'installation de disques SSD plus rapides, et bien plus encore."
+
+// const question2 = "Vendez-vous des ordinateurs et des pièces détachées?"
+// const answer2 = "Oui! Nous avons une large sélection d'ordinateurs neufs et d'occasion, ainsi que tous les composants nécessaires pour améliorer ou réparer votre machine."
+
+// const question3 = "Comment puis-je vous contacter et où êtes-vous situés?"
+// const answer3 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repellendus sequi doloribus!"
+
+// const question4 = "Combien coûte une réparation ou une mise à niveau?"
+// const answer4 = "Le"
+
+
+// hajj (ar)
+const question1 = "هل تشمل البرامج جميع تكاليف الحج؟"
+const answer1 = "نعم، جميع برامجنا مصممة لتكون شاملة ومريحة لك. الأسعار تتضمن تكاليف الإقامة، التنقلات بين المشاعر، الوجبات اليومية، وإصدار التصاريح الرسمية. كل ما عليك هو التركيز على رحلتك الإيمانية، ونحن نتكفل بالباقي بكل حب واهتمام."
+
+const question2 = "كيف أضمن حجزي معكم؟"
+const answer2 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repellendus sequi doloribus!"
+
+const question3 = " متى تبدأ رحلات الحج لهذا العام؟"
+const answer3 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repellendus sequi doloribus!"
+
+const question4 = "ماذا يحدث إذا طرأت ظروف طارئة قبل السفر؟"
+const answer4 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repellendus sequi doloribus!"
+---
+
 <section id="faq-1741">
   <div class="cs-container">
     <div class="cs-content">
-      <span class="cs-topper">Tout Savoir</span>
+      <span class="cs-topper">{topper}</span>
       <h2 class="cs-title">
-        Questions fréquemment posées par nos clients
+        {title}
       </h2>
     </div>
     <div class="cs-flex-group">
@@ -12,44 +52,42 @@
       <li class="cs-faq-item active">
           <button class="cs-button">
             <span class="cs-button-text">
-              Puis-je faire améliorer les performances de mon ordinateur chez vous?
+              {question1}
             </span>
           </button>
           <p class="cs-item-text">
-            Absolument. Nous proposons des optimisations de système, des mises à niveau de mémoire (RAM), l'installation de disques SSD plus rapides, et bien plus encore.
+            {answer1}
           </p>
         </li>
         <li class="cs-faq-item">
           <button class="cs-button">
             <span class="cs-button-text">
-              Vendez-vous des ordinateurs et des pièces détachées?
+              {question2}
             </span>
           </button>
           <p class="cs-item-text">
-            Oui! Nous avons une large sélection d'ordinateurs neufs et d'occasion, ainsi que tous les composants nécessaires pour améliorer ou réparer votre machine.
+            {answer2}
           </p>
         </li>
         <li class="cs-faq-item">
           <button class="cs-button">
             <span class="cs-button-text">
-              Comment puis-je vous contacter et où êtes-vous situés?
+              {question3}
             </span>
           </button>
           <p class="cs-item-text">
-            Vous pouvez nous contacter par téléphone au <a href="tel:+213770662425">(0770662425)</a>, 
-            par e-mail à <a href="mailto:tester.infopc@gmail.com">tester.infopc@gmail.com</a>, 
-            ou visiter notre magasin à <a href="https://maps.app.goo.gl/ytN9YsnY5BVM4jvq5">Google Maps</a>
+            {answer3}
             
           </p>
         </li>
         <li class="cs-faq-item">
           <button class="cs-button">
             <span class="cs-button-text">
-              Combien coûte une réparation ou une mise à niveau?
+              {question4}
             </span>
           </button>
           <p class="cs-item-text">
-            Les prix varient en fonction de la complexité du problème et des pièces nécessaires. Contactez-nous pour un devis gratuit et sans engagement.
+            {answer4}
           </p>
         </li>
       </ul>
@@ -130,7 +168,8 @@ document.addEventListener('astro:page-load', () => { // Makes the script availab
 
         &.active {
           .cs-button {
-            background-color: var(--secondary);
+
+            background-color: var(--primary);
             color: var(--bodyTextColorWhite);
 
             &:before {
@@ -277,7 +316,8 @@ document.addEventListener('astro:page-load', () => { // Makes the script availab
         .cs-faq-item {
           &.active {
             .cs-button {
-              background-color: var(--secondary);
+            background-color: var(--color-primary-900);
+              
               color: var(--bodyTextColorWhite);
 
               &:before,

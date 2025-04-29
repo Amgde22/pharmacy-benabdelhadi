@@ -1,0 +1,16 @@
+{
+  "motherboard": "Wi-Fi 6E",
+  "graphics_card": "M2 8-Core GPU",
+  "instructions": "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments\n\n**Spécifications:** Pour les spécifications comme CPU, GPU, RAM, etc., vous pouvez sélectionner une option courante dans la liste ou saisir un modèle spécifique dans la case 'valeur personnalisée' sous la liste.",
+  "price": 225000,
+  "name": "Apple MacBook Air 13 (M2)",
+  "operating_system": "macOS 15",
+  "processor": "M2 8-Core",
+  "tags": [
+    "MacBook"
+  ],
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwCR4DIFW8BUwQ8wEIAU1wwVwmFvGHznmG8Q&s",
+  "storage": "256 GB",
+  "description": "Ordinateur portable de haute qualité, léger et portable, idéal pour les utilisateurs occasionnels et les tâches légères. Écran 60Hz. Résolution : 2560 X 1664.",
+  "ram": "16 GB"
+}

@@ -1,7 +1,7 @@
 <template>
   <sl-drawer
     ref="drawer"
-    :label="`Your Cart (${totalItems})`"
+    :label="`Votre panier (${totalItems})`"
     placement="end"
     class="cart-drawer"
     :class="{
@@ -13,7 +13,8 @@
     <!-- Empty Cart Message (remains the same) -->
     <div v-if="items.length === 0" class="empty-cart-message">
        <sl-icon name="cart-x" style="font-size: 3rem; margin-bottom: 1rem;"></sl-icon>
-      Your cart is empty. Add some items to get started!
+      <!-- Your cart is empty. Add some items to get started! -->
+      Votre panier est vide. Ajoutez des articles pour commencer !
     </div>
 
     <!-- Container for Cart Items -->
@@ -34,7 +35,9 @@
     <!-- Footer (remains the same) -->
     <div slot="footer" class="cart-footer">
         <div v-if="items.length > 0" class="subtotal">
-         <span>Subtotal:</span>
+         <!-- <span>Subtotal:</span> -->
+         <span> Sous-total :</span>
+        
          <!-- Format subtotal here in the parent -->
          <strong>{{ formatCurrency(subtotal, currency) }}</strong>
        </div>
@@ -45,7 +48,8 @@
          size="large"
          :disabled="items.length === 0"
        >
-        Proceed to Checkout
+        <!-- Proceed to Checkout -->
+        Passer à la caisse
         <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10l-1.4-1.4L12.175 7H8V5h4.175l-1.6-1.6L12 2l4 4zM7 22q-.825 0-1.412-.587T5 20t.588-1.412T7 18t1.413.588T9 20t-.587 1.413T7 22m10 0q-.825 0-1.412-.587T15 20t.588-1.412T17 18t1.413.588T19 20t-.587 1.413T17 22M1 4V2h3.275l4.25 9h7l3.9-7H21.7l-4.975 9H8.1L7 15h12v2H3.625L6.6 11.6L3 4z"/></svg>
        </sl-button>
     </div>
@@ -279,6 +283,10 @@ body.dark-mode {
   .cart-drawer::part(header){
     
   }
+  .cart-drawer::part(close-button){
+    color:white;
+  }
+
   .cart-drawer::part(body),.cart-drawer::part(footer),.cart-drawer::part(header)  {
     background-color: var(--color-primary-900); 
     color: var(--sl-color-neutral-300);

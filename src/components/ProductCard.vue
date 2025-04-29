@@ -27,8 +27,8 @@
 
 
     <div class="product-tags">
-      <p v-for="tag in tags"
-       class="tag">{{tag}}</p>
+      <p v-if="gender" class="tag">{{gender}}</p>
+      <p v-for="tag in tags" class="tag">{{tag}}</p>
     </div>
     <p class="product-description ">{{ description }}
 
@@ -214,7 +214,8 @@ const {
    offer: offerPrice ,
    tags:optionalProductTags,
    images: additionalImages,
-   variants 
+   variants ,
+   gender
   } = props.product?.data || {};
 
   const productHasVariants = Array.isArray(variants)
@@ -374,7 +375,8 @@ function selectVariant(variant) {
 /* ==========================================================================
    Product Card Styles (.product-card)
    ========================================================================== */
-
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
 .product-card {
   font-size: 0.8em;
   box-shadow: 0 0.25rem 0.5rem @shadow-color;
@@ -551,9 +553,6 @@ function selectVariant(variant) {
   opacity: 0;
 }
 
-
-
-
 .dialog-content {
   background-color: #fff;
   width: 100%;
@@ -631,14 +630,16 @@ function selectVariant(variant) {
   overflow: hidden;
 }
 .icon-container{
+--icon-size:30px;
+
   margin-left: auto;
-  padding-right: 16px;
+  padding-right: 4px;
+  padding-left: 4px;
   display: flex;
   align-items: center;
   gap: 8px;
 
 // location + whatsapp
-
 
 // location
   & .dialog-link{
@@ -646,8 +647,8 @@ function selectVariant(variant) {
     place-items: center;
 
     box-sizing: content-box;
-    width: 35px;
-    height: 35px;
+    width: var(--icon-size);
+    height: var(--icon-size);
     border-radius: 100%;
 
 
@@ -658,8 +659,8 @@ function selectVariant(variant) {
     }
   }
   & .whatsapp-icon-holder {
-    width: 45px;
-    height: 45px;
+    width: calc( var(--icon-size ) + 10px);
+    height: calc( var(--icon-size ) + 10px);
   }
   & .location-icon-holder {
     background-color: var(--medium);
@@ -678,7 +679,7 @@ function selectVariant(variant) {
   padding: 8px 4px;
   overflow-y: auto;
   text-transform: capitalize; 
-  font-weight: bolder;
+
 }
 
 .dialog-product-informarion-container .bottom-section {
@@ -698,8 +699,19 @@ function selectVariant(variant) {
   background-color: white;
 
 }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 768px) {
+  .icon-container{
+    --icon-size:35px;
+    padding-right: 16px;
+    gap: 16px;
 
 
+  }
+
+}
 /* ==========================================================================
    Mobile Dialog
    ========================================================================== */
@@ -746,7 +758,8 @@ function selectVariant(variant) {
     .dialog-product-description {
       border-top: 4px solid rgba(255, 255, 255, 0.489);
       font-family: sans-serif; 
-      font-size: 18px;
+      font-size: 16px;
+      opacity: 0.9;
 
 
     }

@@ -1,0 +1,22 @@
+{
+  "motherboard": " Wi-Fi 6E",
+  "graphics_card": "RTX 4060",
+  "instructions": "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments\n\n**Spécifications:** Pour les spécifications comme CPU, GPU, RAM, etc., vous pouvez sélectionner une option courante dans la liste ou saisir un modèle spécifique dans la case 'valeur personnalisée' sous la liste.",
+  "price": 125000,
+  "name": "Lenovo Legion 7i 16 (16″ Intel) - 2024",
+  "operating_system": "Windows 11 Home",
+  "processor": " Core i7-14700HX",
+  "images": [
+    {
+      "image": "https://p3-ofp.static.pub//fes/cms/2024/09/19/i1xangy0y4apas5hee44qd1blkfcdu911785.png"
+    }
+  ],
+  "tags": [
+    "PC Gamer"
+  ],
+  "image": "https://p1-ofp.static.pub//fes/cms/2024/02/13/w3a8a9ai9fpyqm4r6ahwgwwyo300ib722541.jpg",
+  "storage": "1 TB ",
+  "offer": 130000,
+  "description": "Résolution : 2560 x 1600 pixels.\nune expérience de jeu immersive et une puissance de calcul pour les tâches exigeantes. Cependant, il est important de noter qu'il peut chauffer en utilisation intensive et que le processeur peut ne pas atteindre son plein potentiel maximal. \n",
+  "ram": "16GB DDR5"
+}

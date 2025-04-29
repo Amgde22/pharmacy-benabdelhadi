@@ -1,0 +1,16 @@
+{
+  "motherboard": "Wi-Fi 7",
+  "graphics_card": "Graphiques Intégrés ",
+  "instructions": "**Légende des champs:**\n- ✅ indique un champ obligatoire\n- ❓ indique un champ optionnel\n- 🔹 indique que vous pouvez ajouter plusieurs éléments\n\n**Spécifications:** Pour les spécifications comme CPU, GPU, RAM, etc., vous pouvez sélectionner une option courante dans la liste ou saisir un modèle spécifique dans la case 'valeur personnalisée' sous la liste.",
+  "price": 188000,
+  "name": "Asus Vivobook S 14 OLED (Lunar Lake)",
+  "operating_system": "Windows 11 Home",
+  "processor": "Core Ultra 5 226V",
+  "tags": [
+    "Éclairage RGB"
+  ],
+  "image": "https://www.pcworld.com/wp-content/uploads/2023/12/Lead-1.jpg?quality=50&strip=all",
+  "storage": " 512 GB",
+  "description": "Ordinateur portable léger avec écran OLED, adapté aux étudiants ou aux utilisateurs occasionnels. 1920 X 1200 pixels",
+  "ram": "16 GB"
+}
