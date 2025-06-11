@@ -1,0 +1,392 @@
+---
+import image from "@assets/images/hero.webp"
+
+interface Props {
+    fullscreen?: boolean
+}
+
+// Content controls
+const heading = "Your Smile is our priority"
+const underlined_word = "smile"
+const subheading = "Dental Experts you can trust"
+const { fullscreen = true } = Astro.props
+
+const heroImage = image
+---
+
+<section id="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="content-wrapper">
+                <h1 class="hero-heading">
+                    {heading.split(" ").map((word, index) => {
+                        const isUnderlined = word.toLowerCase() === underlined_word.toLowerCase()
+                        return (
+                            <span 
+                                class="word" 
+                                style={`--delay: ${index * 0.1}s`}
+                                data-word={word}
+                            >
+                                {word}
+                                {isUnderlined && (
+                                    <span class="underline-accent" aria-hidden="true"></span>
+                                )}
+                            </span>
+                        )
+                    })}
+                </h1>
+                
+                <p class="hero-subheading" style={`--delay: ${heading.split(" ").length * 0.1 + 0.2}s`}>
+                    {subheading}
+                </p>
+                
+                <div class="hero-actions" style={`--delay: ${heading.split(" ").length * 0.1 + 0.4}s`}>
+                    <button class="cta-primary">
+                        Book Appointment
+                        <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="cta-secondary">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="image-container">
+                <img 
+                    src={heroImage.src} 
+                    alt="Professional dental care" 
+                    class="hero-image"
+                    loading="eager"
+                />
+                <div class="image-overlay"></div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="floating-elements" aria-hidden="true">
+                <div class="element element-1"></div>
+                <div class="element element-2"></div>
+                <div class="element element-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="less" scoped>
+/* Modern Hero Section */
+#hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    overflow: hidden;
+    padding: 0;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.hero-content {
+    z-index: 2;
+    position: relative;
+}
+
+.content-wrapper {
+    max-width: 600px;
+}
+
+/* Typography */
+.hero-heading {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    
+    .word {
+        display: inline-block;
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideUp 0.8s ease-out forwards;
+        animation-delay: var(--delay);
+        
+        &::after {
+            content: attr(data-word);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: colorReveal 0.6s ease-out forwards;
+            animation-delay: calc(var(--delay) + 0.4s);
+        }
+    }
+    
+    .underline-accent {
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: underlineExpand 0.6s ease-out forwards;
+        animation-delay: calc(var(--delay) + 0.6s);
+    }
+}
+
+.hero-subheading {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin: 0 0 2.5rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: var(--delay);
+}
+
+/* CTA Buttons */
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: var(--delay);
+}
+
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        
+        .cta-icon {
+            transform: translateX(4px);
+        }
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+    
+    .cta-icon {
+        transition: transform 0.3s ease;
+    }
+}
+
+.cta-secondary {
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: #cbd5e1;
+    border: 2px solid #475569;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        border-color: #64748b;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Hero Visual */
+.hero-visual {
+    position: relative;
+    z-index: 1;
+}
+
+.image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.element {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+}
+
+.element-1 {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    right: 20%;
+    animation-delay: 2s;
+}
+
+.element-3 {
+    width: 80px;
+    height: 80px;
+    top: 80%;
+    right: 5%;
+    animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes colorReveal {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes underlineExpand {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        padding: 2rem 3rem;
+    }
+    
+    .content-wrapper {
+        max-width: none;
+    }
+    
+    .hero-actions {
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-container {
+        padding: 2rem 4rem;
+    }
+    
+    .hero-heading {
+        font-size: clamp(3rem, 4vw, 4rem);
+    }
+    
+    .hero-subheading {
+        font-size: 1.375rem;
+    }
+    
+    .image-container {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-container {
+        gap: 6rem;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .word,
+    .hero-subheading,
+    .hero-actions {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .underline-accent {
+        animation: none;
+        transform: none;
+    }
+    
+    .element {
+        animation: none;
+    }
+}
+</style>

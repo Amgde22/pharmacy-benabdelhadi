@@ -8,29 +8,42 @@
 @media only screen and (min-width: 0em) {
     // Dark Mode Color Scheme
     :root {
-        // some elements use this
-        --dark: var(--sl-color-neutral-900);
-        --medium: var(--sl-color-neutral-800);
-        // we will gradually transition into using this
+
+
+        // black & white pallet
         --color-primary-500:var(--sl-color-neutral-800);
-
-        // rouge
-        --color-primary-500:#a10000;
-        // camel
-        // --medium: #8B6F5A;
-        // --color-primary-500:#c28100;
-
-
         --color-primary-700:var(--sl-color-neutral-700);
         --color-primary-900:var(--sl-color-neutral-600);
 
 
+                
+        // camel
+        // --medium: #8B6F5A;
+        // --color-primary-500:#c28100;
+
+        /* A golden yellow */
+        // --color-primary-500: #ffc857; 
+
+
+
+        // rouge
+        // --color-primary-500:#a10000;
+
+
+        // some old components use these
+        --dark: var(--sl-color-neutral-900);
+        --medium: var(--sl-color-neutral-800);
 
     }
 
     body.dark-mode {
+    // so we don't always manually set dark colors
+    --primary: var(--dark);            
+    --primaryLight: var(--medium); 
+    --secondary: ar(--dark);     
+    --secondaryLight: var(--medium);
+        
         background-color: var(--dark);
-
         p,
         li,
         h1,

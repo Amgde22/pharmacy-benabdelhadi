@@ -23,6 +23,26 @@ const productsCollection = defineCollection({
     }),
 });
 
+const phonesCollection = defineCollection({
+  type: 'data',
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      description: z.string(),
+      price: z.number().min(0),
+      offer: z.number().min(0).optional(),
+      image: image(),
+      images: z
+        .array(
+          z.object({
+            image: image(),
+          })
+        )
+        .optional(),
+      tags: z.union([z.array(z.any()), z.null()]).optional(),
+    }),
+});
+
 
 // Define the 'clothing' collection
 export const clothingCollection = defineCollection({
@@ -92,5 +112,6 @@ const pcsCollection = defineCollection({
 export const collections = {
   products: productsCollection,
   clothing: clothingCollection,
-  pcs: pcsCollection
+  pcs: pcsCollection,
+  phones:phonesCollection
 };

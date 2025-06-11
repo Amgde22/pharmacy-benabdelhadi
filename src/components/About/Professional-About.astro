@@ -1,0 +1,316 @@
+---
+import {name} from "@data/client.json"
+import aboutBackground from "@assets/images/about-bg.webp"
+const heading = "All your dental needs in one place"
+
+const testimony_text = `Im Glad gave ${name} a try , been a customer ever since`
+const testimony_author = `John Doe`
+const testimony_stauts= `who was initially hesitant to try us`
+
+const cta ="Contact Us"
+const backgroundImage = aboutBackground
+---
+
+<section class="about-container">
+    <div class="bg-image-container"
+    style=`background-image:linear-gradient(to top right , transparent , rgba(255,255,255,0.9) 55%)
+    ,  url(${aboutBackground.src});`
+    ></div>
+    <section class="intro">
+        <p class="intro">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 2h11a3 3 0 0 1 3 3v14a1 1 0 0 1-1 1h-3"/><path d="m5 2l7.588 1.518A3 3 0 0 1 15 6.459V20.78a1 1 0 0 1-1.196.98l-7.196-1.438A2 2 0 0 1 5 18.36zm7 10v2"/></g></svg>
+            welcom to
+            {name}
+        </p>
+        <p class="heading">
+            {heading}
+        </p>
+        <p class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quisquam sequi praesentium laborum velit voluptates amet beatae eos molestias fugit nemo itaque.
+        </p>
+        <div class="testimonials-container">
+            <div class="quote">
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16"><path fill="currentColor" d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234c-.2.032-.352-.176-.273-.362c.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272a1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666c.343 0 .662-.095.931-.26c-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01c1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01c1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4a1.7 1.7 0 0 0-.227-.273a1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667c0 .92.777 1.666 1.734 1.666c.343 0 .662-.095.931-.26z"/></svg>
+            </div>
+            <div class="testimonial">
+                <p class="text">{testimony_text}</p>
+                <p class="author">{testimony_author}</p>
+                <p class="status">{testimony_stauts}</p>
+            </div>
+        </div>
+        <button class="cta">
+            {cta}
+            <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10m.47-13.53a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H8a.75.75 0 0 1 0-1.5h6.19l-1.72-1.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
+        </button>
+    </section>
+
+    <section class="features">
+        <div class="feature-item">
+            <p class="heading">
+                <!-- eye icon -->
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m9.343 18.782l-1.932-.518l.787-2.939a11 11 0 0 1-3.237-1.872l-2.153 2.154l-1.414-1.414l2.153-2.154a10.96 10.96 0 0 1-2.371-5.07l1.968-.359a9.002 9.002 0 0 0 17.713 0l1.968.358a10.96 10.96 0 0 1-2.372 5.071l2.154 2.154l-1.414 1.414l-2.154-2.154a11 11 0 0 1-3.237 1.872l.788 2.94l-1.932.517l-.788-2.94a11 11 0 0 1-3.74 0z"/></svg>
+                Our Vision
+            </p>
+            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus </p>
+        </div>
+
+        <div class="feature-item">
+            <p class="heading">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 13V2l8 4l-8 4"/><path d="M20.561 10.222a9 9 0 1 1-12.55-5.29"/><path d="M8.002 9.997a5 5 0 1 0 8.9 2.02"/></g></svg>    
+                Our Mission
+            </p>
+            <p class="text">Lorem ipsum dolor, sit Lorem ipsum dolor sit amet. amet consectetur adipisicing elit. Delectus </p>
+        </div>
+        <div class="feature-item">
+            <p class="heading">Our Value</p>
+            <p class="text">Lorem ipsum dolor,  Delectus </p>
+        </div>
+        <img class="image"
+         src={backgroundImage.src} alt="about us image" >
+         <div class="feature-contact">
+            <p>hiii</p>
+            <p>hiii</p>
+            <p>hiii</p>
+        </div>
+    </section>
+</section>
+
+
+<style lang="less" scoped>
+
+    /*-- -------------------------- -->
+    <---         About           			-->
+    <--- -------------------------- -*/
+    /* Mobile - 360px */
+    @media only screen and (min-width: 0rem) {
+        .about-container{
+            margin-top: 200px;
+            position: relative;
+            display: grid;
+
+
+        }
+
+        .bg-image-container{
+            position: absolute;
+            inset: 0;
+
+            background-size:   auto 100%;
+            opacity: 0.4;
+
+            z-index: -1;
+        }
+        section.intro{
+            max-width: 100vw;
+            padding: var(--spacing-l);
+
+        p.intro{
+            font-size: calc(18px + (28 - 18) * (100vw - 320px) / (1920 - 320));
+
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            color: var(--headerColor);
+            font-weight: bold;
+
+            margin-bottom: var(--spacing-s);
+
+            & svg{
+                color: var(--headerColor);
+            }
+        }
+
+        .heading{
+            font-size: calc(24px + (48 - 24) * (100vw - 320px) / (1920 - 320));
+
+            // color: var(--bodyTextColor);
+            font-weight:bolder;
+            margin-bottom: var(--spacing-m);
+
+        }
+        .description{
+            font-size: 1.1em;
+
+        }
+
+        .testimonials-container{
+            display:grid;
+            grid-template-columns: 1fr 4fr;
+            background-color: rgba(255, 255, 255, 0.279);
+            padding: var(--spacing-m) 0;
+            margin-bottom:var(--spacing-m) ;
+
+            // quote container
+            & .quote {
+                padding: var(--spacing-s) 0;
+                
+                margin-inline-end: 8px;
+                border-inline-end: 2px solid rgba(128, 128, 128, 0.195);
+
+                // quote svg
+                & svg {
+                    display: block;
+                    width: clamp(40px,100%,50px);
+                    margin: auto;
+
+                    translate: -10px;
+
+                    opacity: 0.8;
+                }
+            }
+            & .testimonial {
+                padding-top: var(--spacing-s);
+
+
+                .text{
+                    font-size: calc(17px + (20 - 18) * (100vw - 320px) / (1920 - 320));
+
+                    font-weight: bold;
+                    margin-bottom: var(--spacing-m);
+
+                }
+                .author{
+
+                    opacity: 0.9;
+
+                }
+                .status{
+                    color: var(--primary);
+                    opacity: 0.9;
+
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .cta{
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: calc(16px + (18 - 16) * (100vw - 320px) / (1920 - 320));
+
+        // height: 2.7em;
+        background-color: var(--sl-color-neutral-800);
+        padding: 0.5em 1.25em;
+        border-radius: 100vw;
+        border:none;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.552);
+        box-shadow:0 5px 15px 5px rgba(0, 0, 0, 0.263);
+
+
+        font-family: var(--font-family);
+        color: white;
+        display: flex;
+        gap: 0.45em;
+        align-items: center;
+
+        & svg{
+            font-size:inherit;
+            color: #eee;
+            height: 1.5em;
+            opacity: 0.9;
+
+
+        }
+    }
+        }
+
+        section.features{
+            max-width: 100vw;
+            padding: var(--spacing-l);
+
+
+
+
+            .feature-item{
+                --icon-size:16px;
+                position: relative;
+                padding: 32px;
+                border-radius: 1em;
+
+                margin-bottom: var(--spacing-m);
+
+
+
+                background-color: #fff;
+                box-shadow: 0px 4px 15px 10px rgba(178, 178, 178, 0.281);
+
+                .heading{
+                    font-size: 1.4em;
+                    font-weight: bolder;
+                    margin-bottom: var(--spacing-s);
+
+                }
+                .text{
+                    opacity: 0.9;
+                }
+                .icon{
+
+                }
+            }
+
+            .image{           
+                max-width: 100%;
+                height: 400px;
+                object-fit: cover;
+
+            }
+        }
+}
+
+    /* Tablet - 768px */
+    @media only screen and (min-width: 768px) {
+        .about-container{
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto ;
+        }
+
+        .testimonials-container{
+            & .quote{
+                & svg{
+
+                    margin-inline-start: 1em;
+                    translate: 0 !important; 
+
+                }
+            }
+        }
+
+        // section.features{
+        //     display: grid;
+
+        //     grid-template-columns: 4fr 3fr;
+        //     grid-template-rows: repeat(9 , 1fr);
+
+        //     .feature-item{
+        //         grid-column-start: 1;
+        //         grid-row: span 3;
+
+        //         .icon{
+        //             display: block;
+        //         }
+        //     }
+        //     .feature-contact{
+        //         grid-column-start: 2;
+        //         grid-row: 7/9;
+
+        //     }
+
+        //     .image{
+        //         grid-column-start: 2;
+        //         grid-row: 1/7;
+        //         max-width: 100%;
+        //         height: 100%;
+        //     }
+        // }
+    }
+    /* Desktop - 1024px */
+    @media only screen and (min-width: 1024px) {
+    
+    }
+    /* Dark Mode */
+    @media only screen and (min-width: 0rem) {
+        body.dark-mode {
+            
+        }
+    }
+</style>

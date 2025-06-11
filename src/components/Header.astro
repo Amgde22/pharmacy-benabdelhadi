@@ -57,6 +57,7 @@ const contactButton = "Besoin d'Aide ?"
     visit us today
     </a> -->
 
+    
     <a href={whatsappLink} target="_blank" class="cs-button-solid cs-nav-button whatsapp-bg">
       <!-- <Icon name={"mage--location-fill"} size={"35px"} /> -->
       <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
@@ -65,6 +66,12 @@ const contactButton = "Besoin d'Aide ?"
       </svg>
       {contactButton}
     </a>
+
+    
+    {showCart && <CartToggle client:only />}
+    <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
+    <DarkModeToggle />
+
         <!--Navigation List-->
        { showNav &&
         <nav class="cs-nav" role="navigation">
@@ -137,9 +144,6 @@ const contactButton = "Besoin d'Aide ?"
         </nav>
         }
 
-      {showCart && <CartToggle client:only />}
-    <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
-    <DarkModeToggle />
 
 
 
