@@ -6,13 +6,37 @@ interface Props {
 }
 
 
-// controlls
+// Top-level controls for easy editing
 const heading = "Your Smile is our priority"
 const underlined_word = "smile"
-const subheading="Dental Exprets you can trust"
-const cta = "Book appointment"
+const subheading = "Dental Experts you can trust"
+const description = "Experience world-class dental care with our team of certified professionals. We're committed to your oral health and beautiful smile."
+const primaryCta = "Book Appointment"
+const secondaryCta = "Learn More"
 const {fullscreen = true} = Astro.props
 const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
+
+// Typography settings
+const headingSize = {
+    mobile: "clamp(2.5rem, 8vw, 4.5rem)",
+    desktop: "clamp(3rem, 6vw, 5rem)"
+}
+const subheadingSize = {
+    mobile: "clamp(1.25rem, 4vw, 2rem)",
+    desktop: "clamp(1.5rem, 3vw, 2.25rem)"
+}
+const descriptionSize = {
+    mobile: "clamp(1rem, 3vw, 1.125rem)",
+    desktop: "clamp(1.125rem, 2vw, 1.25rem)"
+}
+
+// Spacing settings
+const spacing = {
+    small: "clamp(1rem, 3vw, 1.5rem)",
+    medium: "clamp(1.5rem, 4vw, 2.5rem)",
+    large: "clamp(2rem, 5vw, 3.5rem)",
+    xlarge: "clamp(2.5rem, 6vw, 4rem)"
+}
 ---
 
 <section id="hero">
@@ -37,10 +61,21 @@ const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
         })}
     </p>
 
-    <button class="cta text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 3}`}>
-        {cta}
-        <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10m.47-13.53a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H8a.75.75 0 0 1 0-1.5h6.19l-1.72-1.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
-    </button>
+    <p class="description text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 1}`}>
+        {description}
+    </p>
+
+    <div class="cta-container">
+        <button class="cta primary text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 3}`}>
+            {primaryCta}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10m.47-13.53a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H8a.75.75 0 0 1 0-1.5h6.19l-1.72-1.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
+        </button>
+        
+        <button class="cta secondary text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 4}`}>
+            {secondaryCta}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg>
+        </button>
+    </div>
 
 
     <div 
@@ -64,119 +99,251 @@ const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
     #hero{
-
-        --spacing:32px;
-        --animation-stagger-delay: 100ms;
-        --animation-duration: 600ms;
-        position:relative;
+        --animation-stagger-delay: 80ms;
+        --animation-duration: 800ms;
+        --bounce-duration: 1200ms;
+        position: relative;
         height: 100vh;
-
         overflow: hidden;
         padding: var(--sectionPadding);
-	    /* 200px - 300px - leaving extra space for the navigation */
+        /* 200px - 300px - leaving extra space for the navigation */
         padding-top: clamp(9.5rem, 31.95vw, 11.75rem);
         isolation: isolate;
         background-color: var(--dark);
-        // background-color: var(--sl-color-neutral-900);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
     }
 
     .heading{
         color: var(--sl-color-neutral-100);
-        font-size: calc(45px + (75 - 45) * (100vw - 320px) / (1920 - 320));
-        font-weight: bold;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 800;
         text-transform: capitalize;
-        line-height: 1.25em;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
         display: flex;
-        gap: 0.2em;
+        gap: 0.25em;
         flex-wrap: wrap;
-        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.552);
-
-        margin-bottom: var(--spacing);
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
         span{
             display: inline-block;
             position: relative;
 
             .underline{
-                position:absolute;
+                position: absolute;
                 display: block;
-                left: 0;right:0;
+                left: 0;
+                right: 0;
                 width: 100%;
-                top:80%;
+                top: 85%;
                 fill: var(--primary);
+                opacity: 0;
+                transform: scaleX(0);
+                animation: drawUnderline 0.8s ease-out forwards;
+                animation-delay: calc(var(--word-index) * var(--animation-stagger-delay) + 0.3s);
             }
         }
     }
+
+    @keyframes drawUnderline {
+        0% {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        50% {
+            opacity: 1;
+            transform: scaleX(1.1);
+        }
+        100% {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+    }
+
     .subheading{
-        color: var(--sl-color-neutral-100);
-        font-size: calc(20px + (36 - 20) * (100vw - 320px) / (1920 - 320));
-        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.552);
-        font-weight: bold;
-        margin-bottom: var(--spacing);
+        color: var(--sl-color-neutral-200);
+        font-size: clamp(1.25rem, 4vw, 2rem);
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        margin-bottom: clamp(1.5rem, 4vw, 2rem);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .description{
+        color: var(--sl-color-neutral-300);
+        font-size: clamp(1rem, 3vw, 1.125rem);
+        font-weight: 400;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+        max-width: 600px;
+        opacity: 0.9;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .cta-container{
+        display: flex;
+        gap: clamp(1rem, 3vw, 1.5rem);
+        flex-wrap: wrap;
+        align-items: center;
     }
 
     .cta{
-        font-family: Arial, Helvetica, sans-serif !important;
-        font-size: 18px;
-        // height: 2.7em;
-        background-color: var(--primary);
-        padding: 0.5em 1.25em;
-        border-radius: 100vw;
-        border:none;
-        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.552);
-        box-shadow:0 5px 15px 5px rgba(0, 0, 0, 0.263);
-
-
-        font-family: var(--font-family);
-        color: white;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
         display: flex;
-        gap: 0.45em;
+        gap: 0.5em;
         align-items: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.01em;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        &:hover::before {
+            left: 100%;
+        }
 
         & svg{
-            font-size:inherit;
-            color: #eee;
-            height: 1.5em;
-            opacity: 0.9;
+            height: 1.1em;
+            width: 1.1em;
+            transition: transform 0.3s ease;
+        }
 
+        &:hover svg {
+            transform: translateX(2px);
+        }
 
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .cta.primary{
+        background: linear-gradient(135deg, var(--primary), #0066cc);
+        color: white;
+        box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        & svg {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    .cta.secondary{
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--sl-color-neutral-100);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        & svg {
+            color: var(--sl-color-neutral-200);
         }
     }
 
     
-    /* Text reveal animation */
+    /* Enhanced text reveal animations */
     .text-reveal {
         opacity: 0;
-        transform: translateY(20px);
-        animation: revealText var(--animation-duration) forwards ease-out;
+        transform: translateY(30px) rotateX(20deg);
+        animation: revealText var(--animation-duration) forwards cubic-bezier(0.4, 0, 0.2, 1);
         animation-delay: calc(var(--word-index) * var(--animation-stagger-delay));
     }
 
     @keyframes revealText {
         0% {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px) rotateX(20deg);
+            filter: blur(4px);
+        }
+        60% {
+            opacity: 0.8;
+            transform: translateY(-5px) rotateX(0deg);
+            filter: blur(1px);
         }
         100% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) rotateX(0deg);
+            filter: blur(0px);
         }
     }
 
-    /* Special animation for CTA button */
+    /* Special animation for description */
+    .description.text-reveal {
+        transform: translateY(20px);
+        animation-name: revealDescription;
+        animation-duration: 1s;
+    }
+
+    @keyframes revealDescription {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(2px);
+        }
+        100% {
+            opacity: 0.9;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+    }
+
+    /* Enhanced CTA animations */
     .cta.text-reveal {
-        transform: translateY(20px) scale(0.95);
-        animation-name: revealCta;
+        transform: translateY(30px) scale(0.9);
+        animation: revealCta var(--bounce-duration) forwards cubic-bezier(0.4, 0, 0.2, 1);
+        animation-delay: calc(var(--word-index) * var(--animation-stagger-delay));
     }
 
     @keyframes revealCta {
         0% {
             opacity: 0;
-            transform: translateY(20px) scale(0.95);
+            transform: translateY(30px) scale(0.9);
+        }
+        50% {
+            opacity: 0.8;
+            transform: translateY(-8px) scale(1.05);
         }
         70% {
             opacity: 1;
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(2px) scale(0.98);
+        }
+        85% {
+            transform: translateY(-2px) scale(1.02);
         }
         100% {
             opacity: 1;
@@ -272,9 +439,32 @@ const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
 
 /* Tablet - 768px */
 @media only screen and (min-width: 768px) {
-    .cta{
-        font-size: 20px;
+    .heading{
+        font-size: clamp(3rem, 6vw, 5rem);
+        margin-bottom: var(--spacing-s);
     }
+
+    .subheading{
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        margin-bottom: var(--spacing-l);
+
+    }
+
+    .description{
+        font-size: clamp(1.125rem, 2vw, 1.25rem);
+
+        max-width: 700px;
+    }
+
+    .cta{
+        font-size: 1.125rem;
+        padding: 0.875rem 1.75rem;
+    }
+
+    .cta-container{
+        gap: 1.25rem;
+    }
+
     .hero-image-container{
         display: block;
     }
@@ -285,15 +475,74 @@ const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
 
 /* Desktop - 1024px */
 @media only screen and (min-width: 1024px) {
+    #hero{
+        padding-top: clamp(10rem, 25vw, 12rem);
+    }
+
+    .heading{
+        font-size: clamp(3.5rem, 5vw, 5.5rem);
+
+        max-width: 900px;
+    }
+
+    .subheading{
+        font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+
+        max-width: 800px;
+    }
+
+    .description{
+        font-size: clamp(1.25rem, 1.5vw, 1.375rem);
+        max-width: 750px;
+    }
+
     .cta{
-        font-size: 22px;
+        font-size: 1.25rem;
+        padding: 1rem 2rem;
+
+        & svg{
+            height: 1.2em;
+            width: 1.2em;
+        }
+    }
+
+    .cta-container{
+        gap: 1.5rem;
+    }
+
+    /* Enhanced hover effects for desktop */
+    .cta.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0, 102, 204, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta.secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+    }
+}
+
+/* Large Desktop - 1440px */
+@media only screen and (min-width: 1440px) {
+    .heading{
+        max-width: 1000px;
+    }
+
+    .subheading{
+        max-width: 900px;
+    }
+
+    .description{
+        max-width: 800px;
     }
 }
 
 /* Dark Mode */
 @media only screen and (min-width: 0rem) {
     body.dark-mode {
-        /* Add your dark mode styles here */
+        .cta.primary{
+        background: linear-gradient(135deg, var(--color-primary-300), var(--color-primary-500));
+    }
     }
 }
 </style>
