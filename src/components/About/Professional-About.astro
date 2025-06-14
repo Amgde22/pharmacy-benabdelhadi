@@ -1,10 +1,14 @@
 ---
 import {name} from "@data/client.json"
 import aboutBackground from "@assets/images/about-bg.webp"
+
+
+const intro = `welcom to ${name}`
 const heading = "All your dental needs in one place"
 
-const testimony_text = `Im Glad gave ${name} a try , been a customer ever since`
-const testimony_author = `Martin Louis the III Doe`
+
+const testimony_text = `at ${name} we strive for (your core values here)`
+const testimony_author = `ceo name`
 const testimony_stauts= `Ceo of ${name}`
 
 const cta ="Contact Us"
@@ -15,15 +19,14 @@ const backgroundImage = aboutBackground
 
 <section class="about-container">
     <div class="bg-image-container"
-    style=`background-image:linear-gradient(to top right , transparent , rgba(255,255,255,0.9) 55%)
+    style=`background-image:linear-gradient(to top right , transparent , transparent 55%)
     ,  url(${aboutBackground.src});`
     ></div>
 
     <section class="intro">
         <p class="intro">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 2h11a3 3 0 0 1 3 3v14a1 1 0 0 1-1 1h-3"/><path d="m5 2l7.588 1.518A3 3 0 0 1 15 6.459V20.78a1 1 0 0 1-1.196.98l-7.196-1.438A2 2 0 0 1 5 18.36zm7 10v2"/></g></svg>
-            welcom to
-            {name}
+            {intro}
         </p>
         <p class="heading">
             {heading}
@@ -137,7 +140,7 @@ const backgroundImage = aboutBackground
     /* Mobile - 360px */
     @media only screen and (min-width: 0rem) {
         .about-container{
-            margin-top: 200px;
+
             position: relative;
             display: grid;
             grid-template-areas: 
@@ -807,7 +810,7 @@ const backgroundImage = aboutBackground
         } else {
             // White gradient for light mode
             bgImageContainer.style.backgroundImage = 
-                `linear-gradient(to top right, transparent, rgba(255,255,255,0.9) 55%), ${imageUrl}`;
+                `linear-gradient(to top right, transparent, rgba(200,200,200,0.5) 55%), ${imageUrl}`;
         }
     }
 
