@@ -18,21 +18,40 @@ import heroImage from "@assets/images/hero.webp"
 // const Description = "Ordinateurs, Accessoires et Solutions pour Tous"; // "Computers, Accessories, and Solutions for Everyone"
 
 // hajj (AR)
-const title = "رحلة إيمانية لا تُنسى... تبدأ معنا"
-const Description = "دعنا نكون رفيق دربك إلى أطهر بقاع الأرض بكل راحة وأمان"
-const cta = "احجز رحلتك الآن"
+// const title = "رحلة إيمانية لا تُنسى... تبدأ معنا"
+// const Description = "دعنا نكون رفيق دربك إلى أطهر بقاع الأرض بكل راحة وأمان"
+// const cta = "احجز رحلتك الآن"
 
-const service1_title = "برامج حج متكاملة"
-const service2_title = "إقامة فاخرة قريبة من الحرم"
-const service3_title = "خدمات إرشاد ديني طوال الرحلة"
-const service4_title = "نقل مريح ومكيف"
+// const service1_title = "برامج حج متكاملة"
+// const service2_title = "إقامة فاخرة قريبة من الحرم"
+// const service3_title = "خدمات إرشاد ديني طوال الرحلة"
+// const service4_title = "نقل مريح ومكيف"
 
-const service1_description = "نقدم خطط سفر تناسب جميع الاحتياجات مع أعلى معايير الراحة."
-const service2_description = "احجز إقامتك في أفضل الفنادق المعتمدة على مقربة من المشاعر المقدسة."
-const service3_description = "مشايخ متخصصون لمرافقتك ومساعدتك في أداء المناسك بالشكل الصحيح."
-const service4_description = "تنقل بين المشاعر بسهولة ويسر عبر حافلات حديثة ومكيفة."
+// const service1_description = "نقدم خطط سفر تناسب جميع الاحتياجات مع أعلى معايير الراحة."
+// const service2_description = "احجز إقامتك في أفضل الفنادق المعتمدة على مقربة من المشاعر المقدسة."
+// const service3_description = "مشايخ متخصصون لمرافقتك ومساعدتك في أداء المناسك بالشكل الصحيح."
+// const service4_description = "تنقل بين المشاعر بسهولة ويسر عبر حافلات حديثة ومكيفة."
+
+// youtuber newsletter :
+const title = "تابع آخر الأخبار التقنية الأهم"
+const Description = "  أحدث الأخبار التقنية، المراجعات , وأفضل النصائح : مباشرة إلى بريدك."
+
+const cta = "اشترك مجانًا الآن"
+
+const service1_title = "أبرز الأخبار التقنية"
+const service1_description = "ملخصات مركّزة لأهم المستجدات التقنية بدون إطالة أو تكرار."
+
+const service2_title = "مراجعات أولية واقعية"
+const service2_description = "رأينا الصريح في أحدث المنتجات التقنية بناءً على التجربة الفعلية."
+
+const service3_title = "نصائح عملية مفيدة"
+const service3_description = "طرق فعّالة تساعدك على استخدام أجهزتك وبرامجك بكفاءة أكبر."
+
+const service4_title = ""
+const service4_description = ""
 
 
+// repair
 // const cta = "Visitez-nous!"
 // const service1_title = "Optimisation Système"
 // const service2_title = "Consultation Info"
@@ -149,6 +168,8 @@ const {mapLink} = address
                                 
 
 <style lang="less">
+    @direction:left;
+    @read-direction :rtl;
 .hero-section{
     border: 2px solid red;
     min-height: 50vh;
@@ -161,11 +182,12 @@ const {mapLink} = address
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
     #hero-1619 {
-        padding: var(--sectionPadding);
+        padding: var(--sectionPadding) ;
 	    /* 200px - 300px - leaving extra space for the navigation */
         padding-top: clamp(12.5rem, 31.95vw, 18.75rem);
         position: relative;
         z-index: 1;
+         direction:rtl;
 
         .cs-container {
             width: 100%;
@@ -219,11 +241,12 @@ const {mapLink} = address
             font-size: clamp(2.4375rem, 6.40vw, 3.8125rem);
             font-weight: 700;
             line-height: 1.2em;
-            text-align: inherit;
+            text-align: start;
             max-width: 100%;
             margin: 0 0 (40/16rem) 0;
             color: #fff;
             position: relative;
+            
         }
 
         .cs-text {
@@ -247,7 +270,7 @@ const {mapLink} = address
             margin: 0;
             color: #fff;
             padding: 0 (24/16rem);
-            background-color: var(--medium);
+            background-color: var(--primary);
             display: inline-block;
             position: relative;
             z-index: 1;
@@ -300,9 +323,13 @@ const {mapLink} = address
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            justify-content: center;
+            justify-content: flex-start;
             position: relative;
             z-index: 1;
+            text-align: start;
+            &:has(.cs-h3:empty){
+                display: none;
+            }
             .cs-icon , svg {
             width: (48/16rem);
             height: auto;
@@ -342,6 +369,7 @@ const {mapLink} = address
             z-index: -2;
 
             &:before {
+
                 /* Overlay */
                 content: '';
                 width: 100%;
@@ -394,7 +422,7 @@ const {mapLink} = address
         .cs-background {
             height:87%;
             &:before {
-                background: linear-gradient(90deg, #111926 21.41%, rgba(17, 25, 38, 0.72) 34.98%, rgba(17, 25, 38, 0.00) 62.53%);
+                background: linear-gradient(to @direction, #111926 21.41%, rgba(17, 25, 38, 0.72) 34.98%, rgba(17, 25, 38, 0.00) 62.53%);
                 opacity: 1;
             }
         }
