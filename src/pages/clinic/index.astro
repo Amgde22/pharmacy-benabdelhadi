@@ -1,21 +1,39 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import CTA from "@components/CTA.astro";
-import FAQ from "@components/FAQ.astro";
-import { getCollection } from "astro:content";
-
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
-import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
 import Hero from "@components/hero/Hero-Firework.astro";
 import About from "@components/About/Professional-About.astro";
-// import Hero from "@components/Hero.astro";
-import Products from "@components/Products.vue";
+import aboutBackground from "@assets/images/about-bg.webp"
+import {name} from "@data/client.json"
 
 
-import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 
+// Hero
+const heroHeading = "Your Smile is our priority"
+const heroUnderlined_word = "smile"
+const heroSubheading = "Dental Experts you can trust"
+const heroDescription = "Experience world-class dental care with our team of certified professionals. We're committed to your oral health and beautiful smile."
+const primaryCta = "Book Appointment"
+const secondaryCta = "Learn More"
+
+const heroFullscreen = true 
+const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
+
+
+// about
+const intro = `welcom to ${name}`
+const Aboutheading = "All your dental needs in one place"
+const aboutDescription = "We're driven by compassion, treating every patient with respect and empathy. We uphold excellence in all our care, operating with complete integrity. We also embrace innovation, always using the best technology for your benefit."
+const testimony_text = `at ${name} we strive for (your core values here)`
+const testimony_author = `ceo name`
+const testimony_stauts= `Ceo of ${name}`
+const cta ="Contact Us"
+const cta_secondary ="More About Us"
+const card_link = "Learn More"
+const our_vission="To be the leading dental clinic in the region, known for exceptional patient care and healthy, confident smiles."
+const our_mission = "We provide personalized, high-quality dental care in a comfortable setting, empowering you to achieve optimal oral health."
+const our_value = "At our core, we believe in compassion, ensuring every patient feels understood and cared for ❤️. "
+const aboutBackgroundImage = aboutBackground
 
 ---
 
@@ -27,8 +45,33 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 >
 
-<Hero fullscreen={true} />
-<About />
+<Hero
+  heading={heroHeading}
+  underlined_word={heroUnderlined_word}
+  subheading={heroSubheading}
+  description={heroDescription}
+  primaryCta={primaryCta}
+  secondaryCta={secondaryCta}
+  fullscreen={heroFullscreen} 
+  heroImage={heroImage}
+/>
+<About 
+  intro={intro}
+  heading={Aboutheading}
+  description={aboutDescription}
+  testimony_text={testimony_text}
+  testimony_author={testimony_author}
+  testimony_stauts={testimony_stauts}
+  our_vission={our_vission}
+our_mission={our_mission}
+our_value={our_value}
+  cta={cta}
+  cta_secondary={cta_secondary}
+  card_link={card_link}
+  backgroundImage={aboutBackgroundImage}
+
+
+/>
 
 
 

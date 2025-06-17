@@ -1,42 +1,20 @@
 ---
 import image from "@assets/images/hero.webp"
 
-interface Props {
-    fullscreen:boolean
-}
 
 
-// Top-level controls for easy editing
-const heading = "Your Smile is our priority"
-const underlined_word = "smile"
-const subheading = "Dental Experts you can trust"
-const description = "Experience world-class dental care with our team of certified professionals. We're committed to your oral health and beautiful smile."
-const primaryCta = "Book Appointment"
-const secondaryCta = "Learn More"
-const {fullscreen = true} = Astro.props
-const heroImage = {src:"https://i.postimg.cc/W16scbBP/doctors.png"}
+const {
+    fullscreen = true,
+    heading,
+    description,
+    underlined_word,
+    subheading,
+    primaryCta,
+    secondaryCta,
+    heroImage,
+} = Astro.props
 
-// Typography settings
-const headingSize = {
-    mobile: "clamp(2.5rem, 8vw, 4.5rem)",
-    desktop: "clamp(3rem, 6vw, 5rem)"
-}
-const subheadingSize = {
-    mobile: "clamp(1.25rem, 4vw, 2rem)",
-    desktop: "clamp(1.5rem, 3vw, 2.25rem)"
-}
-const descriptionSize = {
-    mobile: "clamp(1rem, 3vw, 1.125rem)",
-    desktop: "clamp(1.125rem, 2vw, 1.25rem)"
-}
 
-// Spacing settings
-const spacing = {
-    small: "clamp(1rem, 3vw, 1.5rem)",
-    medium: "clamp(1.5rem, 4vw, 2.5rem)",
-    large: "clamp(2rem, 5vw, 3.5rem)",
-    xlarge: "clamp(2.5rem, 6vw, 4rem)"
-}
 ---
 
 <section id="hero">
