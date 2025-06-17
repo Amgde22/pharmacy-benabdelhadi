@@ -9,7 +9,6 @@ import vue from "@astrojs/vue";
 export default defineConfig({
   // update me!
   site: "https://www.yourwebsite.com",
-
   integrations: [
     icon(),
      sitemap({

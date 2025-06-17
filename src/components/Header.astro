@@ -1,15 +1,15 @@
 ---
-import navData from "@data/navData.json";
 import data from "@data/client.json";
+import navData from "@data/navData.json";
+import logo from "@assets/images/logo.png";
+import PluginBanner from "@/components/TemplateComponents/PlugBanner.astro"
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import AmButton from "./AmButton.vue";
-import logo from "@assets/images/logo.png"
 import CartToggle from "@components/CartComponents/CartToggle.vue";
 
-import locationIcon from "@icons/mage--location-fill.svg"
 
-const {whatsappLink} = data
+const {whatsappLink,free} = data
 const googleMapsLink = data.address.mapLink
 
 // config
@@ -28,7 +28,12 @@ const contactButton = "Contact Us"
 ---
 
 <!-- ================Navigation ======= -->
+
+
 <header id="cs-navigation">
+<div class="banner">
+  <PluginBanner />
+</div>
   <div class="cs-container">
     <!--Nav Logo-->
     <a href="/" class="cs-logo" aria-label="back to home">
@@ -178,11 +183,10 @@ const contactButton = "Contact Us"
   #cs-navigation {
     letter-spacing: 1px;
     width: 100%;
-    max-height: 100px;
+
 
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
-    padding: (12/16rem) (16/16rem);
 
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -228,6 +232,7 @@ const contactButton = "Contact Us"
     }
 
     .cs-container {
+      padding: (8/16rem) (16/16rem);
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -745,16 +750,16 @@ const contactButton = "Contact Us"
 
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
-    padding: 0 (16/16rem);
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     position: fixed;
     z-index: 10000;
 
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
 
     .cs-container {
+    padding: 0 (16/16rem);
       width: 100%;
       max-width: (1280/16rem);
       margin: auto;
