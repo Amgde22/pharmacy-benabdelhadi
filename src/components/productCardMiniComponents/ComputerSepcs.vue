@@ -108,6 +108,10 @@ console.log(operating_system);
   /* Default/fallback background variables if needed */
   --spec-header-bg: grey;
   --spec-value-bg: lightgrey;
+
+  &:empty{
+    display: none;
+  }
 }
 
 /* mobile 320px */

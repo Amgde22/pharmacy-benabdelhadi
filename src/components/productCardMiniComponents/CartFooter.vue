@@ -27,7 +27,8 @@
                     {{ formatCurrency(totalPrice) }}
                 </span>
                  <!-- Optional: Text for success state -->
-                 <span v-else-if="buttonState === 'success'">Added</span>
+                 <a href="/checkout"  v-else-if="buttonState === 'success'">Checkout</a>
+
             </button>
         </div>
 
@@ -135,7 +136,7 @@ const handleAddToCart = () => {
             // Set timer to revert back to idle after showing success
             successTimerId.value = setTimeout(() => {
                 buttonState.value = 'idle';
-            }, 2000); // Show success for 2 seconds
+            }, 3000); // Show success for 2 seconds
 
         } catch (error) {
             console.error("Failed to add item to cart:", error);
