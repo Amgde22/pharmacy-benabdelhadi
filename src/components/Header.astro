@@ -2,7 +2,7 @@
 import data from "@data/client.json";
 import navData from "@data/navData.json";
 import logo from "@assets/images/logo.png";
-import PluginBanner from "@/components/TemplateComponents/PlugBanner.astro"
+import PluginBanner from "@components/TemplateComponents/PlugBanner.astro"
 import { Icon } from 'astro-icon/components';
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import AmButton from "./AmButton.vue";
@@ -13,7 +13,7 @@ const {whatsappLink,free} = data
 const googleMapsLink = data.address.mapLink
 
 // config
-const showCart = false
+const showCart = true
 const showNav = true
 
 // const ctaButton = "تفضل بزيارتنا"
@@ -47,14 +47,7 @@ const contactButton = "Contact Us"
 
 
 
-    <AmButton
-    href={googleMapsLink}
-    classes="me-auto"  fontSize="1.2em" collapse>
-      <Icon class={"flex-0"} name="mdi--location" size={25}  />
-      <span class="header-cta-button">
-        {ctaButton}
-      </span>
-    </AmButton>
+
     <!-- navbar CTA -->
     <!-- <a href="https://www.google.com/" target="_blank" 
     class="cs-button-solid always-active">
@@ -252,6 +245,7 @@ const contactButton = "Contact Us"
       align-items: center;
       z-index: 10;
 
+      margin-inline-end: auto;
       img {
         width: 100%;
         height: 100%;
@@ -774,6 +768,8 @@ const contactButton = "Contact Us"
     }
 
     .cs-logo {
+      margin-inline-end: auto;
+
       width: 18.4%;
       max-width: (350/16rem);
       height: (65/16rem);

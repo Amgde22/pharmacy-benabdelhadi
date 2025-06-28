@@ -130,8 +130,8 @@ const handleAddToCart = () => {
             addItemToCart(productDataForCart, quantity.value);
 
             // Transition to success state
-            buttonState.value = 'success';
             quantity.value = 1; // Reset quantity AFTER successful add
+            buttonState.value = 'success';
 
             // Set timer to revert back to idle after showing success
             successTimerId.value = setTimeout(() => {
@@ -150,18 +150,6 @@ const handleAddToCart = () => {
     }, 1500); // Simulate 1.5 second loading time
 };
 
-// --- Watchers ---
-watch(quantity, (newQuantity, oldQuantity) => {
-    // If quantity is changed AFTER a successful add, revert button state
-    if (buttonState.value === 'success' && newQuantity !== oldQuantity) {
-        buttonState.value = 'idle';
-        // Clear the success timer if it's running, as user interaction overrides it
-        if (successTimerId.value) {
-            clearTimeout(successTimerId.value);
-            successTimerId.value = null;
-        }
-    }
-});
 
 // --- Lifecycle ---
 onUnmounted(() => {

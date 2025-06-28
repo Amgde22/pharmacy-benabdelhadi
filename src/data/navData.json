@@ -1,13 +1,17 @@
 [
   {
-    "key": "Accueil",
+    "key": "Home",
     "url": "/",
     "children": []
   },
-
   {
-    "key": "Produits",
-    "url": "/Produits/",
+    "key": "services",
+    "url": "#",
+    "children": []
+  },
+  {
+    "key": "products",
+    "url": "/products",
     "children": []
   }
 ]

@@ -260,10 +260,12 @@ border-bottom: 2px solid var(--sl-color-neutral-400);
 
     .size-select {
     border: 1px solid var(--sl-color-neutral-600);
-    background-color:var(--sl-color-neutral-700) ;
+    background-color:var(--sl-color-neutral-600) ;
     color: var(--sl-color-neutral-200);
 
+    &:not(:disabled){
 
+    }
     &:hover:not(:disabled,.active) { // Hover/focus styles only for enabled buttons
         background-color: var(--sl-color-neutral-700);
         border-color: var(--sl-color-neutral-400);

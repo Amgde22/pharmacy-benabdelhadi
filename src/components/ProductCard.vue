@@ -30,9 +30,13 @@
       <p v-if="gender" class="tag">{{gender}}</p>
       <p v-for="tag in tags" class="tag">{{tag}}</p>
     </div>
-    <p class="product-description ">{{ description }}
 
+
+    <p class="product-description">
+      <ClothingInfo :product="product.data" />
+      {{ description }}
     </p>
+
     <div class="product-price-and-button bottom-section">
       <span class="product-price">
         {{ formattedPrice }}
@@ -158,7 +162,7 @@ import data from "@data/client.json"
 import Carousel from "@components/productCardMiniComponents/Carousel.vue"
 import Slider from "@components/productCardMiniComponents/Slider.vue"
 import { CheckIfClothingProduct } from '@/js/utils';
-
+import ClothingInfo from "@components/productCardMiniComponents/ClothingInfo.vue"
 
 
 const googleMapsLink = data.address.mapLink

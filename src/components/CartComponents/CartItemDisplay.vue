@@ -413,12 +413,12 @@ import {formatCurrency} from "@js/utils"
          color: var(--sl-color-neutral-400);
         }
        .current-total {
-          background-color: var(--medium); // Use global CSS var
+          background-color: var(--sl-color-neutral-700); 
           color: var(--sl-color-neutral-300);
        }
 
       .product-quantity-indicator {
-          background-color: var(--sl-color-neutral-800);
+          background-color: var(--sl-color-neutral-700);
       }
 
 

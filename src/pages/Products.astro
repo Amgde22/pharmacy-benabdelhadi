@@ -9,7 +9,7 @@ import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET
 import ProductComponent from "@components/Products.vue";
 const optimizedImage = await getOptimizedImage(landingImage)
 
-const products = await getCollection("products");
+const products = await getCollection("phones");
 const productsProcessedImages = await processProductImages(products)
 
 //  product </ kayn
@@ -81,10 +81,7 @@ const dataIsReady = products && productsProcessedImages;
   description="Majs Studios product page template"
   preloadedImage = {optimizedImage}
 >
-
-
-
-<div class="padding">...</div>
+<div class="padding"></div>
 <!-- products -->
 {dataIsReady ? (
   <ProductComponent 
@@ -104,15 +101,15 @@ const dataIsReady = products && productsProcessedImages;
 </BaseLayout>
 
 <style lang="less">
-  
 
 .padding{
-    padding-top: 5vw;
-    padding-top: max(10px,5vw);
+	    /* 200px - 300px - leaving extra space for the navigation */
+      padding-top: clamp(8.5rem, 31.95vw, 10.75rem);
 }
 @media only screen and (min-width: 1023px) {
     .padding{
-            padding-top: 86px;
+      padding-top: clamp(10.5rem, 31.95vw, 12.75rem);
+
         }
 }
 
