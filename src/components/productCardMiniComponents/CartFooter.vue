@@ -27,7 +27,7 @@
                     {{ formatCurrency(totalPrice) }}
                 </span>
                  <!-- Optional: Text for success state -->
-                 <a href="/checkout"  v-else-if="buttonState === 'success'">Checkout</a>
+                 <span  v-else-if="buttonState === 'success'">success</span>
 
             </button>
         </div>
