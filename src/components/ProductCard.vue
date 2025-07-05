@@ -558,12 +558,15 @@ function selectVariant(variant) {
   opacity: 0;
 }
 
+
+
 .dialog-content {
+
   background-color: #fff;
   width: 100%;
   max-width: 640px;
   height: 100%;
-  max-height: 100vh;
+
   position: relative;
   overflow-y: auto;
   margin: auto;
@@ -714,10 +717,13 @@ function selectVariant(variant) {
     --icon-size:35px;
     padding-right: 16px;
     gap: 16px;
-
-
   }
-
+  .product-dialog.modalVisible{
+    display: grid;
+  }
+  .dialog-content {
+    max-height: 760px;
+  }
 }
 /* ==========================================================================
    Mobile Dialog

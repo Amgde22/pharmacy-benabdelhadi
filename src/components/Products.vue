@@ -22,10 +22,13 @@
         :product-images="productImages[product.id]"
         cart
     >
-
+    <template #description>
+        <ComputerSepcs   :product="product"/>
+    </template>
 
 </ProductCard>
 </section>
+
 <div v-if="isSection" class="center">
     <sl-button class="button" variant="neutral" size="large" href="/Produits">
         ...Discover more

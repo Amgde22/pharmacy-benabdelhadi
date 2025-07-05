@@ -74,8 +74,8 @@ const props = defineProps({
   product:{type:Object,required:true}
 });
 
-const {operating_system,storage ,processor,graphics_card,ram,motherboard ,description} = props.product
-console.log(operating_system);
+const {operating_system,storage ,processor,graphics_card,ram,motherboard ,description} = props.product.data
+console.log(props.product);
 </script>
 
 <style lang="less" scoped>

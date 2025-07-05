@@ -1,10 +1,13 @@
 {
   "instructions": "**Field Legend:**\n- ✅ Indicates a required field\n- ❓ Indicates an optional field\n- 🔹 Indicates you can add multiple items",
-  "name": "Samsung Galaxy A15",
-  "price": 54000,
-  "description": "6,4 à 6,5 pouces, cet appareil offre une expérience visuelle\nimmersive pour la navigation, le visionnage de vidéos et la navigation\nsur les réseaux sociaux.",
-  "image": "https://dz.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/96/7655/1.jpg?0128",
+  "name": "Samsung Galaxy S24 Ultra",
+  "price": 250000,
+  "description": "Unleash revolutionary mobile AI with the Samsung Galaxy S24 Ultra, crafted with a durable titanium frame and featuring the integrated S Pen.\n\nKey Features:\n- Snapdragon® 8 Gen 3 for Galaxy Processor\n- Up to 1TB Storage options available\n- Immersive 6.8-inch Dynamic AMOLED 2X Display\n- All-day 5000mAh Battery with Super Fast Charging\n- Quad Camera System with 200MP Wide and 100x Space Zoom\n- AI features for enhanced communication, productivity, and creativity\n- Weight: 232g",
+  "image": "https://media.ldlc.com/r1600/ld/products/00/06/20/43/LD0006204367.jpg",
   "tags": [
-    "Samsung"
+    "Samsung",
+    "Galaxy",
+    "Ultra",
+    "AI"
   ]
 }

@@ -1,23 +1,16 @@
 ---
-import {address} from "@data/client.json"
-import heroImage from "@assets/images/hero.webp"
 
-// laptops
-const title = "Mobilité et Performance, Réunies"; // "Mobility and Performance, Combined"
-const Description = "Derniers Modèles, Performances Exceptionnelles, Design Épuré"; //"Latest Models, Exceptional Performance, Sleek Design"
+const {title,
+description,
+cta,
+heroImg,
+serviceImg,
+service1_title,
+service1_description,
+service2_title,
+service2_description} = Astro.props
 
-const cta = "Visitez-nous!"
-const service1_title = "Optimisation Système"
-const service2_title = "Consultation Info"
-const service3_title = "Vente Matériel"
-const service4_title = "Réparation PC"
 
-const service1_description = "Accélérez votre machine pour une meilleure productivité."
-const service2_description = "Conseils experts pour vos projets informatiques."
-const service3_description = " Ordinateurs, composants, et accessoires performants."
-const service4_description = "Diagnostics rapides et réparations efficaces."
-
-const {mapLink} = address
 ---
 
 
@@ -30,54 +23,24 @@ const {mapLink} = address
         <div class="cs-content ">
             <h1 class="cs-title roboto">{title}</h1>
             <p class="cs-text roboto">
-                {Description}
+                {description}
             </p>
-            <a href="" class="cs-button-solid roboto">
+
+            <a href="/shop" class="cs-button-solid roboto">
                 {cta}
                 <img class="cs-button-arrow" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/white-arrow-up.svg" decoding="async" alt="arrow" width="20" height="20" aria-hidden="true">
             </a>
         </div>
-        <!--To make your own background crops of people use https://www.remove.bg/-->
-        <picture class="cs-picture">
-            <source media="(max-width: 600px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/construction-man2.png">
-            <source media="(min-width: 601px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/construction-man2.png">
-            <img aria-hidden="true" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/construction-man2.png" alt="construction worker" width="581" height="662">
-<!--  -->
-            <!-- <source media="(max-width: 600px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/construction1.jpg"> -->
-            <!-- <source media="(min-width: 601px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/construction1.jpg"> -->
-            <!-- <img aria-hidden="true" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/construction1.jpg" alt="construction site" width="630" height="684"> -->
-        </picture>
     </div>
     <!-- phone images -->
     <div class="cs-image-group">
         <!--Left Image-->
         <picture class="cs-background cs-background1">
-            <source media="(max-width: 600px)" srcset="https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-240909-lp.jpg.landing-big_2x.jpg">
-            <source media="(min-width: 601px)" srcset="https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-240909-lp.jpg.landing-big_2x.jpg">
-            <img aria-hidden="true" decoding="async" src="https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-240909-lp.jpg.landing-big_2x.jpg" alt="construction site" width="1290" height="684">
-        </picture>
-        <!--Right Image-->
-        <picture class="cs-background cs-background2">
-            <source media="(max-width: 600px)" srcset="https://androidcommunity.com/wp-content/uploads/2022/01/OPPO-Find-X5-2022-Launch.jpeg">
-            <source media="(min-width: 601px)" srcset="https://androidcommunity.com/wp-content/uploads/2022/01/OPPO-Find-X5-2022-Launch.jpeg">
-            <img aria-hidden="true" decoding="async" src="https://androidcommunity.com/wp-content/uploads/2022/01/OPPO-Find-X5-2022-Launch.jpeg" alt="construction site" width="630" height="684">
+            <source media="(max-width: 600px)" srcset={heroImg.src}>
+            <source media="(min-width: 601px)" srcset={heroImg.src}>
+            <img aria-hidden="true" decoding="async" src={heroImg.src} alt="phone hero background" width="1290" height="684">
         </picture>
     </div>
-    <!-- pc images -->
-    <!-- <div class="cs-image-group">
-
-        <picture class="cs-background cs-background1">
-            <source media="(max-width: 600px)" srcset="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1468&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <source media="(min-width: 601px)" srcset="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1468&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img aria-hidden="true" decoding="async" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1468&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="construction site" width="1290" height="684">
-        </picture>
-
-        <picture class="cs-background cs-background2">
-            <source media="(max-width: 600px)" srcset="https://m.media-amazon.com/images/I/71e7B5MKBIL._AC_UF894,1000_QL80_.jpg">
-            <source media="(min-width: 601px)" srcset="https://m.media-amazon.com/images/I/71e7B5MKBIL._AC_UF894,1000_QL80_.jpg">
-            <img aria-hidden="true" decoding="async" src="https://m.media-amazon.com/images/I/71e7B5MKBIL._AC_UF894,1000_QL80_.jpg" alt="construction site" width="630" height="684">
-        </picture>
-    </div> -->
 </section>
 
 <!-- ============================================ -->
@@ -88,41 +51,37 @@ const {mapLink} = address
     <div class="cs-container">
         <ul class="cs-card-group">
             <li class="cs-item">
-                <a href="" class="cs-link">
+                <a href="/shipping-policy" class="cs-link">
                     <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/construction1.svg" decoding="async" alt="icon" width="40" height="40" aria-hidden="true">
-                    <h3 class="cs-h3">Qualité Supérieure Garantie </h3>
+                    <h3 class="cs-h3">{service1_title}</h3>
                     <p class="cs-item-text">
-                        Nous sélectionnons rigoureusement les meilleurs ordinateurs portables pour une performance et une fiabilité inégalées.
+                        {service1_description}
                     </p>
                 </a>
             </li>
-
-            <!-- shipping item 2 service-->
-            <!-- <li class="cs-item">
-                <a href="" class="cs-link">
-                    <img class="cs-icon" 
-                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KCTxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2VhMzUyZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuMiIgY29sb3I9IiNlYTM1MmUiPgoJCTxjaXJjbGUgY3g9IjE3IiBjeT0iMTgiIHI9IjIiIC8+CgkJPGNpcmNsZSBjeD0iNyIgY3k9IjE4IiByPSIyIiAvPgoJCTxwYXRoIGQ9Ik01IDE3Ljk3MmMtMS4wOTctLjA1NC0xLjc4LS4yMTctMi4yNjgtLjcwNHMtLjY1LTEuMTcxLS43MDQtMi4yNjhNOSAxOGg2bTQtLjAyOGMxLjA5Ny0uMDU0IDEuNzgtLjIxNyAyLjI2OC0uNzA0QzIyIDE2LjUzNSAyMiAxNS4zNTcgMjIgMTN2LTJoLTQuN2MtLjc0NSAwLTEuMTE3IDAtMS40MTgtLjA5OGEyIDIgMCAwIDEtMS4yODQtMS4yODRDMTQuNSA5LjMxNyAxNC41IDguOTQ1IDE0LjUgOC4yYzAtMS4xMTcgMC0xLjY3NS0uMTQ3LTIuMTI3YTMgMyAwIDAgMC0xLjkyNi0xLjkyNkMxMS45NzUgNCAxMS40MTcgNCAxMC4zIDRIMm0wIDRoNm0tNiAzaDQiIC8+CgkJPHBhdGggZD0iTTE0LjUgNmgxLjgyMWMxLjQ1NiAwIDIuMTgzIDAgMi43NzUuMzU0Yy41OTMuMzUzLjkzOC45OTQgMS42MjggMi4yNzZMMjIgMTEiIC8+Cgk8L2c+Cjwvc3ZnPg==" 
-                    decoding="async" alt="icon" width="60" height="60" aria-hidden="true">
-                    <h3 class="cs-h3">Livraison Rapide et Fiable </h3>
+            <li class="cs-item">
+                <a href="/returns-policy" class="cs-link">
+                    <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/construction1.svg" decoding="async" alt="icon" width="40" height="40" aria-hidden="true">
+                    <h3 class="cs-h3">{service2_title}</h3>
                     <p class="cs-item-text">
-                        Recevez votre nouveau portable rapidement et en toute sécurité, partout en Algerie.
+                        {service2_description}
                     </p>
                 </a>
-            </li> -->
+            </li>
             <li class="cs-item">
-                <a href="" class="cs-link">
+                <a href="#" class="cs-link">
                     <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/construction4.svg" decoding="async" alt="icon" width="40" height="40" aria-hidden="true">
-                    <span class="cs-number">100+</span>
-                    <h3 class="cs-h3">Clients Satisfaits</h3>
+                    <span class="cs-number">500+</span>
+                    <h3 class="cs-h3">Satisfied Customers</h3>
       
                     <span class="cs-fake-link">
-                        Collaborons Ensemble
+                        See Our Reviews
                         <img class="cs-arrow" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/orange-arrow-up.svg" decoding="async" alt="arrow" width="20" height="20" aria-hidden="true">
                     </span>
                     <picture class="cs-background">
-                        <source media="(max-width: 600px)" srcset="https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <source media="(min-width: 601px)" srcset="https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <img aria-hidden="true" decoding="async" src="https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="construction site" width="630" height="684">
+                        <source media="(max-width: 600px)" srcset={serviceImg.src}>
+                        <source media="(min-width: 601px)" srcset={serviceImg.src}>
+                        <img aria-hidden="true" decoding="async" src={serviceImg.src} alt="happy customer" width="630" height="684">
                     </picture>
                 </a>
             </li>
@@ -142,12 +101,16 @@ const {mapLink} = address
 @media only screen and (min-width: 0rem) {
     #hero-2274 {
         /* 150px - 350px Top */
-        padding: clamp(9rem, 30.95vw, 21.875rem) (16/16rem) 0;
+        padding: clamp(9rem, 30.95vw, 14.875rem) (16/16rem) clamp(2rem, 10vw, 4rem);
+
         overflow: hidden;
         position: relative;
         z-index: 10;
         margin-bottom: 2em;
-        max-height: 90vh;
+        max-height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
 
         .cs-container {
@@ -243,23 +206,6 @@ const {mapLink} = address
             }
         }
 
-        .cs-picture {
-            width: 100%;
-            /* 427px - 581px */
-            max-width: clamp(26.6875rem, 50vw, 36.3125rem);
-            height: auto;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            z-index: 7;
-            transform: scale(0);
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
         .cs-image-group {
             width: 100%;
             height: 100%;
@@ -269,6 +215,7 @@ const {mapLink} = address
             top: 0;
             left: 0;
             overflow: hidden;
+            z-index: -1;
         }
 
         .cs-background {
@@ -299,14 +246,8 @@ const {mapLink} = address
                 position: absolute;
                 top: 0;
                 left: 0;
+                z-index: 1;
             }
-        }
-
-        .cs-background2 {
-            display: none;
-            height: 100vw;
-            max-height: (480/16rem);
-            flex: none;
         }
     }
 }
@@ -314,64 +255,9 @@ const {mapLink} = address
 /* Tablet - 768px */
 @media only screen and (min-width: 48rem) {
     #hero-2274 {
-        padding-bottom: (150/16rem);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: (90/16rem);
-        max-height: none;
 
 
-        .cs-container {
-            justify-content: flex-start;
-            flex-direction: row;
-        }
 
-        .cs-content {
-            text-align: left;
-            width: 53%;
-            align-items: flex-start;
-        }
-
-        .cs-picture {
-            width: 56%;
-            position: absolute;
-            bottom: (-65/16rem);
-            right: (-30/16rem);
-        }
-
-        .cs-image-group {
-            flex-direction: row;
-        }
-
-        .cs-background2 {
-            display: block;
-            width: 25vw;
-            height: 100%;
-            max-height: 100%;
-            border-left: 2px solid var(--secondaryLight);
-        }
-    }
-}
-
-/* Desktop - 1024px */
-@media only screen and (min-width: 64rem) {
-    #hero-2274 {
-        /* 100px - 172px */
-        padding-bottom: clamp(6.25rem, 12vw, 10.9375rem);
-
-        .cs-picture {
-            width: 45%;
-            /* same value as the padding, but opposite */
-            bottom: calc(clamp(6.25rem, 12vw, 10.9375rem)*-1);
-            /* 32px - 80px */
-            right: clamp(2rem, 5vw, 5rem);
-        }
-
-        .cs-background2 {
-            width: 32.8125vw;
-        }
     }
 }
 
@@ -541,31 +427,6 @@ const {mapLink} = address
     #Hservices-2274 {
         padding: 2em ;
         padding-bottom: 4em;
-
-        .cs-card-group {
-            width: 44%;
-        }
-
-        .cs-item {
-            &:last-of-type {
-                width: 49%;
-                position: absolute;
-                right: 0;
-                top: calc(clamp(10rem, 20vw, 12.5rem)*-1);
-            }
-        }
-    }
-}
-
-/* Desktop - 1024px */
-@media only screen and (min-width: 64rem) {
-    #Hservices-2274 {
-        .cs-item {
-            &:last-of-type {
-                width: 37vw;
-                max-width: (400/16rem);
-            }
-        }
     }
 }
 
@@ -578,15 +439,14 @@ const {mapLink} = address
             width: (860/16rem);
             padding: (60/16rem) 0;
             column-gap: (20/16rem);
+            margin-top: -8rem;
         }
 
         .cs-item {
             grid-column: span 4;
-
-            &:last-of-type {
-                top: auto;
-                bottom: 0;
-            }
+            padding: 2rem;
+            border: 1px solid #E8E8E8;
+            border-radius: 0.5rem;
         }
     }
 }
@@ -597,6 +457,10 @@ const {mapLink} = address
         #Hservices-2274 {
             .cs-card-group {
                 background-color: var(--dark);
+            }
+
+            .cs-item {
+                border-color: var(--accent);
             }
 
             .cs-background {

@@ -17,7 +17,7 @@ const showCart = true
 const showNav = true
 
 // const ctaButton = "تفضل بزيارتنا"
-const ctaButton = "Visit Us !"
+const ctaButton = "Viens nous voir"
 
 // const contactButton = "تواصل معنا"
 const contactButton = "Contact Us"
@@ -49,11 +49,12 @@ const contactButton = "Contact Us"
 
 
     <!-- navbar CTA -->
-    <!-- <a href="https://www.google.com/" target="_blank" 
-    class="cs-button-solid always-active">
-    <Icon name="mdi--location" />
-    visit us today
-    </a> -->
+    <AmButton
+>
+      <Icon name="mdi--location" slot="icon-start" />
+      {ctaButton}
+    </AmButton>
+
 
     
     <a href={whatsappLink} target="_blank" class="cs-button-solid cs-nav-button whatsapp-bg">

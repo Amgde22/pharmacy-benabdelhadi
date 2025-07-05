@@ -16,7 +16,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 const optimizedImage = await getOptimizedImage(landingImage)
 
-const products = await getCollection("phones");
+const products = await getCollection("pcs");
 const productsProcessedImages = await processProductImages(products)
 
 
@@ -68,17 +68,24 @@ const dataIsReady = products && productsProcessedImages;
 
 
 
-const title = "Mobilité et Performance, Réunies"; // "Mobility and Performance, Combined"
-const description = "Derniers Modèles, Performances Exceptionnelles, Design Épuré"; //"Latest Models, Exceptional Performance, Sleek Design"
+const title = "Puissance. Performance. Mobilité."; // "Mobility and Performance, Combined"
+const description = "MacBooks, tablettes, PC portables haut de gamme , tout est chez Laptop Spirit";
 // const heroImg = {src:"https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/ccb3e8ca3c296e21a8c933e8369031511589d0ef6b079cf5bb3667b09893482c/features/mode-3"}
-const heroImg = {src:"https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-240909-lp.jpg.landing-big_2x.jpg"}
-const serviceImg = {src:"https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-const cta = "Visitez-nous!"
+const heroImg = {src:"https://images.unsplash.com/photo-1588620353536-ded12e518f45?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+const serviceImg = {src:"https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+const cta = "Découvrir les appareils"
 
-const service1_title = "58 Wilaya Shipping"
-const service1_description = "Fast and reliable delivery to all 58 provinces. Your new phone is just a click away."
-const service2_title = "30-Day Guarantee"
-const service2_description = "Not satisfied? Return your phone within 30 days, no questions asked."
+// const service1_title = "58 Wilaya Shipping"
+// const service1_description = "Fast and reliable delivery to all 58 provinces. Your new phone is just a click away."
+// const service2_title = "Garentie 3 mois"
+// const service2_description = "Not satisfied? Return your phone within 30 days, no questions asked."
+
+const service1_title = "Livraison dans les 58 Wilayas"
+const service1_description = "Rapide et fiable partout en Algérie. Votre nouvel appareil n’est qu’à un clic."
+
+const service2_title = "Garantie 3 mois"
+const service2_description = "Pas satisfait ? Retournez votre appareil sous 30 jours, sans poser de questions."
+
 
 
 ---
