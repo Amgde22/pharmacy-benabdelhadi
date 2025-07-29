@@ -1,74 +1,105 @@
 ---
 import image from "@assets/images/hero.webp"
 
-
-
 const {
     fullscreen = true,
-    heading,
-    description,
-    underlined_word,
-    subheading,
-    primaryCta,
-    secondaryCta,
-    heroImage,
+    title = "",
+    description = "",
+    special_words = "",
+    subtitle = "",
+    cta = "",
+    cta2 = "",
+    heroImg = { src: "" },
 } = Astro.props
 
+// Handle special_words as a string that can contain multiple words
+const specialWordsString = Array.isArray(special_words) ? special_words.join(' ') : special_words;
 
+// Process title with special words highlighting
+const renderTitle = () => {
+    // Safety check
+    if (!title) return [];
+    
+    // If no special words, render title normally
+    if (!specialWordsString) {
+        return title.split(" ").map((word, index) => ({
+            content: word,
+            isSpecial: false,
+            index
+        }));
+    }
+
+    // Escape special regex characters in the special words string
+    const escapedSpecialWords = specialWordsString.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // Create regex to find the special words in the title (case insensitive)
+    const regex = new RegExp(`(${escapedSpecialWords})`, 'i');
+    
+    // Split title into parts
+    const parts = title.split(regex);
+    
+    return parts
+        .filter(part => part) // Remove empty parts
+        .map((part, index) => ({
+            content: part,
+            isSpecial: part.toLowerCase() === specialWordsString.toLowerCase(),
+            index
+        }));
+};
+
+// Process subheading with special words highlighting
+const renderSubheadin = () => {
+   return subtitle
+};
+
+// Pre-calculate word counts for animation delays
+const titleWordCount = title ? title.split(" ").length : 0;
+const subtitleWordCount = subtitle ? subtitle.split(" ").length : 0;
+const descriptionIndex = titleWordCount + subtitleWordCount + 1;
+const primaryCtaIndex = titleWordCount + subtitleWordCount + 3;
+const secondaryCtaIndex = titleWordCount + subtitleWordCount + 4;
 ---
 
 <section id="hero">
     <p class="heading">
-        {heading.split(" ").map((word, index)=>{
-            const focused_word = word.toLocaleLowerCase() == underlined_word.toLocaleLowerCase()
-            return (<span class="text-reveal" style={`--word-index: ${index}`}>
-                {word}
-                {focused_word && <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 132"><path d="M1282.46 5.79c-.91-3.88-5.18-6.65-9.04-5.54-104.37 29.02-193.78 56.87-361.6 74.53-268.41 28.16-539.6 14.6-803.08-26.38C94.9 47.97-.34 26.24.08 41.38c-1.56 14.21 19.47 12.91 29.6 17.24 32.82 8.6 66.1 15.33 99.4 21.81 238.99 44.43 482.98 55.29 725.63 49.01 92.37-4.11 185.68-9.96 275.51-33.09 18.68-6.31 42.79-9.21 55.18-25.89 6.76-13.28-12.41-21.16-13.83-6.12-17.69 11.67-39.31 15.61-59.45 21.34-114.56 25.18-245.31 30.46-361.99 30.36-191.39.45-383.13-10.13-572-42.21 277.31 36.42 560.77 44.96 837.82 2.23 104.21-15.4 195.11-42.74 260.97-61.22a7.57 7.57 0 0 0 5.54-9.05Z" ></path></svg>}
-                </span>)
-        })}
+        {renderTitle().map(({ content, isSpecial, index }) => (
+            <span class="text-reveal" style={`--word-index: ${index}`}>
+                {isSpecial ? (
+                    <span class="special-word">{content}</span>
+                ) : (
+                    content
+                )}
+                {isSpecial && (
+                    <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 132">
+                        <path d="M1282.46 5.79c-.91-3.88-5.18-6.65-9.04-5.54-104.37 29.02-193.78 56.87-361.6 74.53-268.41 28.16-539.6 14.6-803.08-26.38C94.9 47.97-.34 26.24.08 41.38c-1.56 14.21 19.47 12.91 29.6 17.24 32.82 8.6 66.1 15.33 99.4 21.81 238.99 44.43 482.98 55.29 725.63 49.01 92.37-4.11 185.68-9.96 275.51-33.09 18.68-6.31 42.79-9.21 55.18-25.89 6.76-13.28-12.41-21.16-13.83-6.12-17.69 11.67-39.31 15.61-59.45 21.34-114.56 25.18-245.31 30.46-361.99 30.36-191.39.45-383.13-10.13-572-42.21 277.31 36.42 560.77 44.96 837.82 2.23 104.21-15.4 195.11-42.74 260.97-61.22a7.57 7.57 0 0 0 5.54-9.05Z" />
+                    </svg>
+                )}
+            </span>
+        ))}
     </p>
-
     <p class="subheading">
-        {subheading.split(" ").map((word, index)=>{
-            const focused_word = word.toLocaleLowerCase() == underlined_word.toLocaleLowerCase()
-            const headingWordCount = heading.split(" ").length;
-            return (<span class="text-reveal" style={`--word-index: ${headingWordCount + index}`}>
-                {word}
-                {focused_word && <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 132"><path d="M1282.46 5.79c-.91-3.88-5.18-6.65-9.04-5.54-104.37 29.02-193.78 56.87-361.6 74.53-268.41 28.16-539.6 14.6-803.08-26.38C94.9 47.97-.34 26.24.08 41.38c-1.56 14.21 19.47 12.91 29.6 17.24 32.82 8.6 66.1 15.33 99.4 21.81 238.99 44.43 482.98 55.29 725.63 49.01 92.37-4.11 185.68-9.96 275.51-33.09 18.68-6.31 42.79-9.21 55.18-25.89 6.76-13.28-12.41-21.16-13.83-6.12-17.69 11.67-39.31 15.61-59.45 21.34-114.56 25.18-245.31 30.46-361.99 30.36-191.39.45-383.13-10.13-572-42.21 277.31 36.42 560.77 44.96 837.82 2.23 104.21-15.4 195.11-42.74 260.97-61.22a7.57 7.57 0 0 0 5.54-9.05Z" ></path></svg>}
-                </span>)
-        })}
+        {subtitle}
     </p>
-
-    <p class="description text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 1}`}>
+    <p class="description text-reveal" style={`--word-index: ${descriptionIndex}`}>
         {description}
     </p>
-
     <div class="cta-container">
-        <button class="cta primary text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 3}`}>
-            {primaryCta}
+        <button class="cta primary text-reveal" style={`--word-index: ${primaryCtaIndex}`}>
+            {cta}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10m.47-13.53a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H8a.75.75 0 0 1 0-1.5h6.19l-1.72-1.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
         </button>
-        
-        <button class="cta secondary text-reveal" style={`--word-index: ${heading.split(" ").length + subheading.split(" ").length + 4}`}>
-            {secondaryCta}
+        <button class="cta secondary text-reveal" style={`--word-index: ${secondaryCtaIndex}`}>
+            {cta2}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg>
         </button>
     </div>
-
-
     <div 
-    class={`
-        hero-image-container 
-        ${fullscreen?'fullscreen' : ''}`}
-        style={{
-            "background-image":`url(${heroImage.src})`
-        }}
+        class={`hero-image-container ${fullscreen ? 'fullscreen' : ''}`}
+        style={`background-image: url(${heroImg.src})`}
     >
         <!-- <img class="hero-image" src={heroImage.src} alt="Hero Image"> -->
     </div>
 </section>
-
-
 
 <style lang="less" scoped>
 /*-- -------------------------- -->
@@ -93,7 +124,6 @@ const {
         justify-content: center;
         max-width: 100%;
     }
-
     .heading{
         color: var(--sl-color-neutral-100);
         font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -107,11 +137,12 @@ const {
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         margin-bottom: clamp(1rem, 3vw, 1.5rem);
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
         span{
             display: inline-block;
             position: relative;
-
+            .special-word {
+                color: var(--primary);
+            }
             .underline{
                 position: absolute;
                 display: block;
@@ -127,22 +158,20 @@ const {
             }
         }
     }
-
     @keyframes drawUnderline {
         0% {
             opacity: 0;
             transform: scaleX(0);
         }
         50% {
-            opacity: 1;
+            opacity: .8;
             transform: scaleX(1.1);
         }
         100% {
-            opacity: 1;
+            opacity:.6;
             transform: scaleX(1);
         }
     }
-
     .subheading{
         color: var(--sl-color-neutral-200);
         font-size: clamp(1.25rem, 4vw, 2rem);
@@ -152,8 +181,12 @@ const {
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         margin-bottom: clamp(1.5rem, 4vw, 2rem);
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        span{
+            .special-word {
+                color: var(--primary);
+            }
+        }
     }
-
     .description{
         color: var(--sl-color-neutral-300);
         font-size: clamp(1rem, 3vw, 1.125rem);
@@ -165,14 +198,12 @@ const {
         opacity: 0.9;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-
     .cta-container{
         display: flex;
         gap: clamp(1rem, 3vw, 1.5rem);
         flex-wrap: wrap;
         align-items: center;
     }
-
     .cta{
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 1rem;
@@ -189,7 +220,6 @@ const {
         position: relative;
         overflow: hidden;
         letter-spacing: 0.01em;
-
         &::before {
             content: '';
             position: absolute;
@@ -200,60 +230,48 @@ const {
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s;
         }
-
         &:hover::before {
             left: 100%;
         }
-
         & svg{
             height: 1.1em;
             width: 1.1em;
             transition: transform 0.3s ease;
         }
-
         &:hover svg {
             transform: translateX(2px);
         }
-
         &:active {
             transform: scale(0.98);
         }
     }
-
     .cta.primary{
-        background: linear-gradient(135deg, var(--primary), #0066cc);
+        background: linear-gradient(135deg, var(--primary), var(--primaryLight));
         color: white;
-        box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
 
+        }
         & svg {
             color: rgba(255, 255, 255, 0.9);
         }
     }
-
     .cta.secondary{
         background: rgba(255, 255, 255, 0.1);
         color: var(--sl-color-neutral-100);
         border: 2px solid rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(10px);
-
         &:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
         }
-
         & svg {
             color: var(--sl-color-neutral-200);
         }
     }
-
-    
     /* Enhanced text reveal animations */
     .text-reveal {
         opacity: 0;
@@ -261,7 +279,6 @@ const {
         animation: revealText var(--animation-duration) forwards cubic-bezier(0.4, 0, 0.2, 1);
         animation-delay: calc(var(--word-index) * var(--animation-stagger-delay));
     }
-
     @keyframes revealText {
         0% {
             opacity: 0;
@@ -279,14 +296,12 @@ const {
             filter: blur(0px);
         }
     }
-
     /* Special animation for description */
     .description.text-reveal {
         transform: translateY(20px);
         animation-name: revealDescription;
         animation-duration: 1s;
     }
-
     @keyframes revealDescription {
         0% {
             opacity: 0;
@@ -299,14 +314,12 @@ const {
             filter: blur(0px);
         }
     }
-
     /* Enhanced CTA animations */
     .cta.text-reveal {
         transform: translateY(30px) scale(0.9);
         animation: revealCta var(--bounce-duration) forwards cubic-bezier(0.4, 0, 0.2, 1);
         animation-delay: calc(var(--word-index) * var(--animation-stagger-delay));
     }
-
     @keyframes revealCta {
         0% {
             opacity: 0;
@@ -328,39 +341,29 @@ const {
             transform: translateY(0) scale(1);
         }
     }
-    
     .hero-image-container{
         --initial-size:min(30vw,280px);
         --animation-duration:400ms;
-
-        // display: none; // only display in tablet and larger
-
         position:absolute;
         z-index: -1;
-
         inset: 0;margin: auto;
         width: var(--initial-size);
         height: var(--initial-size);
         border-radius: 100%;
         overflow: hidden;
-
-
         // backgroumd
-        background-position: calc( 50% ) 50%;
+        background-position:  50% 100px;
         background-size:auto 100vw ;
         background-repeat:no-repeat;
-        
         // animation
         transition:all 200ms;
         animation: slideback var(--animation-duration) var(--animation-duration) backwards ease-out,
                    expand var(--animation-duration) calc(var(--animation-duration) * 2) forwards;
         margin-inline-start: 30vw;
-        
         @keyframes slideback {
             0%{
                 transform: translateY(100vh);
             }
-
             100%{
                 transform: translateY(0);
             }
@@ -375,7 +378,6 @@ const {
                 border-end-end-radius: 0%;
             }
         }
-
         &::after{
             content: "";
             position: absolute;
@@ -385,21 +387,17 @@ const {
     }
     .hero-image-container.fullscreen{
         background-size:auto 100vh ;
-
         margin-inline-start: 0;
         animation: slidebackCentered var(--animation-duration) both ease-out ,
                         expandFull var(--animation-duration) forwards var(--animation-duration);
-
         @keyframes slidebackCentered {
             0%{
                 transform:translateX(calc(50vw - 50%)) translateY(100vh);
             }
-
             100%{
                 transform:translateX(calc(50vw - 50%)) translateY(0);
             }
         }
-
         @keyframes expandFull{
             50%{
                 width: 50%;
@@ -414,113 +412,95 @@ const {
         }
     }
 }
-
 /* Tablet - 768px */
 @media only screen and (min-width: 768px) {
     .heading{
         font-size: clamp(3rem, 6vw, 5rem);
         margin-bottom: var(--spacing-s);
     }
-
     .subheading{
         font-size: clamp(1.5rem, 3vw, 2.25rem);
         margin-bottom: var(--spacing-l);
-
     }
-
     .description{
         font-size: clamp(1.125rem, 2vw, 1.25rem);
-
         max-width: 700px;
     }
-
     .cta{
         font-size: 1.125rem;
         padding: 0.875rem 1.75rem;
     }
-
     .cta-container{
         gap: 1.25rem;
     }
-
     .hero-image-container{
         display: block;
+        
     }
     .hero-image-container.fullscreen{
-        background-size:100vw auto ;
+
     }
 }
-
 /* Desktop - 1024px */
 @media only screen and (min-width: 1024px) {
     #hero{
         padding-top: clamp(10rem, 25vw, 12rem);
     }
-
     .heading{
         font-size: clamp(3.5rem, 5vw, 5.5rem);
-
         max-width: 900px;
     }
-
     .subheading{
         font-size: clamp(1.75rem, 2.5vw, 2.5rem);
-
         max-width: 800px;
     }
-
     .description{
         font-size: clamp(1.25rem, 1.5vw, 1.375rem);
         max-width: 750px;
     }
-
     .cta{
         font-size: 1.25rem;
         padding: 1rem 2rem;
-
         & svg{
             height: 1.2em;
             width: 1.2em;
         }
     }
-
     .cta-container{
         gap: 1.5rem;
     }
-
     /* Enhanced hover effects for desktop */
     .cta.primary:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 40px rgba(0, 102, 204, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
     }
-
     .cta.secondary:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
     }
 }
-
 /* Large Desktop - 1440px */
 @media only screen and (min-width: 1440px) {
     .heading{
         max-width: 1000px;
     }
-
     .subheading{
         max-width: 900px;
     }
-
     .description{
         max-width: 800px;
     }
 }
-
 /* Dark Mode */
 @media only screen and (min-width: 0rem) {
     body.dark-mode {
         .cta.primary{
-        background: linear-gradient(135deg, var(--color-primary-300), var(--color-primary-500));
-    }
+            background: linear-gradient(135deg, var(--color-primary-300), var(--color-primary-500));
+        }
+        .heading .special-word,
+        .subheading .special-word {
+            color: var(--color-primary-500);
+        }
     }
 }
 </style>

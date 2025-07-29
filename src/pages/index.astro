@@ -7,8 +7,8 @@ import { getCollection } from "astro:content";
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
 import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-import Hero from "@components/hero/Hero2.astro";
-// import Hero from "@components/Hero.astro";
+import Hero from "@components/hero/Hero-Firework.astro";
+import About from "@components/about/Professional-About.astro"
 import Products from "@components/Products.vue";
 
 
@@ -68,18 +68,38 @@ const dataIsReady = products && productsProcessedImages;
 
 
 
-const title = "Mobilité et Performance, Réunies"; // "Mobility and Performance, Combined"
-const description = "Derniers Modèles, Performances Exceptionnelles, Design Épuré"; //"Latest Models, Exceptional Performance, Sleek Design"
-// const heroImg = {src:"https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/ccb3e8ca3c296e21a8c933e8369031511589d0ef6b079cf5bb3667b09893482c/features/mode-3"}
-const heroImg = {src:"https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-240909-lp.jpg.landing-big_2x.jpg"}
+// Hero Variables
+const hero_title = "Fini les doutes sur vos médicaments"
+const hero_special_words = "Fini les doutes"
+const hero_subtitle = "des conseils ciblés et un suivi qui font la différence, tout cela à la pharmacie Benabdelhadi M.H"
+const hero_description = ""
+// const heroImg = {src:"https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/ccb3e8ca3c296e21a8c933e8369031511589d0ef6b079cf5bb3667b09893482c/features/mode-3  "}
+const heroImg = {src:"https://i.postimg.cc/43s4TttQ/Gemini-Generated-Image-cusxsdcusxsdcusx.png  "}
 const serviceImg = {src:"https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-const cta = "Visitez-nous!"
+const hero_cta = "Visitez-nous!"
+const hero_cta2 = "nos produits"
 
 const service1_title = "58 Wilaya Shipping"
 const service1_description = "Fast and reliable delivery to all 58 provinces. Your new phone is just a click away."
 const service2_title = "30-Day Guarantee"
 const service2_description = "Not satisfied? Return your phone within 30 days, no questions asked."
 
+
+
+// About Variables
+const about_title = "La Pharmacie Benabdelhadi M.H";
+const about_subtitle = "Votre santé et votre beauté, entre de bonnes mains à Tlemcen";
+const about_description = "Nous mettons un point d'honneur à offrir à chaque patient un accompagnement sur mesure, mêlant expertise pharmaceutique, conseils de santé personnalisés et produits de parapharmacie de qualité. Grâce à notre savoir-faire en préparation officinale, vous bénéficiez de solutions adaptées, même lorsque les autres ne peuvent pas vous aider.";
+const about_testimony_text = " À la Pharmacie Benabdelhadi M.H, nous nous engageons à vous servir avec : Expertise, empathie et une attention particulière à votre bien-être au quotidien.";
+const about_testimony_author = "M.H. Benabdelhadi";
+const about_testimony_status = "Pharmacien titulaire"; 
+const about_cta = "Contactez-nous";
+const about_cta_secondary = "";
+const about_card_link = "";
+const about_our_vission = "Être la pharmacie de référence à Tlemcen pour les soins de santé et de beauté, en combinant confiance, proximité et excellence professionnelle.";
+const about_our_mission = "Offrir un accompagnement santé complet : médicaments, conseils experts, préparations officinales et produits de parapharmacie , le tout avec chaleur humaine et discrétion.";
+const about_our_value = "Nous croyons en une approche humaine de la santé, basée sur l'écoute, la bienveillance et la transparence. Chaque patient est unique et mérite un service à la hauteur de ses besoins.";
+const about_backgroundImage =  null; //{ src: "https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }; 
 
 ---
 
@@ -92,17 +112,36 @@ const service2_description = "Not satisfied? Return your phone within 30 days, n
 >
 
 <Hero
-  title={title}
-  description={description}
+  title={hero_title}
+  subtitle={hero_subtitle}
+  description={hero_description}
+  special_words={hero_special_words}
   heroImg={heroImg}
   serviceImg={serviceImg}
-  cta={cta}
+  cta={hero_cta}
+  cta2={hero_cta2}
   service1_title={service1_title}
   service1_description={service1_description}
   service2_title={service2_title}
   service2_description={service2_description}
 />
 
+<About 
+  title={about_title}
+  subtitle={about_subtitle}
+  heading={about_subtitle}
+  description={about_description}
+  testimony_text={about_testimony_text}
+  testimony_author={about_testimony_author}
+  testimony_status={about_testimony_status}
+  cta={about_cta}
+  cta_secondary={about_cta_secondary}
+  card_link={about_card_link}
+  our_vission={about_our_vission}
+  our_mission={about_our_mission}
+  our_value={about_our_value}
+  backgroundImage={about_backgroundImage}
+/>
 
 <!-- products -->
 {dataIsReady ? (

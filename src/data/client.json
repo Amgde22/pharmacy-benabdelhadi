@@ -3,6 +3,13 @@
 	"free":true,
 	"email": "magidembarek@gmail.com",
 	"whatsappLink":"https://wa.me/213556640229",
+	"socials":{
+		"facebook":"hi",
+		"instagram":"hi",
+		"tiktok":"hi",
+		"linkedin":"",
+		"x":""
+	},
 	"phoneForTel": "0556640229",
 	"phoneFormatted": "0556640229",
 	"currency":"DZD",

@@ -15,12 +15,13 @@ const googleMapsLink = data.address.mapLink
 // config
 const showCart = true
 const showNav = true
+const showDarkModeToggle = false
 
 // const ctaButton = "تفضل بزيارتنا"
 const ctaButton = "Viens nous voir"
 
 // const contactButton = "تواصل معنا"
-const contactButton = "Contact Us"
+const contactButton = "Contact"
 
 
 
@@ -69,7 +70,9 @@ const contactButton = "Contact Us"
     
     {showCart && <CartToggle client:only />}
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
-    <DarkModeToggle />
+    {showDarkModeToggle && <DarkModeToggle />}
+
+    
 
         <!--Navigation List-->
        { showNav &&
