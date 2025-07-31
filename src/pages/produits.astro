@@ -5,14 +5,15 @@ import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
-import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import landingImage from "@assets/images/hero.png" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
 import ProductComponent from "@components/Products.vue";
 const optimizedImage = await getOptimizedImage(landingImage)
 
-const products = await getCollection("phones");
+const products = await getCollection("products");
+
 const productsProcessedImages = await processProductImages(products)
 
-//  product </ kayn
+
 
 
 /**
@@ -77,8 +78,8 @@ const dataIsReady = products && productsProcessedImages;
 
 
 <BaseLayout
-  title="Produits"
-  description="Majs Studios product page template"
+  title="Produits de Pharmacie Benabdelhadi - Tlemcen"
+  description="Découvrez nos produits phares à la Pharmacie Benabdelhadi : GlamButterfly Combo, Abusaad Trio et Hair Natura Sérum. Qualité et soins à Tlemcen !"
   preloadedImage = {optimizedImage}
 >
 <div class="padding"></div>

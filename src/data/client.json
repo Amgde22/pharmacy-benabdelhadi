@@ -1,25 +1,25 @@
 {
-	"name": "Majd-Studios",
+	"name": "Pharmacie Benabdelhadi",
 	"free":true,
-	"email": "magidembarek@gmail.com",
-	"whatsappLink":"https://wa.me/213556640229",
+	"email": "pharmaciebenabdelhadi@gmail.com",
+	"whatsappLink":"https://wa.me/213658132940",
 	"socials":{
-		"facebook":"hi",
-		"instagram":"hi",
-		"tiktok":"hi",
+		"facebook":"https://www.facebook.com/share/1C6BvxackD/",
+		"instagram":"https://www.instagram.com/pharmacie_benabdelhadi_mh?igsh=MWplN2I2ajA0dWR6ZA==",
+		"tiktok":"https://www.tiktok.com/@pharmaciebenabdelhadi?_r=1&_d=dll329448li2hg&sec_uid=MS4wLjABAAAAU9-bfuxGJove6NPGKCzBnF_7AF9sh8BdGtI4K1yuNeqT0106v52sGarHUhk5CXoq&share_author_id=7403148521539798021&sharer_language=fr&source=h5_m&u_code=efiid588m269g5&timestamp=1753543878&user_id=7403148521539798021&sec_user_id=MS4wLjABAAAAU9-bfuxGJove6NPGKCzBnF_7AF9sh8BdGtI4K1yuNeqT0106v52sGarHUhk5CXoq&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7496535926862432008&share_link_id=a192d944-de51-4f69-bcf9-f71343a987c7&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb0229&social_share_type=5&enable_checksum=1",
 		"linkedin":"",
 		"x":""
 	},
-	"phoneForTel": "0556640229",
-	"phoneFormatted": "0556640229",
+	"phoneForTel": "0658132940",
+	"phoneFormatted": "0658132940",
 	"currency":"DZD",
 	"address": {
-		"lineOne": "address St.something Lc50",
-		"lineTwo": "Exact address example",
-		"city": "algeria",
-		"state": "",
-		"zip": "",
-		"mapLink": "https//google.com"
+		"lineOne": "hai biada,Aboutechfine,Hai bayada Tlemcen, Algeria, 13092",
+		"lineTwo": "",
+		"city": "Hai bayada",
+		"state": "Tlemcen",
+		"zip": "13000",
+		"mapLink": "https://maps.app.goo.gl/N3Z5ndv5KbqMZxTj8"
 	},
-	"domain": "google.com"
+	"domain": "sante-benabdelhadi.netlify.com"
 }

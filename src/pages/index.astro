@@ -6,7 +6,8 @@ import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
-import landingImage from "@assets/images/hero.webp" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import landingImage from "@assets/images/hero.png"
+import landingImageMobile from "@assets/images/hero-mobile.png"
 import Hero from "@components/hero/Hero-Firework.astro";
 import About from "@components/about/Professional-About.astro"
 import Products from "@components/Products.vue";
@@ -16,7 +17,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 const optimizedImage = await getOptimizedImage(landingImage)
 
-const products = await getCollection("phones");
+const products = await getCollection("products");
 const productsProcessedImages = await processProductImages(products)
 
 
@@ -74,7 +75,8 @@ const hero_special_words = "Fini les doutes"
 const hero_subtitle = "des conseils ciblés et un suivi qui font la différence, tout cela à la pharmacie Benabdelhadi M.H"
 const hero_description = ""
 // const heroImg = {src:"https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/ccb3e8ca3c296e21a8c933e8369031511589d0ef6b079cf5bb3667b09893482c/features/mode-3  "}
-const heroImg = {src:"https://i.postimg.cc/43s4TttQ/Gemini-Generated-Image-cusxsdcusxsdcusx.png  "}
+const heroImg = optimizedImage
+
 const serviceImg = {src:"https://images.unsplash.com/photo-1548393488-ae8f117cbc1c?q=80&w=1315&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
 const hero_cta = "Visitez-nous!"
 const hero_cta2 = "nos produits"
@@ -106,8 +108,8 @@ const about_backgroundImage =  null; //{ src: "https://images.unsplash.com/photo
 
 
 <BaseLayout
-  title="Page d'accueil"
-  description="Majd Studios Template"
+  title="Pharmacie Benabdelhadi - Tlemcen"
+  description="Explore Pharmacie Benabdelhadi M.H à Tlemcen ! Expertise, conseils personnalisés et produits comme GlamButterfly Combo. Pour votre santé et beauté"
   preloadedImage = {optimizedImage}
 >
 
@@ -126,6 +128,20 @@ const about_backgroundImage =  null; //{ src: "https://images.unsplash.com/photo
   service2_description={service2_description}
 />
 
+
+
+<!-- products -->
+{dataIsReady ? (
+  <Products 
+    client:only="vue" 
+    products={products} 
+    productImages={productsProcessedImages} 
+    isSection={true} 
+  />
+) : (
+  <div class="loading-state">Loading products...</div>
+)}
+
 <About 
   title={about_title}
   subtitle={about_subtitle}
@@ -141,21 +157,8 @@ const about_backgroundImage =  null; //{ src: "https://images.unsplash.com/photo
   our_mission={about_our_mission}
   our_value={about_our_value}
   backgroundImage={about_backgroundImage}
+
 />
-
-<!-- products -->
-{dataIsReady ? (
-  <Products 
-    client:only="vue" 
-    products={products} 
-    productImages={productsProcessedImages} 
-    isSection={true} 
-  />
-) : (
-  <div class="loading-state">Loading products...</div>
-)}
-
-
 
  
   <!-- ============================================ -->

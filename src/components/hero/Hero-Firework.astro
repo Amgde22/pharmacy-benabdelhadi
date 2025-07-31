@@ -1,5 +1,7 @@
 ---
-import image from "@assets/images/hero.webp"
+import clientData from "@data/client.json"
+
+const mapLink = clientData.address.mapLink
 
 const {
     fullscreen = true,
@@ -84,14 +86,14 @@ const secondaryCtaIndex = titleWordCount + subtitleWordCount + 4;
         {description}
     </p>
     <div class="cta-container">
-        <button class="cta primary text-reveal" style={`--word-index: ${primaryCtaIndex}`}>
+        <a href={mapLink} class="cta primary text-reveal" style={`--word-index: ${primaryCtaIndex}`}>
             {cta}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10m.47-13.53a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H8a.75.75 0 0 1 0-1.5h6.19l-1.72-1.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
-        </button>
-        <button class="cta secondary text-reveal" style={`--word-index: ${secondaryCtaIndex}`}>
+        </a>
+        <a href="/produits" class="cta secondary text-reveal" style={`--word-index: ${secondaryCtaIndex}`}>
             {cta2}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg>
-        </button>
+        </a>
     </div>
     <div 
         class={`hero-image-container ${fullscreen ? 'fullscreen' : ''}`}
