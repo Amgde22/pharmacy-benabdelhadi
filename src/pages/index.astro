@@ -1,15 +1,12 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import CTA from "@components/CTA.astro";
-import FAQ from "@components/FAQ.astro";
 import { getCollection } from "astro:content";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage,getOptimizedCardImage} from "@js/utils"
 import landingImage from "@assets/images/hero.png"
-import landingImageMobile from "@assets/images/hero-mobile.png"
 import Hero from "@components/hero/Hero-Firework.astro";
-import About from "@components/about/Professional-About.astro"
+import About from "@components/Professional-About.astro"
 import Products from "@components/Products.vue";
 
 
