@@ -111,8 +111,8 @@ const { description, title, preloadedImage } = Astro.props;
   // dark mode
     // helper functions to toggle dark mode
     function enableDarkMode() {
-      document.body.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
+      // document.body.classList.add("dark-mode");
+      // localStorage.setItem("theme", "dark");
     }
   
     function disableDarkMode() {
@@ -133,11 +133,13 @@ const { description, title, preloadedImage } = Astro.props;
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches
       ) {
-        theme = "dark";
+        // theme = "dark";
+        theme = "light";
       }
   
       // if there is no preference set, the default of light will be used. apply accordingly
       theme === "dark" ? enableDarkMode() : disableDarkMode();
+      disableDarkMode()
     }
   
     setTheme();
